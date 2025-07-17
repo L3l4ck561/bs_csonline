@@ -3,6 +3,7 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function App() {
     const data = new Date();
@@ -17,7 +18,7 @@ function App() {
                 <div className="text-white py-3">
                     <nav className="navbar navbar-expand-lg navbar-dark">
                         <div className="container">
-                            <a className="navbar-brand" href="index.html">Home</a>
+                            <Link className="navbar-brand" to="/">Home</Link>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
@@ -25,13 +26,13 @@ function App() {
                             <div className="collapse navbar-collapse" id="navbarNav">
                                 <ul className="navbar-nav ms-auto">
                                     <li className="nav-item">
-                                        <a className="nav-link active" aria-current="page" href="/">Início</a>
+                                        <Link className="nav-link active" aria-current="page" to="/">Início</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/portifolio">portfólio</a>
+                                        <Link className="nav-link" to="/portifolio">Portfólio</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/contato">Contato</a>
+                                        <Link className="nav-link" to="/contato">Contato</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -109,7 +110,7 @@ function App() {
                                 data-bs-toggle="modal" data-bs-target="#myModal">Carlos Gabriel</a>
                         </div>
                     </nav><br />
-                    <a className="topo" href="#topo"><img src='topo.svg' style={{ width: '40px', height: '40px' }} alt="^" /></a>
+                    <a className="topo" onClick={() => document.getElementById("topo").scrollIntoView()}><img src={process.env.PUBLIC_URL +'/topo.svg'} style={{ width: '40px', height: '40px' }} alt="^" /></a>
                     <div className="nav-item dropdown-end" id='menu'>
                         <a
                             className="nav-link dropdown-toggle"

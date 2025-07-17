@@ -2,6 +2,7 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function App() {
     return (
@@ -11,7 +12,7 @@ function App() {
 
                     <nav className="navbar navbar-expand-lg navbar-dark">
                         <div className="container">
-                            <a className="navbar-brand" href="index.html">Contato</a>
+                            <Link className="navbar-brand" to="/contato">Contato</Link>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>
@@ -19,13 +20,13 @@ function App() {
                             <div className="collapse navbar-collapse" id="navbarNav">
                                 <ul className="navbar-nav ms-auto">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/">Início</a>
+                                        <Link className="nav-link" to="/">Início</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link " href="/portifolio">portfólio</a>
+                                        <Link className="nav-link" to="/portifolio">Portfólio</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" aria-current="page" href="/contato">Contato</a>
+                                        <Link className="nav-link active" aria-current="page" to="/contato">Contato</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -48,9 +49,9 @@ function App() {
                                     <div className="card-body">
                                         <div className="tela">
                                             <div className="fim" style={{ top: "0" }}></div>
-                                            <img className="bola1" src="rochas.png"/>
-                                            <img className="bola2" src="rochas.png"/>
-                                            <img className="nave" src="voo.png" />
+                                            <img className="bola1" src={process.env.PUBLIC_URL +"/rochas.png"} />
+                                            <img className="bola2" src={process.env.PUBLIC_URL +"/rochas.png"} />
+                                            <img className="nave" src={process.env.PUBLIC_URL +"/voo.png"} />
                                         </div>
                                         <ul className="list-group list-group-flush mb-5">
                                             <li className="list-group-item ">

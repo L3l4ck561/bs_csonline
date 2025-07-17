@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from 'react';
 import StackedCarousel from './StackedCarousel';
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
 
           <nav className="navbar navbar-expand-lg navbar-dark">
             <div className="container">
-              <a className="navbar-brand" href="index.html">Projetos</a>
+              <Link className="navbar-brand" to="/portifolio">Projetos</Link>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -20,13 +21,13 @@ function App() {
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
-                    <a className="nav-link" href="/">Início</a>
+                    <Link className="nav-link" to="/">Início</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="/portifolio">portfólio</a>
+                    <Link className="nav-link active" aria-current="page" to="/portifolio">Portfólio</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/contato">Contato</a>
+                    <Link className="nav-link" to="/contato">Contato</Link>
                   </li>
                 </ul>
               </div>
@@ -40,8 +41,8 @@ function App() {
       </header>
 
       <main className="App-main">
-      <h2 style={{ textAlign: 'center' }}>Clique em uma das imagens para abrir o projeto correspondente.</h2>
-      <StackedCarousel />
+        <h2 style={{ textAlign: 'center' }}>Clique em uma das imagens para abrir o projeto correspondente.</h2>
+        <StackedCarousel />
       </main>
 
       <footer className="App-footer">

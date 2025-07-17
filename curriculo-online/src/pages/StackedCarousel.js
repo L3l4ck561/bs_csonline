@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './StackedCarousel.css'; // Importamos o CSS separado
 
 const images = [
-  process.env.PUBLIC_URL + '../image.png',
-  'https://picsum.photos/id/1011/500/300',
+  process.env.PUBLIC_URL + '/image.png',
+  'https://picsum.photos/id/1015/500/300',
   'https://picsum.photos/id/1015/500/300',
   'https://picsum.photos/id/1015/500/300',
   'https://picsum.photos/id/1015/500/300',
