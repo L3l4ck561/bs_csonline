@@ -5,13 +5,7 @@ import Contato from './pages/contato';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/portifolio" element={<Portifolio />} />
-        <Route path="/contato" element={<Contato />} />
-      </Routes>
-    </BrowserRouter>
+    <h1>oi</h1>
   );
 }
 
