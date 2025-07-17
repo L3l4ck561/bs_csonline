@@ -62,20 +62,25 @@
   overflow-y: auto;
 }
 
-  #menu{
+  #menu2, #menu{
     position: absolute;
     right: 40px;
     background-Color: #f5f8ff;
     z-Index: 12
   }
+    #menu{
+    background-color: transparent;
+    color: white;
+  }
 
 @media (max-width: 720px) {
+  #menu2{
+    display: none;
+  }
+}
+@media (min-width: 720px) {
   #menu{
-    background-color: transparent;
-    top: 185px;
-    right: 10px;
-    color: white;
-        z-Index: 10000
+    display: none;
   }
 }
 

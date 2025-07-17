@@ -108,10 +108,29 @@ function App() {
                         <div className="container d-flex justify-content-center">
                             <a className="navbar-brand center" href="#topo"
                                 data-bs-toggle="modal" data-bs-target="#myModal">Carlos Gabriel</a>
+                            <div className="nav-item dropdown-end" id='menu'>
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdownMenuLink"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Menu
+                                </a>
+                                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a className="dropdown-item" onClick={() => document.getElementById("peril").scrollIntoView()}>Perfil</a></li>
+                                    <li><a className="dropdown-item" onClick={() => document.getElementById("formacao").scrollIntoView()}>Formação</a></li>
+                                    <li><a className="dropdown-item" onClick={() => document.getElementById("experiencia").scrollIntoView()}>Experiência</a></li>
+                                    <li><a className="dropdown-item" onClick={() => document.getElementById("projetos").scrollIntoView()}>Projetos</a></li>
+                                    <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </nav><br />
-                    <a className="topo" onClick={() => document.getElementById("topo").scrollIntoView()}><img src={process.env.PUBLIC_URL +'/topo.svg'} style={{ width: '40px', height: '40px' }} alt="^" /></a>
-                    <div className="nav-item dropdown-end" id='menu'>
+                    <a className="topo" onClick={() => document.getElementById("topo").scrollIntoView()}><img src={process.env.PUBLIC_URL + '/topo.svg'} style={{ width: '40px', height: '40px' }} alt="^" /></a>
+                    <div className="nav-item dropdown-end" id='menu2'>
                         <a
                             className="nav-link dropdown-toggle"
                             href="#"
@@ -343,7 +362,7 @@ function App() {
                                 <button className="btn-control btn-next" type="button" data-bs-target="#projetosCarousel" data-bs-slide="next">❯</button>
                             </div>
                         </div>
-                    </section><br/><br/>
+                    </section><br /><br />
                     <div className="bg-dark text-white text-center py-3">
                         {/* Contato */}
                         <img src={logo} className="App-logo" alt="logo" />
@@ -366,6 +385,16 @@ function App() {
                       */}
                                             <li className="list-group-item bg-dark text-white">
                                                 <strong>GitHub:</strong> <a href="https://github.com/L3l4ck561" target="_blank" rel="noopener noreferrer">github.com/L3l4ck561</a>
+                                            </li>
+                                            <li className="list-group-item bg-dark text-white">
+                                                <a
+                                                    href="https://wa.me/5514988029965?text=Olá,%20tenho%20interesse%20no%20serviço"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    Fale no WhatsApp
+                                                </a>
+
                                             </li>
                                         </ul>
                                     </div>
