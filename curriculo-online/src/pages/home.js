@@ -307,7 +307,7 @@ function App() {
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
                                         <div style={{ display: 'flex', justifyContent: 'center', height: '90vh' }}>
-                                            <img src={process.env.PUBLIC_URL + "../image.png"} class="d-block w-30" alt="" />
+                                            <img src={process.env.PUBLIC_URL + "/image.png"} class="d-block w-30" alt="" />
                                         </div>
                                         <div className="carousel-caption d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                                             <h5>Projeto 1: Calculadora <span className="badge bg-warning">Concluído</span></h5>
