@@ -5,7 +5,7 @@ import Contato from './pages/contato';
 
 function App() {
   return (
-    <HashRouter basename="/bs_csonline">
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portifolio" element={<Portifolio />} />
