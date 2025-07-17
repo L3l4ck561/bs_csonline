@@ -319,7 +319,7 @@ function App() {
                                     </div>
                                     <div className="carousel-item">
                                         <div style={{ display: 'flex', justifyContent: 'center', height: '90vh' }}>
-                                            <img src="https://picsum.photos/id/1015/500/300" class="d-block w-30" alt="" />
+                                            <img src={process.env.PUBLIC_URL + "./image.png"} class="d-block w-30" alt="" />
                                         </div>
                                         <div className="carousel-caption d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                                             <h5>---</h5>
@@ -329,7 +329,7 @@ function App() {
                                     </div>
                                     <div className="carousel-item">
                                         <div style={{ display: 'flex', justifyContent: 'center', height: '90vh' }}>
-                                            <img src="https://picsum.photos/id/1015/500/300" class="d-block w-30" alt="" />
+                                            <img src={process.env.PUBLIC_URL + "../image.png"} class="d-block w-30" alt="" />
                                         </div>
                                         <div className="carousel-caption d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                                             <h5>---</h5>
