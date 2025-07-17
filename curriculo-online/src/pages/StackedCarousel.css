@@ -1,0 +1,60 @@
+.carousel-wrapper {
+  perspective: 1000px;
+  overflow: hidden;
+  max-width: 700px;
+  margin: auto;
+  position: relative;
+  height: 320px;
+}
+
+.carousel-stacked {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.carousel-card {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-card.active {
+  pointer-events: auto;
+}
+
+.btn-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 20px;
+  z-index: 20;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-prev {
+  left: 10px;
+}
+
+.btn-next {
+  right: 10px;
+}
