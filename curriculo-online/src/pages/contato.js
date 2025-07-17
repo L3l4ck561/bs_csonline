@@ -49,9 +49,9 @@ function App() {
                                     <div className="card-body">
                                         <div className="tela">
                                             <div className="fim" style={{ top: "0" }}></div>
-                                            <img className="bola1" src={process.env.PUBLIC_URL +"/rochas.png"} />
-                                            <img className="bola2" src={process.env.PUBLIC_URL +"/rochas.png"} />
-                                            <img className="nave" src={process.env.PUBLIC_URL +"/voo.png"} />
+                                            <img className="bola1" src={process.env.PUBLIC_URL + "/rochas.png"} />
+                                            <img className="bola2" src={process.env.PUBLIC_URL + "/rochas.png"} />
+                                            <img className="nave" src={process.env.PUBLIC_URL + "/voo.png"} />
                                         </div>
                                         <ul className="list-group list-group-flush mb-5">
                                             <li className="list-group-item ">
@@ -67,6 +67,16 @@ function App() {
                       */}
                                             <li className="list-group-item ">
                                                 <strong>GitHub:</strong> <a href="https://github.com/L3l4ck561" target="_blank" rel="noopener noreferrer">github.com/L3l4ck561</a>
+                                            </li>
+                                            <li className="list-group-item">
+                                                <a
+                                                    href="https://wa.me/5514988029965?text=Olá,%20tenho%20interesse%20no%20serviço"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    Fale no WhatsApp
+                                                </a>
+
                                             </li>
                                         </ul>
                                     </div>

@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './StackedCarousel.css'; // Importamos o CSS separado
 
 const images = [
+  'https://picsum.photos/id/1015/500/300',
+  'https://picsum.photos/id/1015/500/300',
   process.env.PUBLIC_URL + '/image.png',
-  'https://picsum.photos/id/1015/500/300',
-  'https://picsum.photos/id/1015/500/300',
   'https://picsum.photos/id/1015/500/300',
   'https://picsum.photos/id/1015/500/300',
 ];
 const links = [
+  '#',
+  '#',
   'https://l3l4ck561.github.io/CalculadoraTest2/',
-  '#',
-  '#',
   '#',
   '#',
 ];
