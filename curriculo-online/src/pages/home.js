@@ -123,11 +123,11 @@ function App() {
                             Menu
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a className="dropdown-item" href="#perfil">Perfil</a></li>
-                            <li><a className="dropdown-item" href="#formacao">Formação</a></li>
-                            <li><a className="dropdown-item" href="#experiencia">Experiência</a></li>
-                            <li><a className="dropdown-item" href="#projetos">Projetos</a></li>
-                            <li><a className="dropdown-item" href="#contato">Contato</a></li>
+                            <li><a className="dropdown-item" onClick={() => document.getElementById("peril").scrollIntoView()}>Perfil</a></li>
+                            <li><a className="dropdown-item" onClick={() => document.getElementById("formacao").scrollIntoView()}>Formação</a></li>
+                            <li><a className="dropdown-item" onClick={() => document.getElementById("experiencia").scrollIntoView()}>Experiência</a></li>
+                            <li><a className="dropdown-item" onClick={() => document.getElementById("projetos").scrollIntoView()}>Projetos</a></li>
+                            <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
                         </ul>
                     </div>
 
