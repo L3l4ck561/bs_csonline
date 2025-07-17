@@ -71,8 +71,9 @@
 
 @media (max-width: 720px) {
   #menu{
-    top: 163px;
     background-color: transparent;
+    top: 185px;
+    right: 10px;
     color: white;
         z-Index: 10000
   }
