@@ -5,7 +5,7 @@ const images = [
   'https://picsum.photos/id/1015/500/300',
   'https://picsum.photos/id/1015/500/300',
   process.env.PUBLIC_URL + '/image.png',
-  process.env.PUBLIC_URL + '/cucuja.png.png',
+  process.env.PUBLIC_URL + '/cucuja.png',
   'https://picsum.photos/id/1015/500/300',
 ];
 const links = [
