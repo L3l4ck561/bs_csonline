@@ -283,7 +283,7 @@ function App() {
                                         <div className="accordion-body">
                                             <strong>Cargo:</strong>Desenvolvedor Full Stack<br />
                                             <strong>Período:</strong> Dezembro 2024 - Presente<br />
-                                            <strong>Descrição:</strong>Desenvolvimento de interfaces web usando mediaquery, integração com APIs REST, e otimização de performance de aplicações.<br />
+                                            <strong>Descrição:</strong>Desenvolvimento de interfaces web, integração com APIs REST, e otimização de performance de aplicações.<br />
                                             <strong>Tecnologias:</strong>
                                             <span className="badge bg-info me-1">JavaScript</span>
                                             <span className="badge bg-info me-1">HTML</span>
