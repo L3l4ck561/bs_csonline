@@ -5,14 +5,14 @@ const images = [
   'https://picsum.photos/id/1015/500/300',
   'https://picsum.photos/id/1015/500/300',
   process.env.PUBLIC_URL + '/image.png',
-  'https://picsum.photos/id/1015/500/300',
+  process.env.PUBLIC_URL + '/cucuja.png.png',
   'https://picsum.photos/id/1015/500/300',
 ];
 const links = [
   '#',
   '#',
   'https://l3l4ck561.github.io/CalculadoraTest2/',
-  '#',
+  'https://birdgamejam.itch.io/a-toca-da-coruja',
   '#',
 ];
 

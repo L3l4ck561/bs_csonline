@@ -309,6 +309,20 @@ function App() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="headingThree">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Empregado Aprendiz - TEC Glass Componentes Industriais LTDA
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExperiencia">
+                                        <div className="accordion-body">
+                                            <strong>Cargo:</strong> Aprendiz Analise Desen. Sistem<br />
+                                            <strong>Período:</strong> Maio 2025 - Presente<br />
+                                            <strong>Descrição:</strong> Participação em curso técnico com foco em desenvolvimento de software, recebendo formação teórica e prática enquanto vinculado à empresa contratante.
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
