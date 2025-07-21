@@ -59,7 +59,7 @@ const StackedCarousel = () => {
                 visibility: 'visible',
               }}
             >
-              <a href={links[index]} target="_blank"><img src={src} alt={`Slide ${index}`} /></a>
+              <a href={links[index]}><img src={src} alt={`Slide ${index}`} /></a>
             </div>
           );
         })}
