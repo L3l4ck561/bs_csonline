@@ -188,7 +188,7 @@ function App() {
                         data-bs-toggle="modal"
                         data-bs-target="#myModal"
                     >
-                        Abrir Peril
+                        Abrir Perfil
                     </button>
                     <section id="formacao" className="bg-light">
                         <div className="container">
