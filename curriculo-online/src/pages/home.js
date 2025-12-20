@@ -11,7 +11,8 @@ function App() {
     const mes = data.getMonth() + 1;
     const ano = data.getFullYear();
     let nsc = [2007, 1, 5]
-    let idadeAtual = dia >= nsc[2] && mes >= nsc[1] ? ano - nsc[0] : ano - nsc[0] - 1
+
+    let idadeAtual = mes >= nsc[1] ? dia >= nsc[2] || mes > nsc[1] ? ano - nsc[0] : ano - nsc[0] - 1 : ano - nsc[0] - 1
     return (
         <div className="App" id='topo'>
             <header className="App-header">
@@ -60,7 +61,7 @@ function App() {
                         <div className="modal-content">
                             {/* Modal Header */}
                             <div className="modal-header">
-                                <h2 className="modal-title">Perfil</h2>
+                                <h2 className="modal-title">Perfil </h2>
                                 <button
                                     type="button"
                                     className="btn-close"
@@ -74,7 +75,7 @@ function App() {
                             <div className="modal-body">
                                 <div className="img text-center mt-2">
                                     <img
-                                        src="eu.jpeg"
+                                        src={`${process.env.PUBLIC_URL}/eu.jpeg`}
                                         alt="Foto de perfil"
                                         className="rounded-circle"
                                         width="180px"
@@ -120,10 +121,9 @@ function App() {
                                     Menu
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a className="dropdown-item" onClick={() => document.getElementById("peril").scrollIntoView()}>Perfil</a></li>
                                     <li><a className="dropdown-item" onClick={() => document.getElementById("formacao").scrollIntoView()}>Formação</a></li>
                                     <li><a className="dropdown-item" onClick={() => document.getElementById("experiencia").scrollIntoView()}>Experiência</a></li>
-                                    <li><a className="dropdown-item" onClick={() => document.getElementById("projetos").scrollIntoView()}>Projetos</a></li>
+                                    <li><a className="dropdown-item" onClick={() => document.getElementById("conquistas").scrollIntoView()}>Conquistas</a></li>
                                     <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
                                 </ul>
                             </div>
@@ -142,10 +142,9 @@ function App() {
                             Menu
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a className="dropdown-item" onClick={() => document.getElementById("peril").scrollIntoView()}>Perfil</a></li>
                             <li><a className="dropdown-item" onClick={() => document.getElementById("formacao").scrollIntoView()}>Formação</a></li>
                             <li><a className="dropdown-item" onClick={() => document.getElementById("experiencia").scrollIntoView()}>Experiência</a></li>
-                            <li><a className="dropdown-item" onClick={() => document.getElementById("projetos").scrollIntoView()}>Projetos</a></li>
+                            <li><a className="dropdown-item" onClick={() => document.getElementById("conquistas").scrollIntoView()}>Conquistas</a></li>
                             <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
                         </ul>
                     </div>
@@ -167,14 +166,23 @@ function App() {
                                             <h6 className="card-title">Minhas Skills</h6>
                                             <div>
                                                 <span className="badge bg-success me-1">Excel</span>
+                                                <span className="badge bg-secondary me-1">Cypress</span>
+                                                <span className="badge bg-warning me-1">Postman</span>
+                                                <span className="badge bg-secondary me-1">JestJs</span>
+                                                <span className="badge bg-success me-1">Selenium</span>
                                                 <span className="badge bg-danger me-1">Bootstrap</span>
                                                 <span className="badge bg-dark me-1">Expo</span>
                                                 <span className="badge bg-primary me-1">React</span>
                                                 <span className="badge bg-info me-1">Python</span>
                                                 <span className="badge bg-warning me-1">JavaScript</span>
                                                 <span className="badge bg-dark me-1">Git</span>
-                                                <span className="badge bg-danger">HTML/CSS</span>
-                                                <span className="badge bg-secondary">MySQL</span>
+                                                <span className="badge bg-danger me-1">HTML/CSS</span>
+                                                <span className="badge bg-primary me-1">MUI</span>
+                                                <span className="badge bg-warning me-1">Tailwind</span>
+                                                <span className="badge bg-info me-1">Vite</span>
+                                                <span className="badge bg-success me-1">Arduino/C++</span>
+                                                <span className="badge bg-info me-1">MySQL Workbench</span>
+                                                <span className="badge bg-success me-1">HeidiSQL</span>
                                             </div>
                                         </div>
                                     </div>
@@ -182,6 +190,7 @@ function App() {
                             </div>
                         </div>
                     </section>
+                    <div id="formacao" />
                     <button
                         type="button"
                         className="btn btn-primary m-3"
@@ -190,14 +199,15 @@ function App() {
                     >
                         Abrir Perfil
                     </button>
-                    <section id="formacao" className="bg-light">
+                    <br /><br /><br />
+                    <section className="bg-light">
                         <div className="container">
                             <h2 className="text-center mb-4">Formação Acadêmica</h2>
                             <div className="row row-cols-1 row-cols-md-2 g-4">
                                 <div className="col">
                                     <div className="card h-100 shadow">
                                         <div className="card-body">
-                                            <h5 className="card-title">Ensino médio <span className="badge bg-warning">Cursando</span></h5>
+                                            <h5 className="card-title">Ensino médio <span className="badge bg-success">Concluído</span></h5>
                                             <p className="card-text">
                                                 <strong>Instituição:</strong> SESI - Botucatu<br />
                                                 <strong>Ano de Conclusão:</strong> 2025
@@ -208,7 +218,7 @@ function App() {
                                 <div className="col">
                                     <div className="card h-100 shadow">
                                         <div className="card-body">
-                                            <h5 className="card-title">Curso Técnico - A. Des. de Sistemas <span className="badge bg-warning">Cursando</span></h5>
+                                            <h5 className="card-title">Curso Técnico - A. Des. de Sistemas <span className="badge bg-success">Concluído</span></h5>
                                             <p className="card-text">
                                                 <strong>Instituição:</strong> SENAI - Botucatu<br />
                                                 <strong>Ano de Conclusão:</strong> 2025
@@ -220,7 +230,7 @@ function App() {
                         </div>
 
                     </section>
-
+                    
                     <section id="complementares" className="bg-light">
                         <div className="container">
                             <h5 className="text-center m-4">Cursos Complementares</h5>
@@ -262,14 +272,14 @@ function App() {
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div id="experiencia" />
                                 </div>
                             </div>
                         </div>
 
                     </section>
-
-                    <section id="experiencia" className="bg-light-gray">
+                    <br /><br /><br />
+                    <section className="bg-light-gray">
                         <div className="container">
                             <h2 className="text-center m-4">Experiência Profissional</h2>
                             <div className="accordion" id="accordionExperiencia">
@@ -282,7 +292,7 @@ function App() {
                                     <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExperiencia">
                                         <div className="accordion-body">
                                             <strong>Cargo:</strong>Desenvolvedor Full Stack<br />
-                                            <strong>Período:</strong> Dezembro 2024 - Presente<br />
+                                            <strong>Período:</strong> Dezembro 2024 - Julho 2025<br />
                                             <strong>Descrição:</strong>Desenvolvimento de interfaces web, integração com APIs REST, e otimização de performance de aplicações.<br />
                                             <strong>Tecnologias:</strong>
                                             <span className="badge bg-info me-1">JavaScript</span>
@@ -301,7 +311,7 @@ function App() {
                                     </h2>
                                     <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExperiencia">
                                         <div className="accordion-body">
-                                            <strong>Cargo:</strong> Autor e Desenvolvedor Full Stack<br />
+                                            <strong>Cargo:</strong> Autor e Desenvolvedor<br />
                                             <strong>Período:</strong> Março 2025<br />
                                             <strong>Descrição:</strong> Desenvolvimento de jogo 2D para navegador utilizando Construct 3, com foco em mecânicas interativas, design de níveis e integração com a plataforma itch.io.<br />
                                             <strong>Tecnologias:</strong>
@@ -318,65 +328,98 @@ function App() {
                                     <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExperiencia">
                                         <div className="accordion-body">
                                             <strong>Cargo:</strong> Aprendiz Analise Desen. Sistem<br />
-                                            <strong>Período:</strong> Maio 2025 - Presente<br />
+                                            <strong>Período:</strong> 19 de Maio - 19 de Dezembro 2025<br />
                                             <strong>Descrição:</strong> Participação em curso técnico com foco em desenvolvimento de software, recebendo formação teórica e prática enquanto vinculado à empresa contratante.
+                                        <a
+                                                href={`${process.env.PUBLIC_URL}/tec.png`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={`${process.env.PUBLIC_URL}/tec.png`}
+                                                    width="500px"
+                                                    alt="Foto"
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                            </a>
+                                            
+                                        </div>
+                                    </div>
+                                    <div id='conquistas'></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </section>
+                    <br /><br /><br />
+                    <section className="bg-light">
+                        <div className="container">
+                            <h2 className="text-center mb-4">Conquistas</h2>
+                            <div className="row row-cols-1 row-cols-md-2 g-4">
+
+                                <div className="col">
+                                    <div className="card h-100 shadow">
+                                        <div className="card-body">
+                                            <a
+                                                href={`${process.env.PUBLIC_URL}/Scan.png`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={`${process.env.PUBLIC_URL}/Scan.png`}
+                                                    width="100%"
+                                                    alt="Foto"
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="col">
+                                    <div className="card h-100 shadow">
+                                        <div className="card-body">
+                                            <a
+                                                href={`${process.env.PUBLIC_URL}/scan2.png`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={`${process.env.PUBLIC_URL}/scan2.png`}
+                                                    width="100%"
+                                                    alt="Foto"
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="col">
+                                    <div className="card h-100 shadow">
+                                        <div className="card-body">
+                                            <a
+                                                href={`${process.env.PUBLIC_URL}/premio.jpeg`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    src={`${process.env.PUBLIC_URL}/premio.jpeg`}
+                                                    width="100%"
+                                                    alt="Foto"
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </section>
 
-
-                    {/* Projetos */}
-                    <section id="projetos" className="bg-light">
-                        <div className="container">
-                            <h2 className="text-center m-4">Projetos</h2>
-                            <div id="projetosCarousel" className="carousel slide" data-bs-ride="carousel">
-                                <div className="carousel-indicators">
-                                    <button type="button" data-bs-target="#projetosCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#projetosCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#projetosCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-                                <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                        <div style={{ display: 'flex', justifyContent: 'center', height: '90vh' }}>
-                                            <img src={process.env.PUBLIC_URL + "/image.png"} class="d-block w-30" alt="" />
-                                        </div>
-                                        <div className="carousel-caption d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                                            <h5>Projeto 1: Calculadora <span className="badge bg-warning">Concluído</span></h5>
-                                            <p>Aplicativo web com modo escuro e modo claro.</p>
-                                            <span className="badge bg-info me-1">HTML</span>
-                                            <span className="badge bg-info me-1">CSS</span>
-                                            <span className="badge bg-info me-1">JavaScript</span>
-                                        </div>
-                                    </div>
-                                    <div className="carousel-item">
-                                        <div style={{ display: 'flex', justifyContent: 'center', height: '90vh' }}>
-                                            <img src="https://picsum.photos/id/1015/500/300" class="d-block w-30" alt="" />
-                                        </div>
-                                        <div className="carousel-caption d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                                            <h5>---</h5>
-                                            <p></p>
-                                            <span className="badge bg-info me-1"></span>
-                                        </div>
-                                    </div>
-                                    <div className="carousel-item">
-                                        <div style={{ display: 'flex', justifyContent: 'center', height: '90vh' }}>
-                                            <img src="https://picsum.photos/id/1015/500/300" class="d-block w-30" alt="" />
-                                        </div>
-                                        <div className="carousel-caption d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                                            <h5>---</h5>
-                                            <p></p>
-                                            <span className="badge bg-info me-1"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button className="btn-control btn-prev" type="button" data-bs-target="#projetosCarousel" data-bs-slide="prev">❮</button>
-                                <button className="btn-control btn-next" type="button" data-bs-target="#projetosCarousel" data-bs-slide="next">❯</button>
-                            </div>
-                        </div>
-                    </section><br /><br />
+                    <br /><br />
                     <div className="bg-dark text-white text-center py-3">
                         {/* Contato */}
                         <img src={logo} className="App-logo" alt="logo" />
@@ -420,7 +463,7 @@ function App() {
             </main>
             <footer className="App-footer">
                 <div className="container">
-                    <p className="mb-0">© 2025 Carlos Gabriel. Todos os direitos reservados.</p>
+                    <p className="mb-0">Desenvolvido em 2025 © Carlos Gabriel.</p>
                 </div>
             </footer>
         </div>

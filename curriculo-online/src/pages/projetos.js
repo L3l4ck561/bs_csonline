@@ -1,8 +1,8 @@
-import '../App.css';
+import styles from './projetos.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from 'react';
-import StackedCarousel from './StackedCarousel';
+import StackedCarousel from '../components/StackedCarousel';
 import { Link } from "react-router-dom";
 
 function App() {
@@ -34,20 +34,43 @@ function App() {
             </div>
 
           </nav>
-          <div class="container">
-            <h1 class="mb-0">Meus Trabalhos</h1>
+          <div className="container">
+            <h1 className="mb-0">Meus Trabalhos</h1>
           </div>
         </div>
       </header>
+      <div className={styles.alert}>Acesse os projetos clicando nos cards</div>
 
-      <main className="App-main">
-        <h2 style={{ textAlign: 'center' }}>Clique em uma das imagens para abrir o projeto correspondente.</h2>
+      <main className="App-main"><br />
+        <h2>Projetos em destaque</h2>
         <StackedCarousel />
+        <section className="bg-light">
+          <div className="container"><hr />
+            <h2 className="text-center mb-4">Outros projetos</h2>
+            <div className="row row-cols-1 row-cols-md-2 g-4">
+
+              <div className="col">
+                <div className="card h-100 shadow">
+                  <a className='tagA' href='https://l3l4ck561.github.io/CalculadoraTest2/'>
+                    <div className="card-body">
+                      <h5 className="card-title">Calculadora <span className="badge bg-success">Concluído</span></h5>
+                      <p className="card-text">
+                        Aplicativo web com modo escuro e modo claro.<br />
+                        <span className='badge bg-warning'>HTML/CSS</span> <span className='badge bg-warning'>JavaScript</span>
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section><br />
       </main>
 
       <footer className="App-footer">
         <div className="container">
-          <p className="mb-0">© 2025 Carlos Gabriel. Todos os direitos reservados.</p>
+          <p className="mb-0">Desenvolvido em 2025 © Carlos Gabriel.</p>
         </div>
       </footer>
     </div>

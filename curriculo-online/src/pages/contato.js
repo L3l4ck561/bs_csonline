@@ -89,7 +89,7 @@ function App() {
 
             <footer className="App-footer">
                 <div className="container">
-                    <p className="mb-0">© 2025 Carlos Gabriel. Todos os direitos reservados.</p>
+                    <p className="mb-0">Desenvolvido em 2025 © Carlos Gabriel.</p>
                 </div>
             </footer>
 
