@@ -190,7 +190,7 @@ function App() {
                             </div>
                         </div>
                     </section>
-                    <div id="formacao" />
+                    
                     <button
                         type="button"
                         className="btn btn-primary m-3"
@@ -199,7 +199,7 @@ function App() {
                     >
                         Abrir Perfil
                     </button>
-                    <br /><br /><br />
+                    <div id="formacao" /><br /><br /><br />
                     <section className="bg-light">
                         <div className="container">
                             <h2 className="text-center mb-4">Formação Acadêmica</h2>
@@ -272,13 +272,11 @@ function App() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="experiencia" />
                                 </div>
                             </div>
                         </div>
-
                     </section>
-                    <br /><br /><br />
+                    <br /><div id="experiencia" /><br /><br />
                     <section className="bg-light-gray">
                         <div className="container">
                             <h2 className="text-center m-4">Experiência Profissional</h2>
