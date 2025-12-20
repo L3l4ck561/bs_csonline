@@ -44,7 +44,7 @@ const data = [
   },
   {
     "img": 'https://picsum.photos/id/1015/500/300',
-    "url": "http://localhost:3000/bs_csonline#/portifolio",
+    "url": "https://l3l4ck561.github.io/bs_csonline/#/portifolio",
     "desc": {
       'nome': 'Gerenciador de estoque - fármacos(Mn)',
       'status': 'Em andamento',

@@ -330,6 +330,7 @@ function App() {
                                             <strong>Cargo:</strong> Aprendiz Analise Desen. Sistem<br />
                                             <strong>Período:</strong> 19 de Maio - 19 de Dezembro 2025<br />
                                             <strong>Descrição:</strong> Participação em curso técnico com foco em desenvolvimento de software, recebendo formação teórica e prática enquanto vinculado à empresa contratante.
+                                        <br/>
                                         <a
                                                 href={`${process.env.PUBLIC_URL}/tec.png`}
                                                 target="_blank"
