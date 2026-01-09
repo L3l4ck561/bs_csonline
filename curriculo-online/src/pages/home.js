@@ -190,7 +190,7 @@ function App() {
                             </div>
                         </div>
                     </section>
-                    
+
                     <button
                         type="button"
                         className="btn btn-primary m-3"
@@ -230,7 +230,7 @@ function App() {
                         </div>
 
                     </section>
-                    
+
                     <section id="complementares" className="bg-light">
                         <div className="container">
                             <h5 className="text-center m-4">Cursos Complementares</h5>
@@ -328,28 +328,23 @@ function App() {
                                             <strong>Cargo:</strong> Aprendiz Analise Desen. Sistem<br />
                                             <strong>Período:</strong> 19 de Maio - 19 de Dezembro 2025<br />
                                             <strong>Descrição:</strong> Participação em curso técnico com foco em desenvolvimento de software, recebendo formação teórica e prática enquanto vinculado à empresa contratante.
-                                        <br/>
-                                        <a
+                                            <br />
+                                            <a
                                                 href={`${process.env.PUBLIC_URL}/tec.png`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
-                                                <img
-                                                    src={`${process.env.PUBLIC_URL}/tec.png`}
-                                                    width="500px"
-                                                    alt="Foto"
-                                                    style={{ cursor: 'pointer' }}
-                                                />
+                                                Abrir Certificado
                                             </a>
-                                            
+
                                         </div>
                                     </div>
                                     <div id='conquistas'></div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                     </section>
                     <br /><br /><br />
                     <section className="bg-light">
