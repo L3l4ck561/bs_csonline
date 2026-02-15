@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
-import Home from './pages/home';
-import Portifolio from './pages/projetos';
-import Contato from './pages/contato';
+import Home from './pages/HOME/main';
+import Portifolio from './pages/WORK/portifolio';
+import Contato from './pages/PARTY/certificado';
 
 function App() {
   return (
@@ -9,10 +9,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portifolio" element={<Portifolio />} />
-        <Route path="/contato" element={<Contato />} />
+        <Route path="/outros-certificados" element={<Contato />} />
       </Routes>
     </HashRouter>
   );
 }
 
 export default App;
+
