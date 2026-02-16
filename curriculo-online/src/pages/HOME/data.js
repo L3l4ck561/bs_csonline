@@ -45,7 +45,7 @@ export const skills = [
 
 //Formação Acadêmica
 export const FormAcademico = [
-    { nome: 'Ensino médio', status: 'Concluído', instituicao: 'SESI - Botucatu', ano: '2025', certificado: 'certificadoescolar.pdf', cor: 'success' },
+    { nome: 'Ensino Médio', status: 'Concluído', instituicao: 'SESI - Botucatu', ano: '2025', certificado: 'certificadoescolar.pdf', cor: 'success' },
     { nome: 'Curso Técnico - A. Des. de Sistemas', status: 'Concluído', instituicao: 'SENAI - Botucatu', ano: '2025', certificado: '', cor: 'success' },
     { nome: 'Curso Tecnólogo - A. Des. de Sistemas', status: 'Em andamento', instituicao: 'Uninter', ano: '---', certificado: '', cor: 'warning' },
 ];
