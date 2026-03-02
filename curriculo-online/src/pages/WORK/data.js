@@ -1,6 +1,7 @@
 export const projetoweb = [
     {img:'/projetos/calculadora.png',nome:'Calculadora',tech:'HTML • CSS • JS',url:'https://l3l4ck561.github.io/CalculadoraTest2/'},
     {img:'/projetos/cucuja.png',nome:'Toca da curuja',tech:'Construct2',url:'https://birdgamejam.itch.io/a-toca-da-coruja'},
+    {img:'/projetos/calendario.png',nome:'RotaRotina',tech:'React(Vite) • Mui • Tailwind • JS',url:'https://l3l4ck561.github.io/RotaRotina/'},
 ]
 
 export const slides = [

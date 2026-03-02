@@ -1,6 +1,7 @@
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Contato from '../../components/contato';
 import React from 'react';
 import { Link } from "react-router-dom";
 
@@ -43,6 +44,9 @@ function Certificado() {
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link active" to="/outros-certificados">Participações | Premiações</Link>
+                                    </li>
+                                    <li>
+                                        <a className="nav-link btn btn-primary " onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a>
                                     </li>
                                 </ul>
                             </div>
@@ -133,7 +137,7 @@ function Certificado() {
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("topo").scrollIntoView()}>parede de conquistas</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("participacao").scrollIntoView()}>Participações</a></li>
-
+                                <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
                             </ul>
                         </div>
                     </div>
@@ -148,6 +152,7 @@ function Certificado() {
 
             </main>
 
+            <Contato/>
             <footer className="App-footer">
                 <div className="container">
                     <p className="mb-0">Desenvolvido com React + Bootstrap em 2025 © Carlos Gabriel.</p>

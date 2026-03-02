@@ -2,6 +2,7 @@ import '../../App.css';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Contato from '../../components/contato';
 import React from 'react';
 import { Link } from "react-router-dom";
 
@@ -44,6 +45,9 @@ function Portifolio() {
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/outros-certificados">Participações | Premiações</Link>
+                                    </li>
+                                    <li>
+                                        <a className="nav-link btn btn-primary " onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a>
                                     </li>
                                 </ul>
                             </div>
@@ -134,6 +138,7 @@ function Portifolio() {
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("topo").scrollIntoView()}>Projetos Web</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("aplicacoes").scrollIntoView()}>Aplicações</a></li>
+                                <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
                             </ul>
                         </div>
                     </div>
@@ -156,6 +161,7 @@ function Portifolio() {
             <div style={{height:100}} />
             </main>
 
+            < Contato/>
             <footer className="App-footer">
                 <div className="container">
                     <p className="mb-0">Desenvolvido com React + Bootstrap em 2025 © Carlos Gabriel.</p>

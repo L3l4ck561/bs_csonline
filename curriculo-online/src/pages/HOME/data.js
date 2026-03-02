@@ -23,19 +23,18 @@ import {
 // minhas skills
 export const tecnologias = [
     { nome: "JavaScript", Icon: SiJavascript, cor: "#F7DF1E" },
-    { nome: "TypeScript", Icon: SiTypescript, cor: "#3178C6" },
     { nome: "Python", Icon: SiPython, cor: "#3776AB" },
     { nome: "HTML5", Icon: SiHtml5, cor: "#E34F26" },
     { nome: "CSS3", Icon: SiCss3, cor: "#1572B6" },
     { nome: "SQL", Icon: SiMysql, cor: "#4479A1" },
     { nome: "C++", Icon: SiCplusplus, cor: "#00599C" },
     { nome: "Delphi (Object Pascal)", Icon: SiDelphi, cor: "#EE1F35" },
-    { nome: "Construct 2", Icon: SiUnity, cor: "#FF6600" }
+    { nome: "Construct 2", Icon: SiUnity, cor: "#FF6600" },
 ];
 
 export const skills = [
-    { titulo: 'Frontend & Mobile', cor: 'primary', nomes: ['React.js', 'React Native', 'TypeScript', 'Vite', 'Bootstrap', 'Tailwind CSS', 'Material-UI'] },
-    { titulo: 'Backend & APIs', cor: 'success', nomes: ['Node.js', 'Flask', 'API REST', 'Postman'] },
+    { titulo: 'Frontend & Mobile', cor: 'primary', nomes: ['React.js', 'React Native', 'TypeScript', 'Vite', 'Bootstrap', 'Tailwind CSS', 'Material-UI','Expo'] },
+    { titulo: 'Backend & APIs', cor: 'success', nomes: ['Node.js', 'Flask', 'API REST', 'Postman', 'Express.js'] },
     { titulo: 'Testes & Qualidade', cor: 'info', nomes: ['Cypress', 'Jest', 'Selenium', 'Automação de Testes', 'PyAutoGUI'] },
     { titulo: 'Banco de Dados', cor: 'secondary', nomes: ['MySQL', 'HeidiSQL / MySQL Workbench'] },
     { titulo: 'DevOps & Colaboração', cor: 'danger', nomes: ['Git / GitHub', 'Figma', 'Trello', 'Excel'] },
@@ -86,7 +85,7 @@ export const expeProf = [
             cargo: 'Estagiário – Desenvolvedor Full Stack',
             periodo: 'Janeiro 2026 – Atualmente',
             desc: 'Atuação em projetos internos corporativos com Delphi Pascal, aprendizado contínuo de novas tecnologias e adaptação a diferentes stacks de desenvolvimento.',
-            tech: [7] //tecnologias utilizadas puzando pelo index de const tecnologias
+            tech: [6] //tecnologias utilizadas puzando pelo index de const tecnologias
         },
         certificado: []
     },
@@ -99,7 +98,7 @@ export const expeProf = [
             cargo: 'Desenvolvedor Full Stack',
             periodo: 'Dezembro 2024 – Julho 2025',
             desc: 'Desenvolvimento de interfaces web, integração com APIs REST e otimização de performance de aplicações.',
-            tech: [0, 3, 4, 2, 5]
+            tech: [0, 2, 3, 1, 4]
         },
         certificado: []
     },
@@ -112,7 +111,7 @@ export const expeProf = [
             cargo: 'Autor e Desenvolvedor',
             periodo: 'Março 2025',
             desc: 'Desenvolvimento de jogo 2D para navegador utilizando Construct 2, com foco em mecânicas interativas, design de níveis e publicação na itch.io.',
-            tech: [8] //'Construct 3'
+            tech: [7] //'Construct 3'
         },
         certificado: []
     },
@@ -136,7 +135,7 @@ export const icp = [
     {
         titulo: 'PIBIC Jr. – Sistema de Gestão de Fármacos (Medicina Nuclear)',
         desc: 'Desenvolvimento de sistema web para controle de estoque de fármacos em ambiente hospitalar, com geração de alertas automáticos de validade, estoque mínimo e uso atípico.',
-        tech: [0, 2, 3, 4, 5],
+        tech: [0, 1, 2, 3, 4],
         etapas: [
             { titulo: 'Projeto de Pesquisa', subtitulo: 'Automação no Controle de Kits Radiofarmacêuticos', texto: 'Modelagem e implementação de solução para rastreabilidade de kits e frascos utilizados em medicina nuclear, visando maior segurança, organização e confiabilidade das informações.' },
             { titulo: 'Apresentação Técnica', subtitulo: 'Sistema de Gerenciamento de Estoque Hospitalar', texto: 'Apresentação dos resultados parciais do sistema desenvolvido, destacando arquitetura, banco de dados e impactos na gestão de insumos hospitalares.' },
@@ -148,7 +147,7 @@ export const icp = [
     {
         titulo: '1º Lugar – Congresso Científico UNESP',
         desc: 'Projeto SENAI+ apresentado e premiado com 1º lugar na categoria Ensino Médio durante o I Encontro de Metodologia e Raciocínio Científico da UNESP.',
-        tech: [0, 2, 3, 4, 5],
+        tech: [0, 1, 2, 3, 4],
         etapas: [
             {
                 titulo: 'Desenvolvimento do TCC – SENAI+',

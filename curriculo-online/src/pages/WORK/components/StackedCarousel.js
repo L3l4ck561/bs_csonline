@@ -35,8 +35,9 @@ export default function StackedCarousel() {
   };
 
   return (
-    <>
-      <h3 className="mb-5 text-center" id="aplicacoes" >Aplicações</h3>
+    <section id="aplicacoes" style={{overflowX:'hidden'}}>
+      <div style={{ height: '60px' }} />
+      <h3 className="mb-5 text-center" >Aplicações</h3>
 
       <div className="carousel-wrapper">
         {renderCard(prevIndex, "prev")}
@@ -70,6 +71,6 @@ export default function StackedCarousel() {
           </span>
         ))}
       </div>
-    </>
+    </section>
   );
 }

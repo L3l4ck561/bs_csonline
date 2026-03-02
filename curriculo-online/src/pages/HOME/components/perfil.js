@@ -11,9 +11,9 @@ export default function Perfil() {
                         <div className="card text-center shadow">
                             <div className="card-body">
                                 <p className="card-text">
-                                    - Focado em aprender e dominar tecnologias atuais.
+                                    💡 Focado em desenvolvimento web, mobile e testes automatizados
                                     <br />
-                                    - Interesse em aprofundar conhecimentos em Ciência de Dados.
+                                    🔍 Buscando sempre escrever código limpo, organizado e escalável
                                 </p>
 
                                 <h5 className="card-title">Minhas Skills</h5>

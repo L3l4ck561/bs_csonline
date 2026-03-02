@@ -3,6 +3,7 @@ import { cartaz } from '../data';
 export default function Participacao() {
     return (
         <section className="bg-light" id='participacao'>
+            <div style={{ height: '60px' }} />
             <div className="container">
                 <h3 className="mb-5">Participações</h3>
                 {cartaz.map(({ coluna, foto }, index) => (

@@ -27,7 +27,7 @@ const Tela2 = forwardRef((props, ref) => {
       }}
     >
       {/* HEADER */}
-      <header style={{ marginBottom: "12mm" }}>
+      <header style={{ marginBottom: "5mm" }}>
         <h1 style={{ margin: 0, fontSize: "22pt", fontWeight: 700 }}>
           Carlos Gabriel dos Santos Araújo
         </h1>
@@ -82,14 +82,14 @@ const Tela2 = forwardRef((props, ref) => {
             </div>
           ))}
 
-          {/* <SectionTitle title="Cursos" />
+          <SectionTitle title="Cursos" />
 
           {cursos.map((curso, idx) => (
             <div key={idx} style={{ marginBottom: "6px", fontSize: "9.5pt" }}>
               <strong>{curso.nome}</strong>
               <div style={{ color: "#555" }}>{curso.instituicao}</div>
             </div>
-          ))} */}
+          ))}
         </div>
 
         {/* COLUNA DIREITA */}

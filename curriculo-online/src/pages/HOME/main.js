@@ -3,7 +3,7 @@ import Formacao from './components/formacao';
 import Cursos from './components/cursos';
 import Experiencia from './components/experiencia';
 import Cientificas from './components/cientificas';
-import Contato from './components/contato';
+import Contato from '../../components/contato';
 import DownloadButton from "./components/DownloadButton";
 
 import '../../App.css';
@@ -24,7 +24,7 @@ const calcularIdade = (ano, mes, dia) => {
 };
 
 function Home() {
-    
+
     return (
         <div className="App" id='topo' >
 
@@ -50,6 +50,9 @@ function Home() {
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/outros-certificados">Participações | Premiações</Link>
                                     </li>
+                                    <li>
+                                        <a className="nav-link btn btn-primary " onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -58,13 +61,13 @@ function Home() {
                     {/* Titulo da pagina */}
                     <div className="container">
                         <h1 className="mb-0">Sobre Mim</h1>
-                        <p className="mb-0">Técnico em Analise e Desenvolvimento de Sistemas</p>
+                        <p className="mb-0">Desenvolvedor Full Stack | QA | Automação</p>
                     </div>
 
                 </div>
             </header>
 
-            
+
 
             <main className="App-main">
                 <div
@@ -149,17 +152,26 @@ function Home() {
                         </div>
                     </div>
                 </nav><br />
-                
-                <div className="Curriculo">
 
+                <div className="Curriculo">
+                    
                     <Perfil />
+                    <button
+                        type="button"
+                        className="btn btn-primary m-5"
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModal"
+                    >
+                        Abrir Perfil
+                    </button>
+
                     <Formacao />
                     <Cursos />
                     <Experiencia />
                     <Cientificas />
-                    <DownloadButton/>
+                    <DownloadButton />
                     <Contato />
-                
+
                 </div>
 
             </main>
