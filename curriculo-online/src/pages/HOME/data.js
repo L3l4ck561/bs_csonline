@@ -33,7 +33,7 @@ export const tecnologias = [
 ];
 
 export const skills = [
-    { titulo: 'Frontend & Mobile', cor: 'primary', nomes: ['React.js', 'React Native', 'TypeScript', 'Vite', 'Bootstrap', 'Tailwind CSS', 'Material-UI','Expo'] },
+    { titulo: 'Frontend & Mobile', cor: 'primary', nomes: ['React.js', 'React Native', 'TypeScript', 'Vite', 'Bootstrap', 'Tailwind CSS', 'Material-UI'] },
     { titulo: 'Backend & APIs', cor: 'success', nomes: ['Node.js', 'Flask', 'API REST', 'Postman', 'Express.js'] },
     { titulo: 'Testes & Qualidade', cor: 'info', nomes: ['Cypress', 'Jest', 'Selenium', 'Automação de Testes', 'PyAutoGUI'] },
     { titulo: 'Banco de Dados', cor: 'secondary', nomes: ['MySQL', 'HeidiSQL / MySQL Workbench'] },
@@ -46,7 +46,7 @@ export const skills = [
 export const FormAcademico = [
     { nome: 'Ensino Médio', status: 'Concluído', instituicao: 'SESI - Botucatu', ano: '2025', certificado: 'certificadoescolar.pdf', cor: 'success' },
     { nome: 'Curso Técnico - A. Des. de Sistemas', status: 'Concluído', instituicao: 'SENAI - Botucatu', ano: '2025', certificado: '', cor: 'success' },
-    { nome: 'Curso Tecnólogo - A. Des. de Sistemas', status: 'Em andamento', instituicao: 'Uninter', ano: '---', certificado: '', cor: 'warning' },
+    { nome: 'Curso Tecnólogo - A. Des. de Sistemas', status: 'Em andamento', instituicao: 'Uninter', ano: '2028', certificado: '', cor: 'warning' },
 ];
 
 // Cursos Complementares e EAD
@@ -54,7 +54,8 @@ export const cursos = [
     { nome: 'Excel Básico ao Intermediário', status: 'Concluído', instituicao: 'Fundação Bradesco - Escola Virtual', ano: '2021', certificado: 'excel.pdf', cor: 'success' },
     { nome: 'New U-Best', status: 'Em andamento', instituicao: 'Uninter', ano: '---', certificado: '', cor: 'warning' },
     { nome: 'Inteligência Artificial: conceitos e práticas', status: 'Em andamento', instituicao: 'senac - botucatu', ano: '2026', certificado: '', cor: 'warning' },
-    { nome: 'Jornada Python', status: 'Em andamento', instituicao: 'Hashtag', ano: '---', certificado: '', cor: 'warning' },
+    { nome: 'Jornada Python', status: 'Concluído', instituicao: 'Hashtag', ano: '2026', certificado: 'Validação_Certificado_jornada_python.pdf', cor: 'success' },
+    { nome: 'TREINAMENTO INICIAL EM PROTEÇÃO RADIOLÓGICA - MEDICINA NUCLEAR - EAD - 2026', status: 'Concluído', instituicao: 'Hospital das Clínicas da Faculdade de Medicina de Botucatu - HCFMB', ano: '2026', certificado: 'TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf', cor: 'success' },
 ];
 
 // agrupamento de cursos

@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import "./curriculo.css";
 
 import {
   tecnologias,
@@ -11,6 +12,7 @@ import {
 } from './HOME/data';
 
 const Tela2 = forwardRef((props, ref) => {
+  const hoje = new Date().toLocaleDateString("pt-BR");
   return (
     <div
       ref={ref}
@@ -19,7 +21,7 @@ const Tela2 = forwardRef((props, ref) => {
         width: "210mm",
         minHeight: "297mm",
         margin: "0 auto",
-        padding: "10mm 18mm",
+        padding: "10mm 18mm 25mm 18mm",
         backgroundColor: "#fff",
         color: "#222",
         fontSize: "11pt",
@@ -82,6 +84,7 @@ const Tela2 = forwardRef((props, ref) => {
             </div>
           ))}
 
+          <div style={{ pageBreakBefore: "always" }} />
           <SectionTitle title="Cursos" />
 
           {cursos.map((curso, idx) => (
@@ -93,7 +96,7 @@ const Tela2 = forwardRef((props, ref) => {
         </div>
 
         {/* COLUNA DIREITA */}
-        <div style={{ width: "65%" }}>
+        <div className="section-block" style={{ width: "65%" }}>
           <SectionTitle title="Resumo Profissional" />
 
           <p style={{ textAlign: "justify" }}>
@@ -106,7 +109,7 @@ const Tela2 = forwardRef((props, ref) => {
           <SectionTitle title="Experiência Profissional" />
 
           {expeProf.map((exp, idx) => (
-            <div key={idx} style={{ marginBottom: "12px" }}>
+            <div key={idx} className="section-block" style={{ marginBottom: "12px" }}>
               <strong>{exp.titulo}</strong>
               <div style={{ fontStyle: "italic", fontSize: "10pt" }}>
                 {exp.texto.cargo} • {exp.texto.periodo}
@@ -128,6 +131,10 @@ const Tela2 = forwardRef((props, ref) => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="pdf-footer">
+        Este documento corresponde à versão do currículo gerada em {hoje}.
+        Informações podem ser atualizadas posteriormente.
       </div>
     </div>
   );

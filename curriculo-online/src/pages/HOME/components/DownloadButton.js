@@ -1,23 +1,46 @@
 import React, { useRef } from "react";
-import "./DownloadButton.css";
+import html2pdf from "html2pdf.js";
 import CurriculoPrint from "../../curriculo";
-import { useReactToPrint } from "react-to-print";
+import "./DownloadButton.css";
+
 
 function DownloadButton() {
-  const componentRef = useRef(null);
+  const componentRef = useRef();
 
-    const handlePrint = useReactToPrint({
-        contentRef: componentRef,           // ← isso é o novo padrão recomendado
-        documentTitle: "Curriculo_Carlos_Gabriel_2026",
-        onBeforeGetContent: () => console.log("Preparando impressão..."),
-        onAfterPrint: () => console.log("Impressão finalizada"),
-    });
+  const hoje = new Date();
+  const ano = hoje.getFullYear();
+
+  const handleDownloadPDF = () => {
+
+    const element = componentRef.current;
+
+    const opt = {
+      margin: 0,
+      filename: `Curriculo_Carlos_Gabriel_${ano}.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait"
+      },
+      pagebreak: {
+        mode: ["avoid-all", "css", "legacy"]
+      }
+    };
+
+    html2pdf().set(opt).from(element).save();
+  };
+
+
 
   return (
     <>
       {/* botão para gerar um pdf do certificado */}
-      <div className="sticky-bottom text-start p-3 pb-5" style={{width:0}}>
-        <button onClick={() => handlePrint()} className="download-button">
+      <div className="sticky-bottom text-start p-3 pb-5" style={{ width: 0 }}>
+        <button onClick={handleDownloadPDF} className="download-button">
           <div className="docs">
             <svg
               viewBox="0 0 24 24"
@@ -56,8 +79,11 @@ function DownloadButton() {
           </div>
         </button>
       </div>
-      <div style={{ display: "none" }}>
-        <CurriculoPrint ref={componentRef} />
+
+      <div style={{ position: "absolute", left: "-9999px" }}>
+        <div ref={componentRef}>
+          <CurriculoPrint />
+        </div>
       </div>
     </>
   );
