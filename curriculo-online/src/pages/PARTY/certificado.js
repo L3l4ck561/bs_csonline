@@ -1,23 +1,15 @@
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Contato from '../../components/contato';
+import Contato from '../../components/infoContato/contato';
 import React from 'react';
 import { Link } from "react-router-dom";
 
 import Participacao from './components/participacao';
 import Conquistas from './components/conquistas';
 
-const calcularIdade = (ano, mes, dia) => {
-    const hoje = new Date();
-    let idade = hoje.getFullYear() - ano;
-    const aniversario =
-        hoje.getMonth() + 1 > mes ||
-        (hoje.getMonth() + 1 === mes && hoje.getDate() >= dia);
-
-    if (!aniversario) idade--;
-    return idade;
-};
+import ModalPerfil from '../../components/infoPerfil/modal';
+import { cargo} from '../../components/infoPerfil/data';
 
 function Certificado() {
     return (
@@ -56,65 +48,13 @@ function Certificado() {
                     {/* Titulo da pagina */}
                     <div className="container">
                         <h1 className="mb-0">Participações & Premiações</h1>
-                        <p className="mb-0">Técnico em Analise e Desenvolvimento de Sistemas</p>
+                        <p className="mb-0">{cargo}</p>
                     </div>
 
                 </div>
             </header>
             <main className="App-main">
-                <div
-                    className="modal fade"
-                    id="myModal"
-                    data-bs-backdrop="static"
-                    tabIndex="-1"
-                    aria-labelledby="myModalLabel"
-                    aria-hidden="true"
-                >
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                            {/* Modal Header */}
-                            <div className="modal-header">
-                                <h2 className="modal-title">Perfil </h2>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Fechar"
-                                ></button>
-                            </div>
-
-                            {/* Modal Body */}
-                            <div className="modal-body">
-                                <div className="img text-center mt-2">
-                                    <img
-                                        src={`${process.env.PUBLIC_URL}/eu.jpeg`}
-                                        alt="Foto de perfil"
-                                        className="rounded-circle"
-                                        width="180px"
-                                        height="180px"
-                                    />
-                                </div>
-                                <br />
-                                <div className="text">
-                                    <p>Carlos Gabriel dos Santos Araújo</p>
-                                    <p>Idade: {calcularIdade(2007, 1, 5)}</p>
-                                    <p>Botucatu-SP</p>
-                                </div>
-                            </div>
-
-                            {/* Modal Footer */}
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-danger"
-                                    data-bs-dismiss="modal"
-                                >
-                                    Fechar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ModalPerfil/>
                 {/* Botão que leva para o topo dá pagina */}
                 <a className="topo" onClick={() => document.getElementById("topo").scrollIntoView()}><img src={process.env.PUBLIC_URL + '/topo.svg'} style={{ width: '40px', height: '40px', cursor: 'pointer' }} alt="^" /></a>
 

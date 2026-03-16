@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import DescPerfil from '../components/infoPerfil/modal';
 import "./curriculo.css";
 
 import {
@@ -10,6 +11,14 @@ import {
   expeProf,
   icp
 } from './HOME/data';
+
+import { contatos } from '../components/infoContato/data';
+import { perfil, cargo, desc } from '../components/infoPerfil/data';
+import { type } from "@testing-library/user-event/dist/type";
+
+const contato = contatos.map((item, idx) => {
+  return (typeof (item) === 'object' ? '': item+ (idx + 1 === contatos.length ? '' : ' • '))
+})
 
 const Tela2 = forwardRef((props, ref) => {
   const hoje = new Date().toLocaleDateString("pt-BR");
@@ -31,15 +40,14 @@ const Tela2 = forwardRef((props, ref) => {
       {/* HEADER */}
       <header style={{ marginBottom: "5mm" }}>
         <h1 style={{ margin: 0, fontSize: "22pt", fontWeight: 700 }}>
-          Carlos Gabriel dos Santos Araújo
+          {perfil.nome}
         </h1>
         <p style={{ margin: "4px 0", fontSize: "12pt", color: "#555" }}>
-          Desenvolvedor Full Stack | Análise e Desenvolvimento de Sistemas
+          {cargo}
         </p>
 
         <div style={{ fontSize: "10pt", color: "#444" }}>
-          Botucatu – SP • carlos.gabriel561btu@gmail.com •
-          github.com/L3l4ck561 • linkedin.com/in/carlos-araújo-6447653a6
+          {perfil.cidade} • {contato}
         </div>
       </header>
 
@@ -99,12 +107,7 @@ const Tela2 = forwardRef((props, ref) => {
         <div className="section-block" style={{ width: "65%" }}>
           <SectionTitle title="Resumo Profissional" />
 
-          <p style={{ textAlign: "justify" }}>
-            Análista e Desenvolvedor de Sistemas com experiência
-            prática em desenvolvimento web, APIs REST e projetos corporativos.
-            Atuação como estagiário Full Stack, com foco em boas práticas,
-            organização de código e aprendizado contínuo.
-          </p>
+          {desc}
 
           <SectionTitle title="Experiência Profissional" />
 

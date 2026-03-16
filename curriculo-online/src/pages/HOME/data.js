@@ -33,13 +33,13 @@ export const tecnologias = [
 ];
 
 export const skills = [
-    { titulo: 'Frontend & Mobile', cor: 'primary', nomes: ['React.js', 'React Native', 'TypeScript', 'Vite', 'Bootstrap', 'Tailwind CSS', 'Material-UI'] },
-    { titulo: 'Backend & APIs', cor: 'success', nomes: ['Node.js', 'Flask', 'API REST', 'Postman', 'Express.js'] },
+    { titulo: 'Frontend & Mobile', cor: 'primary', nomes: ['React.js', 'React Native', 'TypeScript', 'Vite', 'Bootstrap', 'Tailwind CSS', 'Material-UI', 'Tkinter'] },
+    { titulo: 'Backend & APIs', cor: 'success', nomes: ['Node.js', 'Flask', 'API REST', 'Postman', 'Express.js', 'Pandas'] },
     { titulo: 'Testes & Qualidade', cor: 'info', nomes: ['Cypress', 'Jest', 'Selenium', 'Automação de Testes', 'PyAutoGUI'] },
     { titulo: 'Banco de Dados', cor: 'secondary', nomes: ['MySQL', 'HeidiSQL / MySQL Workbench'] },
-    { titulo: 'DevOps & Colaboração', cor: 'danger', nomes: ['Git / GitHub', 'Figma', 'Trello', 'Excel'] },
+    { titulo: 'DevOps & Colaboração', cor: 'danger', nomes: ['Git / GitHub', 'Figma', 'Trello', 'Excel', 'Vercel', 'Render'] },
     { titulo: 'Hardware & IoT', cor: 'success', nomes: ['Arduino / ESP32'] },
-    { titulo: 'Metodologias & Conhecimentos', cor: ['dark', 'primary-subtle text-dark'], nomes: ['Scrum & Kanban', 'Gestão de Projetos', 'Análise de Sistemas', 'Boas Práticas de Programação', 'Desenvolvimento Web e Mobile'] },
+    { titulo: 'Metodologias & Conhecimentos', cor: ['dark', 'primary-subtle text-dark'], nomes: ['Scrum & Kanban', 'Gestão de Projetos', 'Análise de Sistemas', 'Boas Práticas de Programação', 'Desenvolvimento Web e Mobile', "SaaS (Software as a Service)"] },
 ];
 
 //Formação Acadêmica
@@ -88,7 +88,7 @@ export const expeProf = [
             desc: 'Atuação em projetos internos corporativos com Delphi Pascal, aprendizado contínuo de novas tecnologias e adaptação a diferentes stacks de desenvolvimento.',
             tech: [6] //tecnologias utilizadas puzando pelo index de const tecnologias
         },
-        certificado: []
+        certificado: ['📄 Certificado 1', 'CNS1.pdf']
     },
     {
         titulo: 'SagaSenai',

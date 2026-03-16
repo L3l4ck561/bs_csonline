@@ -1,4 +1,5 @@
 import { tecnologias, skills } from '../data';
+import { topicos } from '../../../components/infoPerfil/data';
 
 export default function Perfil() {
     return (
@@ -11,9 +12,12 @@ export default function Perfil() {
                         <div className="card text-center shadow">
                             <div className="card-body">
                                 <p className="card-text">
-                                    💡 Focado em desenvolvimento web, mobile e testes automatizados
-                                    <br />
-                                    🔍 Buscando sempre escrever código limpo, organizado e escalável
+                                    {topicos.map((item, idx) => (
+                                        <>
+                                        {item}
+                                        <br/>
+                                        </>
+                                    ))}
                                 </p>
 
                                 <h5 className="card-title">Minhas Skills</h5>
