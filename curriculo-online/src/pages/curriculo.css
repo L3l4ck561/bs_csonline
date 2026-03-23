@@ -1,0 +1,29 @@
+h2 {
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+.section-block {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+p {
+  orphans: 3;
+  widows: 3;
+}
+
+.pdf-footer {
+  position: absolute;
+  bottom: 10mm;
+  left: 18mm;
+  right: 18mm;
+
+  font-size: 8pt;
+  color: #777;
+
+  border-top: 1px solid #eee;
+  padding-top: 3mm;
+
+  text-align: center;
+}
