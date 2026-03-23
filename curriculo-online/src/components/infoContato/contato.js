@@ -35,7 +35,7 @@ export default function Contato() {
                                     </li>
 
                                     <li className="list-group-item bg-dark text-white">
-                                        <SiGithub size={22} className="me-2" /> <a href={`https://${contatos[2]}`} target="_blank" rel="noopener noreferrer">{contatos[3]}</a>
+                                        <SiGithub size={22} className="me-2" /> <a href={`https://${contatos[3]}`} target="_blank" rel="noopener noreferrer">{contatos[3]}</a>
                                     </li>
                                     <li className="list-group-item bg-dark text-white">
                                         <a

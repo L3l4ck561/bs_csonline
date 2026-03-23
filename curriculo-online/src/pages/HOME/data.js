@@ -39,7 +39,7 @@ export const skills = [
     { titulo: 'Banco de Dados', cor: 'secondary', nomes: ['MySQL', 'HeidiSQL / MySQL Workbench'] },
     { titulo: 'DevOps & Colaboração', cor: 'danger', nomes: ['Git / GitHub', 'Figma', 'Trello', 'Excel', 'Vercel', 'Render'] },
     { titulo: 'Hardware & IoT', cor: 'success', nomes: ['Arduino / ESP32'] },
-    { titulo: 'Metodologias & Conhecimentos', cor: ['dark', 'primary-subtle text-dark'], nomes: ['Scrum & Kanban', 'Gestão de Projetos', 'Análise de Sistemas', 'Boas Práticas de Programação', 'Desenvolvimento Web e Mobile', "SaaS (Software as a Service)"] },
+    { titulo: 'Metodologias & Conhecimentos', cor: ['dark', 'primary-subtle text-dark'], nomes: ['Scrum & Kanban', 'Gestão de Projetos', 'Análise de Sistemas', 'Boas Práticas de Programação'] },
 ];
 
 //Formação Acadêmica

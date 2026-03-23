@@ -16,7 +16,7 @@ export const perfil = {
     cidade: 'Botucatu - SP'
 };
 
-export const cargo = 'Desenvolvedor Full Stack | QA | Automação';
+export const cargo = 'Full Stack Developer | QA & Test Automation | Custom Software Development';
 
 export const desc = `
 Análista e Desenvolvedor de Sistemas com experiência
