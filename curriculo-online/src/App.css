@@ -92,3 +92,64 @@
 .bg-gradient {
   background: linear-gradient(135deg, #0d6efd, #0b5ed7); /* fallback */
 }
+
+
+/* Lista de Protótipos - Versão Vertical Bonita */
+.custom-prototipos-list .prototipo-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #f0f0f0;
+}
+
+.custom-prototipos-list .prototipo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    background-color: #f8fbff;
+}
+
+.prototipo-img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-prototipos-list .prototipo-card:hover .prototipo-img {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.25);
+}
+
+.arrow-icon {
+    color: #6c757d;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.custom-prototipos-list .prototipo-card:hover .arrow-icon {
+    color: #0d6efd;
+    transform: translateX(6px);
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+/* Efeito suave ao carregar */
+.custom-prototipos-list li {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+.custom-prototipos-list li:nth-child(1) { animation-delay: 100ms; }
+.custom-prototipos-list li:nth-child(2) { animation-delay: 200ms; }
+.custom-prototipos-list li:nth-child(3) { animation-delay: 300ms; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

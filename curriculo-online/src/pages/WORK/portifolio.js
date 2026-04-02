@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 import StackedCarousel from './components/StackedCarousel';
 import ProjetoWeb from './components/projetoWeb';
+import Prototipos from './components/prototipos';
 
 import ModalPerfil from '../../components/infoPerfil/modal';
 import { cargo} from '../../components/infoPerfil/data';
@@ -78,6 +79,7 @@ function Portifolio() {
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("topo").scrollIntoView()}>Projetos Web</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("aplicacoes").scrollIntoView()}>Aplicações</a></li>
+                                <li><a className="dropdown-item" onClick={() => document.getElementById("prototipos").scrollIntoView()}>Protótipos</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
                             </ul>
                         </div>
@@ -95,6 +97,7 @@ function Portifolio() {
                     
                     <ProjetoWeb />
                     <StackedCarousel />
+                    <Prototipos />
 
                 </div>
 

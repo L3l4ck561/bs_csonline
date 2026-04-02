@@ -4,6 +4,21 @@ export const projetoweb = [
     {img:'/projetos/calendario.png',nome:'RotaRotina',tech:'React(Vite) • Mui • Tailwind • JS',url:'https://rotarotina.vercel.app'},
 ]
 
+export const prototipos = [
+    {
+        img: 'sendbox.svg',
+        nome: 'Crud frontend Vercel',
+        tech: 'Vite • axios • vercel',
+        url: 'https://crud-frontend-peach.vercel.app/'
+    },
+    {
+        img: 'sendbox.svg',
+        nome: 'Crud backend Render',
+        tech: 'Flask • CORS • Render',
+        url: 'https://crud-backend-g96g.onrender.com/'
+    },
+];
+
 export const slides = [
   {
     "img": process.env.PUBLIC_URL + '/projetos/lostfound.png',

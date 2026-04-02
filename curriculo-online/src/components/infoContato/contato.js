@@ -8,7 +8,7 @@ import { MdEmail, MdPhone } from 'react-icons/md';
 
 import { contatos } from './data';
 
-import logo from '../../logo.svg';
+import logo from '../../logo2.svg';
 export default function Contato() {
     return (
         <>
