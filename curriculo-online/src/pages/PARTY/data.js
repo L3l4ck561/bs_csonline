@@ -9,6 +9,6 @@ export const cartaz = [
 
 export const estar = [
     {coluna:'1',foto:[
-        {img:process.env.PUBLIC_URL+'/certificado_premios/premiosenai.png',url:process.env.PUBLIC_URL+'/certificado_premios/premiosenai.png'},
+        {img:process.env.PUBLIC_URL+'/certificado_premios/premioSenai.png',url:process.env.PUBLIC_URL+'/certificado_premios/premioSenai.pdf'},
     ]}
 ]
