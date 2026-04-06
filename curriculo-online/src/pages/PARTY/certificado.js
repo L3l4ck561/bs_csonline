@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 import Participacao from './components/participacao';
 import Conquistas from './components/conquistas';
+import Apresentacao from './components/apresentacao';
 
 import ModalPerfil from '../../components/infoPerfil/modal';
 import { cargo} from '../../components/infoPerfil/data';
@@ -76,6 +77,7 @@ function Certificado() {
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("topo").scrollIntoView()}>parede de conquistas</a></li>
+                                <li><a className="dropdown-item" onClick={() => document.getElementById("apresentacao").scrollIntoView()}>Apresentações</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("participacao").scrollIntoView()}>Participações</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
                             </ul>
@@ -85,6 +87,8 @@ function Certificado() {
 
                 <div className='certificado'>
                     <Conquistas />
+                    <div style={{height:70}} />
+                    <Apresentacao />
                     <div style={{height:70}} />
                     <Participacao />
                     <div style={{height:70}} />

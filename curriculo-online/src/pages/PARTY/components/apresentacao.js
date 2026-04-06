@@ -1,12 +1,13 @@
-import { estar } from '../data';
+import { apre } from '../data';
 
-export default function Conquistas() {
+export default function Participacao() {
     return (
-        <section className="bg-light">
+        <section className="bg-light" id='apresentacao'>
+            <div style={{ height: '60px' }} />
             <div className="container">
-                <h3 className="mb-5">Parede de Conquistas</h3>
-                {estar.map(({ coluna, foto }, index) => (
-                    <div className={`row row-cols-1 row-cols-md-${coluna} g-4`} style={{'marginBottom':30}}>
+                <h3 className="mb-5">Apresentações</h3>
+                {apre.map(({ coluna, foto }, index) => (
+                    <div className={`row row-cols-1 row-cols-md-${coluna} g-4`}>
                         {foto.map(({ img, url }, index) => (
                             <div className="col">
                                 <a
