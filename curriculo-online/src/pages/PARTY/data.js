@@ -10,7 +10,7 @@ export const cartaz = [
 
 export const apre = [
     {coluna:'2',foto:[
-        {img:process.env.PUBLIC_URL+'/certificado_premios/participacaounesp.png',url:process.env.PUBLIC_URL+'/certificado_premios/participouunesp.pdf'},
+        {img:process.env.PUBLIC_URL+'/certificado_premios/apresentacaounesp.png',url:process.env.PUBLIC_URL+'/certificado_premios/trabalhoapresentadounesp.pdf'},
     ]}
     
 ]
