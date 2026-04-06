@@ -17,7 +17,7 @@ import { perfil, cargo, desc } from '../components/infoPerfil/data';
 import { type } from "@testing-library/user-event/dist/type";
 
 const contato = contatos.map((item, idx) => {
-  return (typeof (item) === 'object' ? '': item+ (idx + 1 === contatos.length ? '' : ' • '))
+  return (typeof (item) === 'object' ? '' : item + (idx + 1 === contatos.length ? '' : ' • '))
 })
 
 const Tela2 = forwardRef((props, ref) => {
@@ -72,8 +72,14 @@ const Tela2 = forwardRef((props, ref) => {
               <strong style={{ fontSize: "10pt" }}>
                 {categoria.titulo}
               </strong>
+
               <div style={{ fontSize: "9.5pt", color: "#444" }}>
-                {categoria.nomes.join(", ")}
+                {categoria.nomes
+                  .map(item =>
+                    typeof item === "object" ? item.nome : item
+                  )
+                  .join(", ")
+                }
               </div>
             </div>
           ))}
