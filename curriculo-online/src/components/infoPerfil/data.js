@@ -10,7 +10,7 @@ const calcularIdade = (ano, mes, dia) => {
 };
 
 export const perfil = {
-    img: `${process.env.PUBLIC_URL}/eu.jpeg`,
+    img: `${process.env.PUBLIC_URL}/image.jpg`,
     nome: 'Carlos Gabriel dos Santos Araújo',
     idade: calcularIdade(2007, 1, 5),
     cidade: 'Botucatu - SP'
@@ -19,13 +19,13 @@ export const perfil = {
 export const cargo = 'Full Stack Developer | QA & Test Automation | Custom Software Development';
 
 export const desc = `
-Análista e Desenvolvedor de Sistemas com experiência
-prática em desenvolvimento web, APIs REST e projetos corporativos.
-Atuação como estagiário Full Stack, com foco em boas práticas,
-organização de código e aprendizado contínuo.
+Olá, Sou Carlos Gabriel, Desenvolvedor Full Stack com experiência em QA e automação de testes. Desenvolvo sistemas completos, rápidos, intuitivos e confiáveis, usando tecnologias modernas como React, JavaScript, Python e SQL. Tenho foco em qualidade, aplicando testes automatizados para reduzir erros e garantir estabilidade. Já criei soluções que impactaram ambientes corporativos e meu objetivo é transformar ideias em sistemas eficientes e duradouros. Estou disponível para ajudar a tirar projetos do papel.
 `;
 
-export const topicos = ['💡 Focado em desenvolvimento web, mobile e testes automatizados','🔍 Buscando sempre escrever código limpo, organizado e escalável'];
+export const topicos = [
+    '💡 Focado em desenvolvimento web, mobile e testes automatizados',
+    '🔍 Buscando sempre escrever código limpo, organizado e escalável'
+];
 
 
 

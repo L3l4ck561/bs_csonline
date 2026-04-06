@@ -16,7 +16,30 @@ import {
     SiMysql,
     SiCplusplus,
     SiDelphi,
-    SiUnity
+    SiUnity,
+
+    SiTailwindcss,
+    SiBootstrap,
+    SiReact,
+    SiVite,
+    SiMui,
+    SiExpo,
+    SiNodedotjs,
+    SiExpress,
+    SiFlask,
+    SiPostman,
+    SiPandas,
+    SiMongodb,
+    SiCypress,
+    SiJest,
+    SiSelenium,
+    SiGithub,
+    SiFigma,
+    SiVercel,
+    SiTrello,
+    SiRender,
+    SiArduino
+
 } from 'react-icons/si';
 
 //construção do certificado
@@ -33,13 +56,65 @@ export const tecnologias = [
 ];
 
 export const skills = [
-    { titulo: 'Frontend & Mobile', cor: 'primary', nomes: ['React.js', 'React Native', 'TypeScript', 'Vite', 'Bootstrap', 'Tailwind CSS', 'Material-UI', 'Tkinter'] },
-    { titulo: 'Backend & APIs', cor: 'success', nomes: ['Node.js', 'Flask', 'API REST', 'Postman', 'Express.js', 'Pandas'] },
-    { titulo: 'Testes & Qualidade', cor: 'info', nomes: ['Cypress', 'Jest', 'Selenium', 'Automação de Testes', 'PyAutoGUI'] },
-    { titulo: 'Banco de Dados', cor: 'secondary', nomes: ['MySQL', 'HeidiSQL / MySQL Workbench', 'MongoDB'] },
-    { titulo: 'DevOps & Colaboração', cor: 'danger', nomes: ['Git / GitHub', 'Figma', 'Trello', 'Excel', 'Vercel', 'Render'] },
-    { titulo: 'Hardware & IoT', cor: 'success', nomes: ['Arduino / ESP32'] },
-    { titulo: 'Metodologias & Conhecimentos', cor: ['dark', 'primary-subtle text-dark'], nomes: ['Scrum & Kanban', 'Gestão de Projetos', 'Análise de Sistemas', 'Boas Práticas de Programação'] },
+    {
+        titulo: 'Types of Applications / Solutions', cor: 'secondary', nomes: [
+            'Web Applications',
+            'Mobile Applications',
+            'SaaS (Software as a Service)',
+            'Custom Software Development',
+            'Automation Solutions',
+            'API & Integrations'
+        ]
+    }, //Cloud-Based Solutions, Enterprise Systems
+
+    {
+        titulo: 'Frontend & Mobile', cor: 'primary', nomes: [
+            { nome: "React.js", Icon: SiReact, cor: "#61DAFB" },
+            { nome: "React Native", Icon: SiReact, cor: "#617dfb" },
+            { nome: "TypeScript", Icon: SiTypescript, cor: "#3178C6" },
+            { nome: "Vite", Icon: SiVite, cor: "#646CFF" },
+            { nome: "Tailwind CSS", Icon: SiTailwindcss, cor: "#06B6D4" },
+            { nome: "Bootstrap", Icon: SiBootstrap, cor: "#7952B3" },
+            { nome: "Material-UI", Icon: SiMui, cor: "#0081CB" },
+            { nome: "Expo", Icon: SiExpo, cor: "#000327" },
+            { nome: 'Tkinter', Icon: SiPython, cor: "#3776AB" }
+        ]
+    },
+    {
+        titulo: 'Backend & APIs', cor: 'success', nomes: [
+            { nome: "Node.js", Icon: SiNodedotjs, cor: "#339933" },
+            { nome: "Express.js", Icon: SiExpress, cor: "#000000" },
+            { nome: "Flask", Icon: SiFlask, cor: "#000000" },
+            { nome: "Postman", Icon: SiPostman, cor: "#FF6C37" },
+            { nome: "Pandas", Icon: SiPandas, cor: "" }
+        ]
+    },
+    {
+        titulo: 'QA & Test Automation', cor: 'info', nomes: [
+            { nome: "Cypress", Icon: SiCypress, cor: "#17202C" },
+            { nome: "Jest", Icon: SiJest, cor: "#C21325" },
+            { nome: "Selenium", Icon: SiSelenium, cor: "#43B02A" },
+            { nome: "PyAutoGUI", Icon: SiPython, cor: "#3776AB" },
+        ]
+    },
+    {
+        titulo: 'Banco de Dados', cor: 'secondary', nomes: [
+            { nome: "MySQL", Icon: SiMysql, cor: "#4479A1" },
+            { nome: "MongoDB", Icon: SiMongodb, cor: "#47A248" },
+        ]
+    },
+
+    {
+        titulo: 'DevOps & Colaboração', cor: 'danger', nomes: [
+            { nome: "Git / GitHub", Icon: SiGithub, cor: "#181717" },
+            { nome: "Figma", Icon: SiFigma, cor: "#F24E1E" },
+            { nome: "Vercel", Icon: SiVercel, cor: "#000000" },
+            { nome: "Render", Icon: SiRender, cor: "#4b4b4b" },
+            { nome: "Trello", Icon: SiTrello, cor: "#0052CC" },
+        ]
+    },
+    { titulo: 'Hardware & IoT', cor: 'success', nomes: [{ nome: "Arduino / Esp32", Icon: SiArduino, cor: "#00979D" },] },
+    { titulo: 'Metodologias & Conhecimentos', cor: ['dark', 'primary-subtle text-dark'], nomes: ['Scrum & Kanban', 'Gestão de Projetos', 'Análise de Sistemas', 'Boas Práticas de Programação', 'Automação de Testes', 'API REST'] },
 ];
 
 //Formação Acadêmica
@@ -161,7 +236,7 @@ export const icp = [
                 texto: 'Projeto classificado em 1º lugar entre os trabalhos apresentados, reconhecido pelo mérito técnico, inovação e aplicabilidade.'
             }
         ],
-        arquivo: [['📄 Participação','participouunesp.pdf'],['📄 Apresentação','trabalhoapresentadounesp.pdf'],['📄 Premiação','premiounesp.pdf']],
+        arquivo: [['📄 Participação', 'participouunesp.pdf'], ['📄 Apresentação', 'trabalhoapresentadounesp.pdf'], ['📄 Premiação', 'premiounesp.pdf']],
         status: 'Concluído',
         cor: 'success'
     }

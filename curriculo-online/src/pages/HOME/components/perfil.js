@@ -14,8 +14,8 @@ export default function Perfil() {
                                 <p className="card-text">
                                     {topicos.map((item, idx) => (
                                         <>
-                                        {item}
-                                        <br/>
+                                            {item}
+                                            <br />
                                         </>
                                     ))}
                                 </p>
@@ -49,19 +49,34 @@ export default function Perfil() {
                                                     <div className="container">
                                                         {skills.map(({ cor, titulo, nomes }, index) => (
                                                             <div className="mb-3" key={index}>
-                                                                <h5 className={`text-${Array.isArray(cor) ? cor[0] : cor}`}>{titulo}</h5>
+                                                                <h5 className={`text-${Array.isArray(cor) ? cor[0] : cor}`}>
+                                                                    {titulo}
+                                                                </h5>
 
-                                                                <div className="d-flex flex-wrap gap-2">
-                                                                    {nomes?.map((e, i) => (
-                                                                        <span
-                                                                            key={i}
-                                                                            className={`badge bg-${Array.isArray(cor) ? cor[1] : cor} fs-6 px-3 py-2`}
-                                                                        >
-                                                                            {e}
-                                                                        </span>
-                                                                    ))}
+                                                                <div className="d-flex flex-wrap gap-3">
+                                                                    {nomes?.map((item, i) => {
+                                                                        if (typeof item === "object" && item.Icon) {
+                                                                            return (
+                                                                                <div key={i} className={`badge bg-${Array.isArray(cor) ? cor[1] : cor} text-center gap-2 fs-6 px-1 py-1`} style={{ 'display': 'flex' }}>
+                                                                                    <div style={{ 'background': '#fff','padding': 2, 'borderRadius':3 }}>
+                                                                                        <item.Icon size={18} color={item.cor || "#6c757d"} />
+                                                                                    </div>
+                                                                                    <p className="small mt-1 mb-0" style={{'flex':3,'paddingRight':6}}>{item.nome}</p>
+                                                                                </div>
+                                                                            );
+                                                                        }
+
+                                                                        return (
+                                                                            <span
+                                                                                key={i}
+                                                                                className={`badge bg-${Array.isArray(cor) ? cor[1] : cor} fs-6 px-3 py-2`}
+                                                                                style={{ 'height': 30, 'margin': 'auto 0' }}
+                                                                            >
+                                                                                {item}
+                                                                            </span>
+                                                                        );
+                                                                    })}
                                                                 </div>
-
                                                             </div>
                                                         ))}
 
