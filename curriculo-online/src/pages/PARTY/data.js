@@ -3,7 +3,7 @@ export const cartaz = [
         {img:process.env.PUBLIC_URL+'/certificado_premios/participacaounesp.png',url:process.env.PUBLIC_URL+'/certificado_premios/participouunesp.pdf'},
         {img:process.env.PUBLIC_URL+'/certificado_premios/cangu1.png',url:process.env.PUBLIC_URL+'/certificado_premios/canguru.pdf'},
         {img:process.env.PUBLIC_URL+'/certificado_premios/cangu2.png',url:process.env.PUBLIC_URL+'/certificado_premios/oliempiadacancuru.pdf'},
-        {img:process.env.PUBLIC_URL+'/certificado_premios/startapday.png',url:process.env.PUBLIC_URL+'/certificado_premios/startapday.pdf'},
+        {img:process.env.PUBLIC_URL+'/certificado_premios/startapday.png',url:process.env.PUBLIC_URL+'/certificado_premios/startupday.pdf'},
     ]}
     
 ]
