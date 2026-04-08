@@ -128,7 +128,7 @@ export const FormAcademico = [
 export const cursos = [
     { nome: 'Excel Básico ao Intermediário', status: 'Concluído', instituicao: 'Fundação Bradesco - Escola Virtual', ano: '2021', certificado: 'excel.pdf', cor: 'success' },
     { nome: 'New U-Best', status: 'Em andamento', instituicao: 'Uninter', ano: '---', certificado: '', cor: 'warning' },
-    { nome: 'Inteligência Artificial: conceitos e práticas', status: 'Em andamento', instituicao: 'senac - botucatu', ano: '2026', certificado: '', cor: 'warning' },
+    { nome: 'Inteligência Artificial: conceitos e práticas', status: 'Concluído', instituicao: 'senac - botucatu', ano: '2026', certificado: 'iasenac.pdf', cor: 'success' },
     { nome: 'Jornada Python', status: 'Concluído', instituicao: 'Hashtag', ano: '2026', certificado: 'Validação_Certificado_jornada_python.pdf', cor: 'success' },
     { nome: 'TREINAMENTO INICIAL EM PROTEÇÃO RADIOLÓGICA - MEDICINA NUCLEAR - EAD - 2026', status: 'Concluído', instituicao: 'Hospital das Clínicas da Faculdade de Medicina de Botucatu - HCFMB', ano: '2026', certificado: 'TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf', cor: 'success' },
 ];
