@@ -98,7 +98,7 @@ const Tela2 = forwardRef((props, ref) => {
             </div>
           ))}
 
-          <div style={{ pageBreakBefore: "always" }} />
+          {/* <div style={{ pageBreakBefore: "always" }} /> */}
           <SectionTitle title="Cursos" />
 
           {cursos.map((curso, idx) => (
