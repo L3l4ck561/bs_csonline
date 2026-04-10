@@ -13,7 +13,7 @@ import {
 } from './HOME/data';
 
 import { contatos } from '../components/infoContato/data';
-import { perfil, cargo, desc } from '../components/infoPerfil/data';
+import { perfil, cargo, descP } from '../components/infoPerfil/data';
 import { type } from "@testing-library/user-event/dist/type";
 
 const contato = contatos.map((item, idx) => {
@@ -34,7 +34,7 @@ const Tela2 = forwardRef((props, ref) => {
         backgroundColor: "#fff",
         color: "#222",
         fontSize: "11pt",
-        boxSizing: "border-box"
+        boxSizing: "border-box",
       }}
     >
       {/* HEADER */}
@@ -113,7 +113,9 @@ const Tela2 = forwardRef((props, ref) => {
         <div className="section-block" style={{ width: "65%" }}>
           <SectionTitle title="Resumo Profissional" />
 
-          {desc}
+          {descP.map((p, idx) => (
+            <div key={idx}>{p}</div>
+          ))}
 
           <SectionTitle title="Experiência Profissional" />
 
@@ -128,7 +130,7 @@ const Tela2 = forwardRef((props, ref) => {
               </p>
             </div>
           ))}
-
+          <div style={{ pageBreakBefore: "always" }} />
           <SectionTitle title="Projetos e Pesquisa" />
 
           {icp.map((proj, idx) => (
@@ -141,10 +143,19 @@ const Tela2 = forwardRef((props, ref) => {
           ))}
         </div>
       </div>
-      <div className="pdf-footer">
+      <footer className="pdf-footer">
         Este documento corresponde à versão do currículo gerada em {hoje}.
-        Informações podem ser atualizadas posteriormente.
-      </div>
+        Para mais informações e atualizações, acesse a versão online:{" "}
+        <a href="https://carlosgabriel.vercel.app/" target="_blank" rel="noopener noreferrer">
+          carlosgabriel.vercel.app
+        </a>
+        <br /><br />
+        <img
+          width="100"
+          src={process.env.PUBLIC_URL + 'qrcode.jpeg'}
+          alt="QR Code para currículo online"
+        />
+      </footer>
     </div>
   );
 });

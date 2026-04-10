@@ -22,6 +22,11 @@ export const desc = `
 Olá, Sou Carlos Gabriel, Desenvolvedor Full Stack com experiência em QA e automação de testes. Desenvolvo sistemas completos, rápidos, intuitivos e confiáveis, usando tecnologias modernas como React, JavaScript, Python e SQL. Tenho foco em qualidade, aplicando testes automatizados para reduzir erros e garantir estabilidade. Já criei soluções que impactaram ambientes corporativos e meu objetivo é transformar ideias em sistemas eficientes e duradouros. Estou disponível para ajudar a tirar projetos do papel.
 `;
 
+export const descP = [
+    'Olá, Sou Carlos Gabriel, desenvolvedor Full Stack com experiência em QA e automação de testes. Desenvolvo sistemas completos, rápidos, intuitivos e confiáveis, utilizando tecnologias como React, JavaScript, Python e SQL. ',
+    'Tenho foco em qualidade, aplicando testes automatizados para reduzir erros e garantir estabilidade. Já desenvolvi soluções para ambientes corporativos e estou sempre em busca de transformar ideias em sistemas eficientes e duradouros.'
+]
+
 export const topicos = [
     '💡 Focado em desenvolvimento web, mobile e testes automatizados',
     '🔍 Buscando sempre escrever código limpo, organizado e escalável'

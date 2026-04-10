@@ -14,16 +14,12 @@ p {
 }
 
 .pdf-footer {
-  position: absolute;
-  bottom: 10mm;
-  left: 18mm;
-  right: 18mm;
-
-  font-size: 8pt;
-  color: #777;
-
-  border-top: 1px solid #eee;
-  padding-top: 3mm;
-
+  font-size: 9pt;
+  color: #555;
   text-align: center;
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+  background: white;
+  z-index: 100;
+  margin-top: 20px;
 }
