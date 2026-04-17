@@ -146,7 +146,7 @@ const Tela2 = forwardRef((props, ref) => {
       <footer className="pdf-footer">
         Este documento corresponde à versão do currículo gerada em {hoje}.
         Para mais informações e atualizações, acesse a versão online:{" "}
-        <a href="https://carlosgabriel.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <a href="https://carlosgabriel.packlor.com/" target="_blank" rel="noopener noreferrer">
           carlosgabriel.vercel.app
         </a>
         <br /><br />
