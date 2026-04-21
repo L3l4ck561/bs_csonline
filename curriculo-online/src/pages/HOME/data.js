@@ -159,7 +159,7 @@ export const expeProf = [
         corTipo: 'bg-success', // verde pra atual
         texto: {
             cargo: 'Estagiário – Desenvolvedor Full Stack',
-            periodo: 'Janeiro 2026 – Atualmente',
+            periodo: 'Janeiro 2026 – Abril 2026',
             desc: 'Atuação em projetos internos corporativos com Delphi Pascal, aprendizado contínuo de novas tecnologias e adaptação a diferentes stacks de desenvolvimento.',
             tech: [6] //tecnologias utilizadas puzando pelo index de const tecnologias
         },
