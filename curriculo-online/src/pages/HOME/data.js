@@ -131,6 +131,7 @@ export const cursos = [
     { nome: 'Inteligência Artificial: conceitos e práticas', status: 'Concluído', instituicao: 'senac - botucatu', ano: '2026', certificado: 'iasenac.pdf', cor: 'success' },
     { nome: 'Jornada Python', status: 'Concluído', instituicao: 'Hashtag', ano: '2026', certificado: 'Validação_Certificado_jornada_python.pdf', cor: 'success' },
     { nome: 'TREINAMENTO INICIAL EM PROTEÇÃO RADIOLÓGICA - MEDICINA NUCLEAR - EAD - 2026', status: 'Concluído', instituicao: 'Hospital das Clínicas da Faculdade de Medicina de Botucatu - HCFMB', ano: '2026', certificado: 'TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf', cor: 'success' },
+    { nome: 'Startup Day - 38058018', status: 'Concluído', instituicao: 'Sebrae-SP', ano: '2026', certificado: 'startupdayC.pdf', cor: 'success' },
 ];
 
 // agrupamento de cursos
@@ -154,16 +155,16 @@ export const eadCurso = [
 export const expeProf = [
     {
         titulo: 'Grupo Consciência (CNS)',
-        tipo: 'Estágio Atual',
+        tipo: 'Estágio',
         icon: <FaLaptopCode className="me-2" />,
-        corTipo: 'bg-success', // verde pra atual
+        corTipo: 'bg-secondary', //bg-success verde pra atual
         texto: {
             cargo: 'Estagiário – Desenvolvedor Full Stack',
             periodo: 'Janeiro 2026 – Abril 2026',
             desc: 'Atuação em projetos internos corporativos com Delphi Pascal, aprendizado contínuo de novas tecnologias e adaptação a diferentes stacks de desenvolvimento.',
             tech: [6] //tecnologias utilizadas puzando pelo index de const tecnologias
         },
-        certificado: ['📄 Certificado 1', 'CNS1.pdf']
+        certificado: ['📄 Certificado', 'CNS1.pdf']
     },
     {
         titulo: 'SagaSenai',
