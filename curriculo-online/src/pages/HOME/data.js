@@ -38,7 +38,10 @@ import {
     SiVercel,
     SiTrello,
     SiRender,
-    SiArduino
+    SiArduino,
+    SiDocker,
+    SiNextdotjs,
+    SiAxios
 
 } from 'react-icons/si';
 
@@ -53,6 +56,7 @@ export const tecnologias = [
     { nome: "C++", Icon: SiCplusplus, cor: "#00599C" },
     { nome: "Delphi (Object Pascal)", Icon: SiDelphi, cor: "#EE1F35" },
     { nome: "Construct 2", Icon: SiUnity, cor: "#FF6600" },
+    { nome: "React", Icon: SiReact, cor: "#61DAFB" },
 ];
 
 export const skills = [
@@ -77,16 +81,21 @@ export const skills = [
             { nome: "Bootstrap", Icon: SiBootstrap, cor: "#7952B3" },
             { nome: "Material-UI", Icon: SiMui, cor: "#0081CB" },
             { nome: "Expo", Icon: SiExpo, cor: "#000327" },
-            { nome: 'Tkinter', Icon: SiPython, cor: "#3776AB" }
+            { nome: 'Tkinter', Icon: SiPython, cor: "#3776AB" },
+            { nome: 'Next.js', Icon: SiNextdotjs, cor: "#363636" }
+            
         ]
     },
     {
         titulo: 'Backend & APIs', cor: 'success', nomes: [
             { nome: "Node.js", Icon: SiNodedotjs, cor: "#339933" },
+            { nome: "Axios", Icon: SiAxios, cor: "#dd19d3" },
             { nome: "Express.js", Icon: SiExpress, cor: "#000000" },
             { nome: "Flask", Icon: SiFlask, cor: "#000000" },
             { nome: "Postman", Icon: SiPostman, cor: "#FF6C37" },
-            { nome: "Pandas", Icon: SiPandas, cor: "" }
+            { nome: "Pandas", Icon: SiPandas, cor: "" },
+            { nome: "Cors", Icon: SiPython, cor: "#3776AB" },
+
         ]
     },
     {
@@ -111,6 +120,7 @@ export const skills = [
             { nome: "Vercel", Icon: SiVercel, cor: "#000000" },
             { nome: "Render", Icon: SiRender, cor: "#4b4b4b" },
             { nome: "Trello", Icon: SiTrello, cor: "#0052CC" },
+            { nome: "Docker", Icon: SiDocker, cor: "#00a3e4" },
         ]
     },
     { titulo: 'Hardware & IoT', cor: 'success', nomes: [{ nome: "Arduino / Esp32", Icon: SiArduino, cor: "#00979D" },] },

@@ -11,7 +11,7 @@ import ProjetoWeb from './components/projetoWeb';
 import Prototipos from './components/prototipos';
 
 import ModalPerfil from '../../components/infoPerfil/modal';
-import { cargo} from '../../components/infoPerfil/data';
+import { cargo } from '../../components/infoPerfil/data';
 
 function Portifolio() {
     return (
@@ -56,7 +56,7 @@ function Portifolio() {
                 </div>
             </header>
             <main className="App-main">
-                <ModalPerfil/>
+                <ModalPerfil />
                 {/* Botão que leva para o topo dá pagina */}
                 <a className="topo" onClick={() => document.getElementById("topo").scrollIntoView()}><img src={process.env.PUBLIC_URL + '/topo.svg'} style={{ width: '40px', height: '40px', cursor: 'pointer' }} alt="^" /></a>
 
@@ -77,7 +77,8 @@ function Portifolio() {
                                 Menu
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a className="dropdown-item" onClick={() => document.getElementById("topo").scrollIntoView()}>Projetos Web</a></li>
+                                <li><a className="dropdown-item" onClick={() => document.getElementById("projetoweb").scrollIntoView()}>Projetos Web</a></li>
+                                <li><a className="dropdown-item" onClick={() => document.getElementById("github").scrollIntoView()}>Statisticas do GitHub</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("aplicacoes").scrollIntoView()}>Aplicações</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("prototipos").scrollIntoView()}>Protótipos</a></li>
                                 <li><a className="dropdown-item" onClick={() => document.getElementById("contato").scrollIntoView()}>Contato</a></li>
@@ -88,23 +89,51 @@ function Portifolio() {
 
                 <div className='trabalhos'>
                     {/* conteudo */}
-                    <div className="tela"  style={{ transform: "rotate(45deg)" }}>
-                        <div className="fim" style={{ top: "0" }}/>
+                    <div className="tela" style={{ transform: "rotate(45deg)" }}>
+                        <div className="fim" style={{ top: "0" }} />
                         <img className="bola1" src={process.env.PUBLIC_URL + "/rochas.png"} />
                         <img className="bola2" src={process.env.PUBLIC_URL + "/rochas.png"} />
                         <img className="nave" src={process.env.PUBLIC_URL + "/voo.png"} />
                     </div>
-                    
+
+                    <section id="perfil" className="bg-light-gray">
+                        <div style={{ height: "40px" }} />
+
+                        <div className="container">
+                            <div className="row justify-content-center">
+                                <div className="col-md-7">
+                                    <div className="card text-center shadow">
+                                        <div className="card-body">
+                                            <h5>Introdução</h5>
+                                            <p>Nesta página apresento meus projetos, estudos e aplicações desenvolvidas ao longo da minha trajetória como desenvolvedor.</p>
+                                            <p>Aqui você poderá acompanhar estatísticas do meu perfil no GitHub, explorar projetos interativos e visualizar aplicações completas com seus respectivos repositórios e descrições.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     <ProjetoWeb />
+
+                    <div id='github'/>
+                    <br/>
+                    <div style={{ height: "30px" }} />
+                    <img
+                        src="https://raw.githubusercontent.com/L3l4ck561/L3l4ck561/e2f97031987f1650fff1fa2891ba36d27e377f82/github-metrics.svg"
+                        alt="github"
+                        class="img-fluid"
+                    />
+                    
                     <StackedCarousel />
                     <Prototipos />
 
                 </div>
 
-            <div style={{height:100}} />
+                <div style={{ height: 100 }} />
             </main>
 
-            < Contato/>
+            < Contato />
             <footer className="App-footer">
                 <div className="container">
                     <p className="mb-0">Desenvolvido com React + Bootstrap em 2025 © Carlos Gabriel.</p>

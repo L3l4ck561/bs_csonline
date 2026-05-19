@@ -3,6 +3,7 @@ import { projetoweb } from '../data';
 export default function ProjetoWeb() {
     return (
         <section id="projetoweb" className="py-5">
+            <div style={{ height: "40px" }} />
             <div className="container text-center">
                 <h3 className="mb-5">Projetos Web</h3>
 
