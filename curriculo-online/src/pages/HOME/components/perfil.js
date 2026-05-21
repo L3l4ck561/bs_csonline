@@ -30,6 +30,7 @@ export default function Perfil() {
                   ))}
                 </div>
                 <br />
+                <hr />
                 <h6 className="card-title">Em destaque</h6>
                 <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center">
                   {tecnologias
