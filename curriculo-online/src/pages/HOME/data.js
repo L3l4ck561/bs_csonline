@@ -5,6 +5,7 @@ import {
     FaBriefcase,
     FaCode,
     FaLaptopCode,
+    FaJava
 } from 'react-icons/fa';
 
 import {
@@ -41,7 +42,8 @@ import {
     SiArduino,
     SiDocker,
     SiNextdotjs,
-    SiAxios
+    SiAxios,
+    SiCloudflare,
 
 } from 'react-icons/si';
 
@@ -57,6 +59,7 @@ export const tecnologias = [
     { nome: "Delphi (Object Pascal)", Icon: SiDelphi, cor: "#EE1F35" },
     { nome: "Construct 2", Icon: SiUnity, cor: "#FF6600" },
     { nome: "React", Icon: SiReact, cor: "#61DAFB" },
+    { nome: "Java", Icon: FaJava, cor: "#ffb300" },
 ];
 
 export const skills = [
@@ -121,6 +124,7 @@ export const skills = [
             { nome: "Render", Icon: SiRender, cor: "#4b4b4b" },
             { nome: "Trello", Icon: SiTrello, cor: "#0052CC" },
             { nome: "Docker", Icon: SiDocker, cor: "#00a3e4" },
+            { nome: "Cloudflare", Icon: SiCloudflare, cor: "#e48d00" },
         ]
     },
     { titulo: 'Hardware & IoT', cor: 'success', nomes: [{ nome: "Arduino / Esp32", Icon: SiArduino, cor: "#00979D" },] },
@@ -164,15 +168,28 @@ export const eadCurso = [
 //experiencias profissionais
 export const expeProf = [
     {
+        titulo: 'https://packlor.com',
+        tipo: 'Freelancer - Atual',
+        icon: <FaLaptopCode className="me-2" />,
+        corTipo: 'bg-success', //bg-success verde pra atual
+        texto: {
+            cargo: 'Desenvolvedor Full Stack',
+            periodo: 'maio 2026 - Atual',
+            desc: 'Fundador e responsável pela entrega de projetos de software personalizados, atuando desde o levantamento de requisitos até o desenvolvimento, testes, implantação e suporte de soluções digitais para diferentes segmentos.',
+            tech: []
+        },
+        certificado: ['"Clique aqui" para conecher a principal ferramenta, e nossos serviços!', 'https://packlor.com/',1]
+    },
+    {
         titulo: 'Grupo Consciência (CNS)',
         tipo: 'Estágio',
         icon: <FaLaptopCode className="me-2" />,
-        corTipo: 'bg-secondary', //bg-success verde pra atual
+        corTipo: 'bg-secondary',
         texto: {
             cargo: 'Estagiário – Desenvolvedor Full Stack',
             periodo: 'Janeiro 2026 – Abril 2026',
             desc: 'Atuação em projetos internos corporativos com Delphi Pascal, aprendizado contínuo de novas tecnologias e adaptação a diferentes stacks de desenvolvimento.',
-            tech: [6] //tecnologias utilizadas puzando pelo index de const tecnologias
+            tech: [6]
         },
         certificado: ['📄 Certificado', 'CNS1.pdf']
     },

@@ -34,7 +34,7 @@ export default function Perfil() {
                 <h6 className="card-title">Em destaque</h6>
                 <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center">
                   {tecnologias
-                    .filter((_, index) => ![2, 3, 4, 5, 6, 7].includes(index))
+                    .filter((_, index) => ![2, 3, 5, 6, 7, 9].includes(index))
                     .map(({ nome, Icon, cor }, index, array) => (
                       <div
                         key={nome}

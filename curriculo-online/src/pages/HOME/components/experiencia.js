@@ -81,7 +81,7 @@ export default function Experiencia() {
                                         {
                                             !item.certificado.length ? '' :
                                                 <a
-                                                    href={`${process.env.PUBLIC_URL}/certificado_premios/${item.certificado[1]}`}
+                                                    href={(item.certificado.length===2 ?process.env.PUBLIC_URL+'/certificado_premios/':'')+`${item.certificado[1]}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="btn btn-outline-primary btn-sm"
