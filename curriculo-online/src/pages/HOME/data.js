@@ -168,7 +168,7 @@ export const eadCurso = [
 //experiencias profissionais
 export const expeProf = [
     {
-        titulo: 'https://packlor.com',
+        titulo: 'https://services.packlor.com',
         tipo: 'Freelancer - Atual',
         icon: <FaLaptopCode className="me-2" />,
         corTipo: 'bg-success', //bg-success verde pra atual
