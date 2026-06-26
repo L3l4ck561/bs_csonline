@@ -168,7 +168,7 @@ export const eadCurso = [
 //experiencias profissionais
 export const expeProf = [
     {
-        titulo: 'https://services.packlor.com',
+        titulo: 'Packlor Services',
         tipo: 'Freelancer - Atual',
         icon: <FaLaptopCode className="me-2" />,
         corTipo: 'bg-success', //bg-success verde pra atual
@@ -178,7 +178,7 @@ export const expeProf = [
             desc: 'Fundador e responsável pela entrega de projetos de software personalizados, atuando desde o levantamento de requisitos até o desenvolvimento, testes, implantação e suporte de soluções digitais para diferentes segmentos.',
             tech: []
         },
-        certificado: ['"Clique aqui" para conecher a principal ferramenta, e nossos serviços!', 'https://packlor.com/',1]
+        certificado: ['"Clique aqui" para conecher a principal ferramenta, e nossos serviços!', 'https://services.packlor.com/',1]
     },
     {
         titulo: 'Grupo Consciência (CNS)',
