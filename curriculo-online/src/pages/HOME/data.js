@@ -44,7 +44,7 @@ import {
     SiNextdotjs,
     SiAxios,
     SiCloudflare,
-
+    SiMariadb,
 } from 'react-icons/si';
 
 //construção do certificado
@@ -113,6 +113,7 @@ export const skills = [
         titulo: 'Banco de Dados', cor: 'secondary', nomes: [
             { nome: "MySQL", Icon: SiMysql, cor: "#4479A1" },
             { nome: "MongoDB", Icon: SiMongodb, cor: "#47A248" },
+            { nome: "MariaDB", Icon: SiMariadb, cor: "#ac4c18" },
         ]
     },
 
