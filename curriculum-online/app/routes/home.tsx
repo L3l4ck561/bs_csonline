@@ -8,7 +8,7 @@ export default function Home() {
         <div className="mx-auto mb-6 h-28 w-28 overflow-hidden rounded-full border-2 border-emerald-500/30 bg-zinc-800">
           {/* Coloque sua foto aqui depois */}
           <div className="flex h-full w-full items-center justify-center text-4xl font-bold text-zinc-600">
-            SN
+            <img src="./images/image.jpg" alt="" />
           </div>
         </div>
 
