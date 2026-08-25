@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CurriculumNav from "~/components/CurriculumNav";
-import CurriculumPDF from "~/components/CurriculumPDF";
+import CurriculumPDF from "~/components/CurriculumPDF.client";
 
 // ==================== TIPOS ====================
 type LinkItem = { label: string; url: string };

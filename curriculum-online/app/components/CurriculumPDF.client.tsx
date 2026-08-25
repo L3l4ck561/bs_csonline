@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Document,
   Page,
@@ -5,7 +6,6 @@ import {
   View,
   StyleSheet,
   Link,
-  Font,
 } from "@react-pdf/renderer";
 import { pdf } from "@react-pdf/renderer";
 
@@ -468,6 +468,3 @@ export default function CurriculumPDF({
     </button>
   );
 }
-
-// precisa do useState
-import { useState } from "react";
