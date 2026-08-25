@@ -187,7 +187,7 @@ export default function Curriculum() {
       link: [{ label: "Projeto LostFound", url: "https://github.com/L3l4ck561/LostFound" }],
     },
     {
-      role: "Desenvolvedor Full Stack",
+      role: "Desenvolvedor e Autor",
       company: "BirdGameJer",
       period: "2025",
       description: "Desenvolvimento de jogo 2D para navegador utilizando Construct 2",
