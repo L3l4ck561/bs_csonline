@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CurriculumNav from "~/components/CurriculumNav";
+import CurriculumPDF from "~/components/CurriculumPDF";
 
 // ==================== TIPOS ====================
 type LinkItem = { label: string; url: string };
@@ -225,6 +226,7 @@ export default function Curriculum() {
     { name: "Flask", category: "Backend" },
     { name: "FastAPI", category: "Backend" },
     { name: "REST APIs", category: "Backend" },
+    { name: "Axios", category: "Backend" },
 
     // Banco de Dados
     { name: "PostgreSQL", category: "Banco de Dados" },
@@ -459,296 +461,321 @@ export default function Curriculum() {
   // Agrupa EAD por título
   const eadGrouped = groupByTitle(ead);
 
+  const anoAtual = new Date().getFullYear();
+
   return (
-    <div className="relative space-y-12">
-      <CurriculumNav />
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-white sm:text-4xl">Curriculum</h1>
-        <p className="mt-2 text-zinc-400">Minha trajetória profissional e habilidades.</p>
-      </div>
+    <div className="text-end">
 
-      {/* Sobre */}
-      <section id="sobre" className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
-        <h2 className="mb-3 text-xl font-semibold text-emerald-400">Sobre mim</h2>
-        <p className="leading-relaxed text-zinc-300">
-          Desenvolvedor com foco em criar produtos digitais de alta qualidade.
-          Gosto de código limpo, boas práticas e de transformar ideias em realidade.
-        </p>
-      </section>
-
-      {/* Experiência */}
-      <section id="experiencia">
-        <h2 className="mb-6 text-xl font-semibold text-white">Experiência</h2>
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
-            <div
-              key={i}
-              className="relative border-l-2 border-emerald-500/40 pl-6"
-            >
-              <div className="absolute -left-[9px] top-1 h-4 w-4 rounded-full border-2 border-emerald-500 bg-zinc-950" />
-              <div className="flex items-center gap-1">
-                <h3 className="font-semibold text-white">{exp.role}</h3>
-                <LinksTooltip links={exp.link} />
-              </div>
-              <p className="text-sm text-emerald-400">
-                {exp.company} · {exp.period}
-              </p>
-              <p className="mt-2 text-sm text-zinc-400">{exp.description}</p>
-            </div>
-          ))}
+      <div className="relative space-y-12 text-left">
+        <CurriculumNav />
+        {/* Header */}
+        <div>
+          <h1 className="text-3xl font-bold text-white sm:text-4xl">Curriculum</h1>
+          <p className="mt-2 text-zinc-400">Minha trajetória profissional e habilidades.</p>
         </div>
-      </section>
 
-      {/* Skills por categoria */}
-      <section id="skills">
-        <h2 className="mb-6 text-xl font-semibold text-white">Skills</h2>
-        <div className="space-y-6">
-          {Object.entries(skillsByCategory).map(([category, items]) => (
-            <div key={category}>
-              <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
-                {category}
+        {/* Sobre */}
+        <section id="sobre" className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+          <h2 className="mb-3 text-xl font-semibold text-emerald-400">Sobre mim</h2>
+          <p className="leading-relaxed text-zinc-300">
+            Desenvolvedor com foco em criar produtos digitais de alta qualidade.
+            Gosto de código limpo, boas práticas e de transformar ideias em realidade.
+          </p>
+        </section>
+
+        {/* Experiência */}
+        <section id="experiencia">
+          <h2 className="mb-6 text-xl font-semibold text-white">Experiência</h2>
+          <div className="space-y-6">
+            {experiences.map((exp, i) => (
+              <div
+                key={i}
+                className="relative border-l-2 border-emerald-500/40 pl-6"
+              >
+                <div className="absolute -left-[9px] top-1 h-4 w-4 rounded-full border-2 border-emerald-500 bg-zinc-950" />
+                <div className="flex items-center gap-1">
+                  <h3 className="font-semibold text-white">{exp.role}</h3>
+                  <LinksTooltip links={exp.link} />
+                </div>
+                <p className="text-sm text-emerald-400">
+                  {exp.company} · {exp.period}
+                </p>
+                <p className="mt-2 text-sm text-zinc-400">{exp.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Skills por categoria */}
+        <section id="skills">
+          <h2 className="mb-6 text-xl font-semibold text-white">Skills</h2>
+          <div className="space-y-6">
+            {Object.entries(skillsByCategory).map(([category, items]) => (
+              <div key={category}>
+                <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                  {category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <span
+                      key={skill.name}
+                      className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Formação */}
+        <section id="formacao">
+          <h2 className="mb-6 text-xl font-semibold text-white">Formação</h2>
+
+          <div className="space-y-8">
+            {/* Acadêmico */}
+            <div>
+              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                Acadêmico
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {items.map((skill) => (
-                  <span
-                    key={skill.name}
-                    className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
+              <div className="space-y-4">
+                {academic.map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
                   >
-                    {skill.name}
-                  </span>
+                    <div className="flex items-center gap-1">
+                      <h4 className="font-semibold text-white">{item.title}</h4>
+                      <LinksTooltip links={item.link} />
+                    </div>
+                    <p className="mt-1 text-sm text-emerald-400">
+                      {item.institution} · {item.period}
+                      {item.status && (
+                        <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                          {item.status}
+                        </span>
+                      )}
+                    </p>
+                    {item.description && (
+                      <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Formação */}
-      <section id="formacao">
-        <h2 className="mb-6 text-xl font-semibold text-white">Formação</h2>
+            {/* Cursos Complementares */}
+            <div>
+              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                Cursos Complementares
+              </h3>
+              <div className="space-y-4">
+                {course.map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
+                  >
+                    <div className="flex items-center gap-1">
+                      <h4 className="font-semibold text-white">{item.title}</h4>
+                      <LinksTooltip links={item.link} />
+                    </div>
+                    <p className="mt-1 text-sm text-emerald-400">
+                      {item.institution} · {item.period}
+                      {item.hours && ` · ${item.hours}`}
+                      {item.status && (
+                        <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                          {item.status}
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-        <div className="space-y-8">
-          {/* Acadêmico */}
-          <div>
-            <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
-              Acadêmico
-            </h3>
-            <div className="space-y-4">
-              {academic.map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                >
-                  <div className="flex items-center gap-1">
-                    <h4 className="font-semibold text-white">{item.title}</h4>
+            {/* EAD - com Accordion quando título se repete */}
+            <div>
+              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                EAD
+              </h3>
+              <div className="space-y-4">
+                {eadGrouped.map(([title, items]) => {
+                  // Se só tem 1 item, mostra normal
+                  if (items.length === 1) {
+                    const item = items[0];
+                    return (
+                      <div
+                        key={title}
+                        className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
+                      >
+                        <div className="flex items-center gap-1">
+                          <h4 className="font-semibold text-white">{item.title}</h4>
+                          <LinksTooltip links={item.link} />
+                        </div>
+                        <p className="mt-1 text-sm text-emerald-400">
+                          {item.institution} · {item.period}
+                        </p>
+                        {item.description && (
+                          <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
+                        )}
+                      </div>
+                    );
+                  }
+
+                  // Vários itens com mesmo título → Accordion
+                  return (
+                    <AccordionGroup key={title} title={title} defaultOpen={false}>
+                      {items.map((item, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3"
+                        >
+                          <div>
+                            <p className="font-medium text-zinc-200">{item.institution}</p>
+                            <p className="mt-0.5 text-sm text-emerald-400">{item.period}</p>
+                            {item.description && (
+                              <p className="mt-1 text-sm text-zinc-400">{item.description}</p>
+                            )}
+                          </div>
+                          <LinksTooltip links={item.link} />
+                        </div>
+                      ))}
+                    </AccordionGroup>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Iniciações Científicas e Apresentações */}
+        <section id="ic-apresentacoes">
+          <h2 className="mb-6 text-xl font-semibold text-white">
+            Iniciações Científicas e Apresentações
+          </h2>
+
+          <div className="space-y-6">
+            {/* IC */}
+            <div>
+              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                Iniciação Científica (IC)
+              </h3>
+              <div className="space-y-4">
+                {ic.map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
+                  >
+                    <div className="flex items-center gap-1">
+                      <h4 className="font-semibold text-white">{item.title}</h4>
+                      <LinksTooltip links={item.link} />
+                    </div>
+                    <p className="mt-1 text-sm text-emerald-400">
+                      {item.period} · Orientador: {item.advisor}
+                    </p>
+                    <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Apresentações */}
+            <div>
+              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                Apresentações
+              </h3>
+              <div className="space-y-4">
+                {presentations.map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
+                  >
+                    <div className="flex items-center gap-1">
+                      <h4 className="font-semibold text-white">{item.title}</h4>
+                      <LinksTooltip links={item.link} />
+                    </div>
+                    <p className="mt-1 text-sm text-emerald-400">
+                      {item.event} · {item.date}
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-500">{item.type}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mural */}
+        <section id="mural" className="scroll-mt-24">
+          <h2 className="mb-6 text-xl font-semibold text-white">Mural</h2>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {mural.map((item, i) => (
+              <article
+                key={i}
+                className="group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition hover:border-emerald-500/30 hover:bg-zinc-900"
+              >
+                {/* Imagem */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {/* overlay sutil */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60" />
+                </div>
+
+                {/* Conteúdo */}
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-semibold text-white leading-snug">
+                      {item.title}
+                    </h3>
                     <LinksTooltip links={item.link} />
                   </div>
-                  <p className="mt-1 text-sm text-emerald-400">
-                    {item.institution} · {item.period}
-                    {item.status && (
-                      <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
-                        {item.status}
-                      </span>
-                    )}
-                  </p>
+
+                  {(item.event || item.period) && (
+                    <p className="mt-1.5 text-sm text-emerald-400">
+                      {item.event && <>{item.event} · </>}
+                      {item.period}
+                    </p>
+                  )}
+
                   {item.description && (
-                    <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
+                    <p className="mt-2 text-sm text-zinc-400 line-clamp-3">
+                      {item.description}
+                    </p>
                   )}
                 </div>
-              ))}
-            </div>
+              </article>
+            ))}
           </div>
-
-          {/* Cursos Complementares */}
-          <div>
-            <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
-              Cursos Complementares
-            </h3>
-            <div className="space-y-4">
-              {course.map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                >
-                  <div className="flex items-center gap-1">
-                    <h4 className="font-semibold text-white">{item.title}</h4>
-                    <LinksTooltip links={item.link} />
-                  </div>
-                  <p className="mt-1 text-sm text-emerald-400">
-                    {item.institution} · {item.period}
-                    {item.hours && ` · ${item.hours}`}
-                    {item.status && (
-                      <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
-                        {item.status}
-                      </span>
-                    )}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* EAD - com Accordion quando título se repete */}
-          <div>
-            <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
-              EAD
-            </h3>
-            <div className="space-y-4">
-              {eadGrouped.map(([title, items]) => {
-                // Se só tem 1 item, mostra normal
-                if (items.length === 1) {
-                  const item = items[0];
-                  return (
-                    <div
-                      key={title}
-                      className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                    >
-                      <div className="flex items-center gap-1">
-                        <h4 className="font-semibold text-white">{item.title}</h4>
-                        <LinksTooltip links={item.link} />
-                      </div>
-                      <p className="mt-1 text-sm text-emerald-400">
-                        {item.institution} · {item.period}
-                      </p>
-                      {item.description && (
-                        <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
-                      )}
-                    </div>
-                  );
-                }
-
-                // Vários itens com mesmo título → Accordion
-                return (
-                  <AccordionGroup key={title} title={title} defaultOpen={false}>
-                    {items.map((item, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3"
-                      >
-                        <div>
-                          <p className="font-medium text-zinc-200">{item.institution}</p>
-                          <p className="mt-0.5 text-sm text-emerald-400">{item.period}</p>
-                          {item.description && (
-                            <p className="mt-1 text-sm text-zinc-400">{item.description}</p>
-                          )}
-                        </div>
-                        <LinksTooltip links={item.link} />
-                      </div>
-                    ))}
-                  </AccordionGroup>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Iniciações Científicas e Apresentações */}
-      <section id="ic-apresentacoes">
-        <h2 className="mb-6 text-xl font-semibold text-white">
-          Iniciações Científicas e Apresentações
-        </h2>
-
-        <div className="space-y-6">
-          {/* IC */}
-          <div>
-            <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
-              Iniciação Científica (IC)
-            </h3>
-            <div className="space-y-4">
-              {ic.map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                >
-                  <div className="flex items-center gap-1">
-                    <h4 className="font-semibold text-white">{item.title}</h4>
-                    <LinksTooltip links={item.link} />
-                  </div>
-                  <p className="mt-1 text-sm text-emerald-400">
-                    {item.period} · Orientador: {item.advisor}
-                  </p>
-                  <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Apresentações */}
-          <div>
-            <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
-              Apresentações
-            </h3>
-            <div className="space-y-4">
-              {presentations.map((item, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                >
-                  <div className="flex items-center gap-1">
-                    <h4 className="font-semibold text-white">{item.title}</h4>
-                    <LinksTooltip links={item.link} />
-                  </div>
-                  <p className="mt-1 text-sm text-emerald-400">
-                    {item.event} · {item.date}
-                  </p>
-                  <p className="mt-1 text-xs text-zinc-500">{item.type}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mural */}
-      <section id="mural" className="scroll-mt-24">
-        <h2 className="mb-6 text-xl font-semibold text-white">Mural</h2>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {mural.map((item, i) => (
-            <article
-              key={i}
-              className="group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition hover:border-emerald-500/30 hover:bg-zinc-900"
-            >
-              {/* Imagem */}
-              <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                {/* overlay sutil */}
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60" />
-              </div>
-
-              {/* Conteúdo */}
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-semibold text-white leading-snug">
-                    {item.title}
-                  </h3>
-                  <LinksTooltip links={item.link} />
-                </div>
-
-                {(item.event || item.period) && (
-                  <p className="mt-1.5 text-sm text-emerald-400">
-                    {item.event && <>{item.event} · </>}
-                    {item.period}
-                  </p>
-                )}
-
-                {item.description && (
-                  <p className="mt-2 text-sm text-zinc-400 line-clamp-3">
-                    {item.description}
-                  </p>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+        </section>
+      </div>
+      <div className="mt-10" />
+      <CurriculumPDF
+        data={{
+          name: "Carlos Gabriel dos Santos Araujo",
+          email: "ti.carlos.dev@email.com",
+          phone: "(14) 998802-9965",
+          location: "Botucatu, SP",
+          about:
+            "Desenvolvedor com foco em criar produtos digitais de alta qualidade. Gosto de código limpo, boas práticas e de transformar ideias em realidade.",
+          experiences,
+          skills,
+          academic,
+          course,
+          ead,
+          ic,
+          presentations,
+          mural,
+        }}
+        fileName={`CarlosGabriel-Curriculum_${anoAtual}.pdf`}
+      />
     </div>
   );
 }
