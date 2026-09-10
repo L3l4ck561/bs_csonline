@@ -12,6 +12,27 @@ const projects = [
     description: "Sistema Web para Gerenciamento de Entrada e Saída de Alunos.",
     tags: ["Python", "JavaScript", "HTML/CSS", "MySQL", "Auditório & Logs"],
     link: "https://github.com/SergioPelais/SENAI-",
+  },
+  {
+    icon: "🖩",
+    title: "Calculadora",
+    description: "Feito com troca de tema (DarkMode) e tratamento de erro.",
+    tags: ["HTML", "CSS", "JS"],
+    link: "https://l3l4ck561.github.io/Projeto-2Calculadora/",
+  },
+  {
+    icon: "📅",
+    title: "RotaRotina",
+    description: "Agenda funcional com armazenamento em LocalStorage",
+    tags: ["React(Vite)", "Mui", "Tailwind", "JS"],
+    link: "https://rotarotina.vercel.app/",
+  },
+  {
+    icon: "🎮",
+    title: "Toca Da Coruja",
+    description: "Game desenvolvido num evento GameJam",
+    tags: ["Construct2"],
+    link: "https://birdgamejam.itch.io/a-toca-da-coruja",
   }
 ];
 

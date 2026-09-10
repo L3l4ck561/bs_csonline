@@ -16,7 +16,7 @@ export default function Home() {
           Olá, eu sou <span className="text-emerald-400">Carlos</span>
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-400">
-          💻 Full Stack Developer | QA & Test Automation | Custom Software Development
+          💻 Full Stack Developer | Software Engineering | Data Science / ML
           <br /> <span className="text-emerald-400">apaixonado por criar experiências digitais modernas e performáticas.</span>
         </p>
 

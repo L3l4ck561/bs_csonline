@@ -133,8 +133,9 @@ function AccordionGroup({
       >
         <h4 className="font-semibold text-white">{title}</h4>
         <span
-          className={`text-emerald-400 transition-transform duration-200 ${open ? "rotate-180" : ""
-            }`}
+          className={`text-emerald-400 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
         >
           ▼
         </span>
@@ -169,14 +170,18 @@ export default function Curriculum() {
       role: "Freelancer",
       company: "Packlor Services",
       period: "2026 — Presente",
-      description: "Desenvolvimento de aplicações web com React, Node.js e TypeScript.",
-      link: [{ label: "Acesse a Packlor", url: "https://services.packlor.com/" }],
+      description:
+        "Desenvolvimento de aplicações web com React, Node.js e TypeScript.",
+      link: [
+        { label: "Acesse a Packlor", url: "https://services.packlor.com/" },
+      ],
     },
     {
       role: "Desenvolvedor Full Stack",
       company: "Grupo consciência - CNS",
       period: "2026",
-      description: "Atuação em projetos internos corporativos com Delphi Pascal",
+      description:
+        "Atuação em projetos internos corporativos com Delphi Pascal",
       link: [{ label: "Certificado", url: "./docs/CNS1.pdf" }],
     },
     {
@@ -185,14 +190,25 @@ export default function Curriculum() {
       period: "2024 — 2025",
       description:
         "Atuação acadêmica no desenvolvimento de um projeto de inovação, aplicando conhecimentos teóricos e práticos",
-      link: [{ label: "Projeto LostFound", url: "https://github.com/L3l4ck561/LostFound" }],
+      link: [
+        {
+          label: "Projeto LostFound",
+          url: "https://github.com/L3l4ck561/LostFound",
+        },
+      ],
     },
     {
       role: "Desenvolvedor e Autor",
       company: "BirdGameJer",
       period: "2025",
-      description: "Desenvolvimento de jogo 2D para navegador utilizando Construct 2",
-      link: [{ label: "Jogo BirdGame", url: "https://birdgamejam.itch.io/a-toca-da-coruja" }],
+      description:
+        "Desenvolvimento de jogo 2D para navegador utilizando Construct 2",
+      link: [
+        {
+          label: "Jogo BirdGame",
+          url: "https://birdgamejam.itch.io/a-toca-da-coruja",
+        },
+      ],
     },
     {
       role: "Aprendiz",
@@ -204,64 +220,96 @@ export default function Curriculum() {
   ];
 
   const skills: Skill[] = [
+    // Linguagens
+    { name: "Python", category: "Linguagens" },
+    { name: "JavaScript", category: "Linguagens" },
+    { name: "TypeScript", category: "Linguagens" },
+
     // Frontend
     { name: "React", category: "Frontend" },
-    { name: "TypeScript", category: "Frontend" },
-    { name: "JavaScript", category: "Frontend" },
+    { name: "Next.js", category: "Frontend" },
+    { name: "React Router", category: "Frontend" },
     { name: "HTML", category: "Frontend" },
     { name: "CSS", category: "Frontend" },
-    { name: "Tailwind CSS", category: "Frontend" },
-    { name: "Bootstrap", category: "Frontend" },
-    { name: "Material-UI", category: "Frontend" },
-    { name: "Next.js", category: "Frontend" },
-    { name: "Vite", category: "Frontend" },
-    { name: "Expo", category: "Frontend" },
-    { name: "React Router", category: "Frontend" },
+
+    // UI & Styling
+    { name: "Tailwind CSS", category: "UI & Styling" },
+    { name: "Bootstrap", category: "UI & Styling" },
+    { name: "Material UI", category: "UI & Styling" },
+
+    // Mobile
+    { name: "Expo", category: "Mobile" },
 
     // Backend
     { name: "Node.js", category: "Backend" },
     { name: "Express.js", category: "Backend" },
-    { name: "Python", category: "Backend" },
-    { name: "Django", category: "Backend" },
     { name: "Flask", category: "Backend" },
+    { name: "Django", category: "Backend" },
     { name: "FastAPI", category: "Backend" },
-    { name: "REST APIs", category: "Backend" },
-    { name: "Axios", category: "Backend" },
 
-    // Banco de Dados
-    { name: "PostgreSQL", category: "Banco de Dados" },
-    { name: "MySQL", category: "Banco de Dados" },
-    { name: "MariaDB", category: "Banco de Dados" },
-    { name: "SQLite", category: "Banco de Dados" },
-    { name: "MongoDB", category: "Banco de Dados" },
-    { name: "Supabase", category: "Banco de Dados" },
+    // APIs & Integrações
+    { name: "REST APIs", category: "APIs & Integrações" },
+    { name: "Axios", category: "APIs & Integrações" },
+    { name: "WebSocket", category: "APIs & Integrações" },
 
-    // DevOps & Cloud
-    { name: "Git", category: "DevOps & Cloud" },
-    { name: "Docker", category: "DevOps & Cloud" },
-    { name: "CI/CD", category: "DevOps & Cloud" },
-    { name: "Cloudflare", category: "DevOps & Cloud" },
-    { name: "Vercel", category: "DevOps & Cloud" },
-    { name: "Render", category: "DevOps & Cloud" },
+    // Engenharia de Software
+    { name: "Modular Architecture", category: "Engenharia de Software" },
+    { name: "Multi-tenant SaaS", category: "Engenharia de Software" },
+    {
+      name: "Authentication & Authorization",
+      category: "Engenharia de Software",
+    },
+    { name: "Business Rules", category: "Engenharia de Software" },
 
-    // Testes
-    { name: "Jest", category: "Testes" },
-    { name: "Cypress", category: "Testes" },
+    // Bancos Relacionais
+    { name: "PostgreSQL", category: "Bancos de Dados" },
+    { name: "MySQL", category: "Bancos de Dados" },
+    { name: "MariaDB", category: "Bancos de Dados" },
+    { name: "SQLite", category: "Bancos de Dados" },
 
-    // Data & Automação
-    { name: "Pandas", category: "Data & Automação" },
-    { name: "NumPy", category: "Data & Automação" },
-    { name: "Selenium", category: "Data & Automação" },
-    { name: "PyAutoGUI", category: "Data & Automação" },
-    { name: "Tkinter", category: "Data & Automação" },
+    // Banco NoSQL
+    { name: "MongoDB", category: "Bancos de Dados" },
+
+    // Data Science
+    { name: "NumPy", category: "Data Science & Visualization" },
+    { name: "Pandas", category: "Data Science & Visualization" },
+    { name: "Matplotlib", category: "Data Science & Visualization" },
+
+    // Machine Learning
+    { name: "Scikit-learn", category: "Machine Learning" },
+    { name: "Data Preprocessing", category: "Machine Learning" },
+    { name: "Feature Scaling", category: "Machine Learning" },
+
+    // Testes & QA
+    { name: "Jest", category: "Test Automation" },
+    { name: "Cypress", category: "Test Automation" },
+    { name: "Selenium", category: "Test Automation" },
+    { name: "API Testing", category: "QA & Quality" },
+    { name: "End-to-End Testing", category: "QA & Quality" },
+
+    // Automação
+    { name: "PyAutoGUI", category: "Automation" },
+
+    // DevOps
+    { name: "Git", category: "DevOps" },
+    { name: "Docker", category: "DevOps" },
+    { name: "CI/CD", category: "DevOps" },
+
+    // Cloud & Deployment
+    { name: "Vercel", category: "Cloud & Deployment" },
+    { name: "Render", category: "Cloud & Deployment" },
+    { name: "Cloudflare", category: "Cloud & Deployment" },
 
     // Ferramentas
-    { name: "Figma", category: "Ferramentas" },
-    { name: "Postman", category: "Ferramentas" },
-    { name: "Axios", category: "Ferramentas" },
-    { name: "Trello", category: "Ferramentas" },
-    { name: "Arduino / ESP32", category: "Ferramentas" },
-    { name: "Scrum & Kanban", category: "Ferramentas" },
+    { name: "Postman", category: "Development Tools" },
+    { name: "Figma", category: "Development Tools" },
+    { name: "Trello", category: "Development Tools" },
+
+    // IoT & Embedded
+    { name: "Arduino / ESP32", category: "IoT & Embedded" },
+
+    // Desktop
+    { name: "Tkinter", category: "Desktop Development" },
   ];
 
   const academic: Academic[] = [
@@ -306,7 +354,12 @@ export default function Curriculum() {
       period: "2026",
       hours: "4h",
       status: "Concluído",
-      link: [{ label: "Certificado", url: "./docs/Validação_Certificado_jornada_python.pdf" }],
+      link: [
+        {
+          label: "Certificado",
+          url: "./docs/Validação_Certificado_jornada_python.pdf",
+        },
+      ],
     },
     {
       title: "Treinamento Inicial em Proteção Radiológica - Medicina Nuclear",
@@ -314,7 +367,12 @@ export default function Curriculum() {
       period: "2026",
       hours: "2h",
       status: "Concluído",
-      link: [{ label: "Certificado", url: "./docs/TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf" }],
+      link: [
+        {
+          label: "Certificado",
+          url: "./docs/TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf",
+        },
+      ],
     },
     {
       title: "Startup Day",
@@ -322,7 +380,10 @@ export default function Curriculum() {
       period: "2026",
       hours: "4h",
       status: "Concluído",
-      link: [{ label: "Participação", url: "./docs/startupday.pdf" }, { label: "Certificado", url: "./docs/startupdayC.pdf" }],
+      link: [
+        { label: "Participação", url: "./docs/startupday.pdf" },
+        { label: "Certificado", url: "./docs/startupdayC.pdf" },
+      ],
     },
     {
       title: "Inteligência Artificial: conceitos e práticas",
@@ -348,7 +409,12 @@ export default function Curriculum() {
       institution: "Competência Transversal: Segurança no Trabalho",
       period: "2024",
       description: "",
-      link: [{ label: "Certificado", url: "./docs/certificado segurança no trabalho.pdf" }],
+      link: [
+        {
+          label: "Certificado",
+          url: "./docs/certificado segurança no trabalho.pdf",
+        },
+      ],
     },
     {
       title: "ead.sp.senai.br",
@@ -369,14 +435,21 @@ export default function Curriculum() {
       institution: "Privacidade e Proteção de Dados (LGPD)",
       period: "2024",
       description: "",
-      link: [{ label: "Certificado", url: "./docs/Privacidade_e_Proteção_de_Dados_(LGPD).pdf" }],
+      link: [
+        {
+          label: "Certificado",
+          url: "./docs/Privacidade_e_Proteção_de_Dados_(LGPD).pdf",
+        },
+      ],
     },
     {
       title: "ead.sp.senai.br",
       institution: "Desvendando a Indústria 4.0",
       period: "2025",
       description: "",
-      link: [{ label: "Certificado", url: "./docs/Desvendando_a_Indústria_4.0.pdf" }],
+      link: [
+        { label: "Certificado", url: "./docs/Desvendando_a_Indústria_4.0.pdf" },
+      ],
     },
     {
       title: "ead.sp.senai.br",
@@ -404,13 +477,19 @@ export default function Curriculum() {
       institution: "Fluência: Fundamentos da Inteligência Artificial",
       period: "2025",
       description: "",
-      link: [{ label: "Certificado", url: "./docs/FLUÊNCIA___FUNDAMENTOS_DA_INTELIGÊNCIA_ARTIFICIAL.pdf" }],
+      link: [
+        {
+          label: "Certificado",
+          url: "./docs/FLUÊNCIA___FUNDAMENTOS_DA_INTELIGÊNCIA_ARTIFICIAL.pdf",
+        },
+      ],
     },
   ];
 
   const ic: Ic[] = [
     {
-      title: "PIBIC Jr. (FMB) – Sistema de Gestão de Fármacos (Medicina Nuclear)",
+      title:
+        "PIBIC Jr. (FMB) – Sistema de Gestão de Fármacos (Medicina Nuclear)",
       period: "2025 — Presente",
       advisor: "Dr. Sonia",
       description:
@@ -425,7 +504,12 @@ export default function Curriculum() {
       event: "I Encontro de Metodologia e Raciocínio Científico da UNESP.",
       date: "Outubro 2023",
       type: "Sistema Web para Gerenciamento de Entrada e Saída de Alunos.",
-      link: [{ label: "Participação", url: "./docs/participouunesp.pdf" }, { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" }, { label: "Premiação", url: "./docs/premiounesp.pdf" }, { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" }],
+      link: [
+        { label: "Participação", url: "./docs/participouunesp.pdf" },
+        { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" },
+        { label: "Premiação", url: "./docs/premiounesp.pdf" },
+        { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" },
+      ],
     },
   ];
 
@@ -436,27 +520,39 @@ export default function Curriculum() {
       event: "Canguru de Matemática Brasil",
       period: "2023",
       description: "",
-      link: [
-        { label: "Certificado", url: "./docs/canguru.pdf" },
-      ],
+      link: [{ label: "Certificado A.2023", url: "./docs/canguru.pdf" }, { label: "Certificado A.2022", url: "./docs/oliempiadacancuru.pdf" }],
     },
     {
-      img: "./docs/cangu2.png",
-      title: "Participação no Concurso Canguru",
-      event: "Canguru de Matemática Brasil",
-      period: "2022",
-      description: "",
-      link: [{ label: "Certificado", url: "./docs/oliempiadacancuru.pdf" }],
+      img: "./docs/premioSenai.png",
+      title: "Prêmio Roberto Mange",
+      event: "",
+      period: "2025",
+      description: "Melhor aluno formado dos cursos técnicos",
+      link: [{ label: "Premiação", url: "./docs/premioSenai.pdf" }],
     },
-    // adicione quantos quiser
+    {
+      img: "./docs/premiounesp.png",
+      title: "1º Lugar – Congresso Científico",
+      event: "I Encontro de Metodologia e Raciocínio Científico da UNESP",
+      period: "2025",
+      description: "Projeto SENAI+ apresentado e premiado com 1º lugar na categoria Ensino Médio",
+      link: [{ label: "Participação", url: "./docs/participouunesp.pdf" },
+      { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" },
+      { label: "Premiação", url: "./docs/premiounesp.pdf" },
+      { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" },],
+    },
+
   ];
 
   // Agrupa skills por categoria
-  const skillsByCategory = skills.reduce<Record<string, Skill[]>>((acc, skill) => {
-    if (!acc[skill.category]) acc[skill.category] = [];
-    acc[skill.category].push(skill);
-    return acc;
-  }, {});
+  const skillsByCategory = skills.reduce<Record<string, Skill[]>>(
+    (acc, skill) => {
+      if (!acc[skill.category]) acc[skill.category] = [];
+      acc[skill.category].push(skill);
+      return acc;
+    },
+    {},
+  );
 
   // Agrupa EAD por título
   const eadGrouped = groupByTitle(ead);
@@ -465,21 +561,29 @@ export default function Curriculum() {
 
   return (
     <div className="text-end">
-
       <div className="relative space-y-12 text-left">
         <CurriculumNav />
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-white sm:text-4xl">Curriculum</h1>
-          <p className="mt-2 text-zinc-400">Minha trajetória profissional e habilidades.</p>
+          <h1 className="text-3xl font-bold text-white sm:text-4xl">
+            Curriculum
+          </h1>
+          <p className="mt-2 text-zinc-400">
+            Minha trajetória profissional e habilidades.
+          </p>
         </div>
 
         {/* Sobre */}
-        <section id="sobre" className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
-          <h2 className="mb-3 text-xl font-semibold text-emerald-400">Sobre mim</h2>
+        <section
+          id="sobre"
+          className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6"
+        >
+          <h2 className="mb-3 text-xl font-semibold text-emerald-400">
+            Sobre mim
+          </h2>
           <p className="leading-relaxed text-zinc-300">
-            Desenvolvedor com foco em criar produtos digitais de alta qualidade.
-            Gosto de código limpo, boas práticas e de transformar ideias em realidade.
+            Desenvolvedor de Software com experiência em aplicações web, APIs, automação e sistemas orientados a dados.
+            Atualmente aprofundando conhecimentos em Data Science e Machine Learning para transformar dados em soluções inteligentes.
           </p>
         </section>
 
@@ -559,7 +663,9 @@ export default function Curriculum() {
                       )}
                     </p>
                     {item.description && (
-                      <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
+                      <p className="mt-2 text-sm text-zinc-400">
+                        {item.description}
+                      </p>
                     )}
                   </div>
                 ))}
@@ -611,14 +717,18 @@ export default function Curriculum() {
                         className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
                       >
                         <div className="flex items-center gap-1">
-                          <h4 className="font-semibold text-white">{item.title}</h4>
+                          <h4 className="font-semibold text-white">
+                            {item.title}
+                          </h4>
                           <LinksTooltip links={item.link} />
                         </div>
                         <p className="mt-1 text-sm text-emerald-400">
                           {item.institution} · {item.period}
                         </p>
                         {item.description && (
-                          <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
+                          <p className="mt-2 text-sm text-zinc-400">
+                            {item.description}
+                          </p>
                         )}
                       </div>
                     );
@@ -626,17 +736,27 @@ export default function Curriculum() {
 
                   // Vários itens com mesmo título → Accordion
                   return (
-                    <AccordionGroup key={title} title={title} defaultOpen={false}>
+                    <AccordionGroup
+                      key={title}
+                      title={title}
+                      defaultOpen={false}
+                    >
                       {items.map((item, i) => (
                         <div
                           key={i}
                           className="flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3"
                         >
                           <div>
-                            <p className="font-medium text-zinc-200">{item.institution}</p>
-                            <p className="mt-0.5 text-sm text-emerald-400">{item.period}</p>
+                            <p className="font-medium text-zinc-200">
+                              {item.institution}
+                            </p>
+                            <p className="mt-0.5 text-sm text-emerald-400">
+                              {item.period}
+                            </p>
                             {item.description && (
-                              <p className="mt-1 text-sm text-zinc-400">{item.description}</p>
+                              <p className="mt-1 text-sm text-zinc-400">
+                                {item.description}
+                              </p>
                             )}
                           </div>
                           <LinksTooltip links={item.link} />
@@ -675,7 +795,9 @@ export default function Curriculum() {
                     <p className="mt-1 text-sm text-emerald-400">
                       {item.period} · Orientador: {item.advisor}
                     </p>
-                    <p className="mt-2 text-sm text-zinc-400">{item.description}</p>
+                    <p className="mt-2 text-sm text-zinc-400">
+                      {item.description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -764,7 +886,7 @@ export default function Curriculum() {
           phone: "(14) 998802-9965",
           location: "Botucatu, SP",
           about:
-            "Desenvolvedor com foco em criar produtos digitais de alta qualidade. Gosto de código limpo, boas práticas e de transformar ideias em realidade.",
+            "Desenvolvedor de Software com experiência em aplicações web, APIs, automação e sistemas orientados a dados. Atualmente aprofundando conhecimentos em Data Science e Machine Learning para transformar dados em soluções inteligentes.",
           experiences,
           skills,
           academic,
