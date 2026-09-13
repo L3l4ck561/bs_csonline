@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CurriculumNav from "~/components/CurriculumNav";
 import CurriculumPDF from "~/components/CurriculumPDF.client";
 
@@ -69,12 +69,97 @@ type Participation = {
   link?: LinkItem[];
 };
 
-// ==================== COMPONENTE DE TOOLTIP DE LINKS ====================
-function LinksTooltip({ links }: { links?: LinkItem[] }) {
-  if (!links || links.length === 0) return null;
+// ==================== HELPER: filtra links válidos ====================
+function getValidLinks(links?: LinkItem[]) {
+  if (!links) return [];
+  return links.filter((l) => l.url && l.url.trim() !== "");
+}
 
-  // Filtra links que realmente têm url
-  const validLinks = links.filter((l) => l.url && l.url.trim() !== "");
+// ==================== MODAL DE LINKS ====================
+function LinksModal({
+  links,
+  title,
+  onClose,
+}: {
+  links: LinkItem[];
+  title?: string;
+  onClose: () => void;
+}) {
+  // Fecha com ESC
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [onClose]);
+
+  // Impede scroll do body enquanto o modal está aberto
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+    >
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Conteúdo */}
+      <div className="relative z-10 w-full max-w-sm rounded-2xl border border-zinc-700 bg-zinc-900 shadow-2xl shadow-black/50">
+        <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
+          <h3 className="font-semibold text-white">
+            {title || "Links"}
+          </h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex h-8 w-8 items-center justify-center rounded-full text-zinc-400 transition hover:bg-zinc-800 hover:text-white"
+            aria-label="Fechar"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-1 p-3">
+          {links.map((link, i) => (
+            <a
+              key={i}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm text-zinc-300 transition hover:bg-emerald-500/10 hover:text-emerald-400"
+              onClick={onClose}
+            >
+              <span className="text-base">🔗</span>
+              <span className="flex-1">{link.label || "Abrir link"}</span>
+              <span className="text-xs text-zinc-500">↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ==================== COMPONENTE DE TOOLTIP DE LINKS ====================
+function LinksTooltip({
+  links,
+  onOpenModal,
+}: {
+  links?: LinkItem[];
+  onOpenModal?: () => void;
+}) {
+  const validLinks = getValidLinks(links);
 
   if (validLinks.length === 0) return null;
 
@@ -82,13 +167,17 @@ function LinksTooltip({ links }: { links?: LinkItem[] }) {
     <div className="group/tooltip relative ml-2 inline-flex">
       <button
         type="button"
+        onClick={(e) => {
+          e.stopPropagation(); // não dispara o clique do card
+          onOpenModal?.();
+        }}
         className="flex h-5 w-5 items-center justify-center rounded-full border border-zinc-600 text-xs text-zinc-400 transition hover:border-emerald-500 hover:text-emerald-400"
         aria-label="Ver links"
       >
         🔗
       </button>
 
-      {/* Tooltip */}
+      {/* Tooltip (só desktop / hover) */}
       <div className="pointer-events-none absolute bottom-full left-1/2 z-50 w-max -translate-x-1/2 opacity-0 transition-all duration-200 group-hover/tooltip:pointer-events-auto group-hover/tooltip:opacity-100">
         <div className="rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 shadow-xl shadow-black/40">
           <div className="flex flex-col gap-1.5">
@@ -99,6 +188,7 @@ function LinksTooltip({ links }: { links?: LinkItem[] }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whitespace-nowrap rounded-md px-2 py-1 text-sm text-zinc-300 transition hover:bg-emerald-500/10 hover:text-emerald-400"
+                onClick={(e) => e.stopPropagation()}
               >
                 {link.label || "Abrir link"}
               </a>
@@ -165,6 +255,17 @@ function groupByTitle<T extends { title: string }>(items: T[]) {
 
 // ==================== PÁGINA ====================
 export default function Curriculum() {
+  const [modal, setModal] = useState<{
+    links: LinkItem[];
+    title?: string;
+  } | null>(null);
+
+  const openLinksModal = (links?: LinkItem[], title?: string) => {
+    const valid = getValidLinks(links);
+    if (valid.length === 0) return;
+    setModal({ links: valid, title });
+  };
+
   const experiences: Experience[] = [
     {
       role: "Freelancer",
@@ -520,7 +621,10 @@ export default function Curriculum() {
       event: "Canguru de Matemática Brasil",
       period: "2023",
       description: "",
-      link: [{ label: "Certificado A.2023", url: "./docs/canguru.pdf" }, { label: "Certificado A.2022", url: "./docs/oliempiadacancuru.pdf" }],
+      link: [
+        { label: "Certificado A.2023", url: "./docs/canguru.pdf" },
+        { label: "Certificado A.2022", url: "./docs/oliempiadacancuru.pdf" },
+      ],
     },
     {
       img: "./docs/premioSenai.png",
@@ -535,13 +639,15 @@ export default function Curriculum() {
       title: "1º Lugar – Congresso Científico",
       event: "I Encontro de Metodologia e Raciocínio Científico da UNESP",
       period: "2025",
-      description: "Projeto SENAI+ apresentado e premiado com 1º lugar na categoria Ensino Médio",
-      link: [{ label: "Participação", url: "./docs/participouunesp.pdf" },
-      { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" },
-      { label: "Premiação", url: "./docs/premiounesp.pdf" },
-      { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" },],
+      description:
+        "Projeto SENAI+ apresentado e premiado com 1º lugar na categoria Ensino Médio",
+      link: [
+        { label: "Participação", url: "./docs/participouunesp.pdf" },
+        { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" },
+        { label: "Premiação", url: "./docs/premiounesp.pdf" },
+        { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" },
+      ],
     },
-
   ];
 
   // Agrupa skills por categoria
@@ -582,8 +688,10 @@ export default function Curriculum() {
             Sobre mim
           </h2>
           <p className="leading-relaxed text-zinc-300">
-            Desenvolvedor de Software com experiência em aplicações web, APIs, automação e sistemas orientados a dados.
-            Atualmente aprofundando conhecimentos em Data Science e Machine Learning para transformar dados em soluções inteligentes.
+            Desenvolvedor de Software com experiência em aplicações web, APIs,
+            automação e sistemas orientados a dados. Atualmente aprofundando
+            conhecimentos em Data Science e Machine Learning para transformar
+            dados em soluções inteligentes.
           </p>
         </section>
 
@@ -591,22 +699,37 @@ export default function Curriculum() {
         <section id="experiencia">
           <h2 className="mb-6 text-xl font-semibold text-white">Experiência</h2>
           <div className="space-y-6">
-            {experiences.map((exp, i) => (
-              <div
-                key={i}
-                className="relative border-l-2 border-emerald-500/40 pl-6"
-              >
-                <div className="absolute -left-[9px] top-1 h-4 w-4 rounded-full border-2 border-emerald-500 bg-zinc-950" />
-                <div className="flex items-center gap-1">
-                  <h3 className="font-semibold text-white">{exp.role}</h3>
-                  <LinksTooltip links={exp.link} />
+            {experiences.map((exp, i) => {
+              const hasLinks = getValidLinks(exp.link).length > 0;
+              return (
+                <div
+                  key={i}
+                  className={`relative border-l-2 border-emerald-500/40 pl-6 ${
+                    hasLinks
+                      ? "cursor-pointer rounded-r-xl transition hover:bg-zinc-900/50"
+                      : ""
+                  }`}
+                  onClick={() =>
+                    hasLinks && openLinksModal(exp.link, exp.role)
+                  }
+                >
+                  <div className="absolute -left-[9px] top-1 h-4 w-4 rounded-full border-2 border-emerald-500 bg-zinc-950" />
+                  <div className="flex items-center gap-1">
+                    <h3 className="font-semibold text-white">{exp.role}</h3>
+                    <LinksTooltip
+                      links={exp.link}
+                      onOpenModal={() => openLinksModal(exp.link, exp.role)}
+                    />
+                  </div>
+                  <p className="text-sm text-emerald-400">
+                    {exp.company} · {exp.period}
+                  </p>
+                  <p className="mt-2 text-sm text-zinc-400">
+                    {exp.description}
+                  </p>
                 </div>
-                <p className="text-sm text-emerald-400">
-                  {exp.company} · {exp.period}
-                </p>
-                <p className="mt-2 text-sm text-zinc-400">{exp.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
@@ -645,30 +768,47 @@ export default function Curriculum() {
                 Acadêmico
               </h3>
               <div className="space-y-4">
-                {academic.map((item, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                  >
-                    <div className="flex items-center gap-1">
-                      <h4 className="font-semibold text-white">{item.title}</h4>
-                      <LinksTooltip links={item.link} />
-                    </div>
-                    <p className="mt-1 text-sm text-emerald-400">
-                      {item.institution} · {item.period}
-                      {item.status && (
-                        <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
-                          {item.status}
-                        </span>
-                      )}
-                    </p>
-                    {item.description && (
-                      <p className="mt-2 text-sm text-zinc-400">
-                        {item.description}
+                {academic.map((item, i) => {
+                  const hasLinks = getValidLinks(item.link).length > 0;
+                  return (
+                    <div
+                      key={i}
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
+                        hasLinks
+                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        hasLinks && openLinksModal(item.link, item.title)
+                      }
+                    >
+                      <div className="flex items-center gap-1">
+                        <h4 className="font-semibold text-white">
+                          {item.title}
+                        </h4>
+                        <LinksTooltip
+                          links={item.link}
+                          onOpenModal={() =>
+                            openLinksModal(item.link, item.title)
+                          }
+                        />
+                      </div>
+                      <p className="mt-1 text-sm text-emerald-400">
+                        {item.institution} · {item.period}
+                        {item.status && (
+                          <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                            {item.status}
+                          </span>
+                        )}
                       </p>
-                    )}
-                  </div>
-                ))}
+                      {item.description && (
+                        <p className="mt-2 text-sm text-zinc-400">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
@@ -678,26 +818,43 @@ export default function Curriculum() {
                 Cursos Complementares
               </h3>
               <div className="space-y-4">
-                {course.map((item, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                  >
-                    <div className="flex items-center gap-1">
-                      <h4 className="font-semibold text-white">{item.title}</h4>
-                      <LinksTooltip links={item.link} />
+                {course.map((item, i) => {
+                  const hasLinks = getValidLinks(item.link).length > 0;
+                  return (
+                    <div
+                      key={i}
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
+                        hasLinks
+                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        hasLinks && openLinksModal(item.link, item.title)
+                      }
+                    >
+                      <div className="flex items-center gap-1">
+                        <h4 className="font-semibold text-white">
+                          {item.title}
+                        </h4>
+                        <LinksTooltip
+                          links={item.link}
+                          onOpenModal={() =>
+                            openLinksModal(item.link, item.title)
+                          }
+                        />
+                      </div>
+                      <p className="mt-1 text-sm text-emerald-400">
+                        {item.institution} · {item.period}
+                        {item.hours && ` · ${item.hours}`}
+                        {item.status && (
+                          <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                            {item.status}
+                          </span>
+                        )}
+                      </p>
                     </div>
-                    <p className="mt-1 text-sm text-emerald-400">
-                      {item.institution} · {item.period}
-                      {item.hours && ` · ${item.hours}`}
-                      {item.status && (
-                        <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
-                          {item.status}
-                        </span>
-                      )}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -711,16 +868,30 @@ export default function Curriculum() {
                   // Se só tem 1 item, mostra normal
                   if (items.length === 1) {
                     const item = items[0];
+                    const hasLinks = getValidLinks(item.link).length > 0;
                     return (
                       <div
                         key={title}
-                        className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
+                        className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
+                          hasLinks
+                            ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                            : ""
+                        }`}
+                        onClick={() =>
+                          hasLinks &&
+                          openLinksModal(item.link, item.institution)
+                        }
                       >
                         <div className="flex items-center gap-1">
                           <h4 className="font-semibold text-white">
                             {item.title}
                           </h4>
-                          <LinksTooltip links={item.link} />
+                          <LinksTooltip
+                            links={item.link}
+                            onOpenModal={() =>
+                              openLinksModal(item.link, item.institution)
+                            }
+                          />
                         </div>
                         <p className="mt-1 text-sm text-emerald-400">
                           {item.institution} · {item.period}
@@ -741,27 +912,43 @@ export default function Curriculum() {
                       title={title}
                       defaultOpen={false}
                     >
-                      {items.map((item, i) => (
-                        <div
-                          key={i}
-                          className="flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3"
-                        >
-                          <div>
-                            <p className="font-medium text-zinc-200">
-                              {item.institution}
-                            </p>
-                            <p className="mt-0.5 text-sm text-emerald-400">
-                              {item.period}
-                            </p>
-                            {item.description && (
-                              <p className="mt-1 text-sm text-zinc-400">
-                                {item.description}
+                      {items.map((item, i) => {
+                        const hasLinks = getValidLinks(item.link).length > 0;
+                        return (
+                          <div
+                            key={i}
+                            className={`flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3 ${
+                              hasLinks
+                                ? "cursor-pointer transition hover:bg-zinc-900"
+                                : ""
+                            }`}
+                            onClick={() =>
+                              hasLinks &&
+                              openLinksModal(item.link, item.institution)
+                            }
+                          >
+                            <div>
+                              <p className="font-medium text-zinc-200">
+                                {item.institution}
                               </p>
-                            )}
+                              <p className="mt-0.5 text-sm text-emerald-400">
+                                {item.period}
+                              </p>
+                              {item.description && (
+                                <p className="mt-1 text-sm text-zinc-400">
+                                  {item.description}
+                                </p>
+                              )}
+                            </div>
+                            <LinksTooltip
+                              links={item.link}
+                              onOpenModal={() =>
+                                openLinksModal(item.link, item.institution)
+                              }
+                            />
                           </div>
-                          <LinksTooltip links={item.link} />
-                        </div>
-                      ))}
+                        );
+                      })}
                     </AccordionGroup>
                   );
                 })}
@@ -783,23 +970,40 @@ export default function Curriculum() {
                 Iniciação Científica (IC)
               </h3>
               <div className="space-y-4">
-                {ic.map((item, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                  >
-                    <div className="flex items-center gap-1">
-                      <h4 className="font-semibold text-white">{item.title}</h4>
-                      <LinksTooltip links={item.link} />
+                {ic.map((item, i) => {
+                  const hasLinks = getValidLinks(item.link).length > 0;
+                  return (
+                    <div
+                      key={i}
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
+                        hasLinks
+                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        hasLinks && openLinksModal(item.link, item.title)
+                      }
+                    >
+                      <div className="flex items-center gap-1">
+                        <h4 className="font-semibold text-white">
+                          {item.title}
+                        </h4>
+                        <LinksTooltip
+                          links={item.link}
+                          onOpenModal={() =>
+                            openLinksModal(item.link, item.title)
+                          }
+                        />
+                      </div>
+                      <p className="mt-1 text-sm text-emerald-400">
+                        {item.period} · Orientador: {item.advisor}
+                      </p>
+                      <p className="mt-2 text-sm text-zinc-400">
+                        {item.description}
+                      </p>
                     </div>
-                    <p className="mt-1 text-sm text-emerald-400">
-                      {item.period} · Orientador: {item.advisor}
-                    </p>
-                    <p className="mt-2 text-sm text-zinc-400">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -809,21 +1013,38 @@ export default function Curriculum() {
                 Apresentações
               </h3>
               <div className="space-y-4">
-                {presentations.map((item, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5"
-                  >
-                    <div className="flex items-center gap-1">
-                      <h4 className="font-semibold text-white">{item.title}</h4>
-                      <LinksTooltip links={item.link} />
+                {presentations.map((item, i) => {
+                  const hasLinks = getValidLinks(item.link).length > 0;
+                  return (
+                    <div
+                      key={i}
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
+                        hasLinks
+                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        hasLinks && openLinksModal(item.link, item.title)
+                      }
+                    >
+                      <div className="flex items-center gap-1">
+                        <h4 className="font-semibold text-white">
+                          {item.title}
+                        </h4>
+                        <LinksTooltip
+                          links={item.link}
+                          onOpenModal={() =>
+                            openLinksModal(item.link, item.title)
+                          }
+                        />
+                      </div>
+                      <p className="mt-1 text-sm text-emerald-400">
+                        {item.event} · {item.date}
+                      </p>
+                      <p className="mt-1 text-xs text-zinc-500">{item.type}</p>
                     </div>
-                    <p className="mt-1 text-sm text-emerald-400">
-                      {item.event} · {item.date}
-                    </p>
-                    <p className="mt-1 text-xs text-zinc-500">{item.type}</p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -834,47 +1055,62 @@ export default function Curriculum() {
           <h2 className="mb-6 text-xl font-semibold text-white">Mural</h2>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {mural.map((item, i) => (
-              <article
-                key={i}
-                className="group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition hover:border-emerald-500/30 hover:bg-zinc-900"
-              >
-                {/* Imagem */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  {/* overlay sutil */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60" />
-                </div>
-
-                {/* Conteúdo */}
-                <div className="p-5">
-                  <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-semibold text-white leading-snug">
-                      {item.title}
-                    </h3>
-                    <LinksTooltip links={item.link} />
+            {mural.map((item, i) => {
+              const hasLinks = getValidLinks(item.link).length > 0;
+              return (
+                <article
+                  key={i}
+                  className={`group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition ${
+                    hasLinks
+                      ? "cursor-pointer hover:border-emerald-500/30 hover:bg-zinc-900"
+                      : "hover:border-emerald-500/30 hover:bg-zinc-900"
+                  }`}
+                  onClick={() =>
+                    hasLinks && openLinksModal(item.link, item.title)
+                  }
+                >
+                  {/* Imagem */}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    {/* overlay sutil */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60" />
                   </div>
 
-                  {(item.event || item.period) && (
-                    <p className="mt-1.5 text-sm text-emerald-400">
-                      {item.event && <>{item.event} · </>}
-                      {item.period}
-                    </p>
-                  )}
+                  {/* Conteúdo */}
+                  <div className="p-5">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold text-white leading-snug">
+                        {item.title}
+                      </h3>
+                      <LinksTooltip
+                        links={item.link}
+                        onOpenModal={() =>
+                          openLinksModal(item.link, item.title)
+                        }
+                      />
+                    </div>
 
-                  {item.description && (
-                    <p className="mt-2 text-sm text-zinc-400 line-clamp-3">
-                      {item.description}
-                    </p>
-                  )}
-                </div>
-              </article>
-            ))}
+                    {(item.event || item.period) && (
+                      <p className="mt-1.5 text-sm text-emerald-400">
+                        {item.event && <>{item.event} · </>}
+                        {item.period}
+                      </p>
+                    )}
+
+                    {item.description && (
+                      <p className="mt-2 text-sm text-zinc-400 line-clamp-3">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
       </div>
@@ -898,6 +1134,15 @@ export default function Curriculum() {
         }}
         fileName={`CarlosGabriel-Curriculum_${anoAtual}.pdf`}
       />
+
+      {/* Modal de links */}
+      {modal && (
+        <LinksModal
+          links={modal.links}
+          title={modal.title}
+          onClose={() => setModal(null)}
+        />
+      )}
     </div>
   );
 }
