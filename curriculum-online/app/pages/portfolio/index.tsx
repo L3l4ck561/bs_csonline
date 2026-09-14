@@ -25,7 +25,7 @@ const projects = [
     title: "RotaRotina",
     description: "Agenda funcional com armazenamento em LocalStorage",
     tags: ["React(Vite)", "Mui", "Tailwind", "JS"],
-    link: "https://rotarotina.vercel.app/",
+    link: "https://github.com/L3l4ck561/RotaRotina",
   },
   {
     icon: "🎮",
