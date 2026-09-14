@@ -80,8 +80,36 @@ export default function CurriculumNav() {
       {/* Área de hover + menu (desktop) / painel (mobile) */}
       <div className="group/nav fixed z-50 md:right-0 md:top-1/2 md:-translate-y-1/2">
         {/* Faixa invisível de hover na borda direita (só desktop) */}
-        <div className="absolute right-0 top-1/2 hidden h-48 w-20 -translate-y-1/2 md:block flex">
-        Menu ❱
+        <div
+          className="
+            absolute right-5 top-1/2 hidden
+            -translate-y-1/2 translate-x-[calc(100%-22px)]
+            items-center
+            rounded-l-xl
+            bg-zinc-950/90
+            px-4 py-4
+            shadow-xl shadow-black/20
+            backdrop-blur-md
+            transition-all duration-300 ease-out
+            group-hover/nav:translate-x-[120%]
+            md:flex
+            border border-r-0 border-zinc-800
+            "
+        >
+          <div className="flex flex-col items-center gap-2">
+            <span
+              className="
+              text-[14px]
+              font-medium
+              uppercase
+              tracking-[0.2em]
+              text-zinc-500
+              [writing-mode:vertical-rl]
+              "
+            >
+              Menu
+            </span>
+          </div>
         </div>
 
         <nav
@@ -117,10 +145,9 @@ export default function CurriculumNav() {
                     onClick={() => handleClick(section.id)}
                     className={`
                       flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition
-                      ${
-                        isActive
-                          ? "bg-emerald-500/10 text-emerald-400"
-                          : "text-zinc-400 hover:bg-zinc-800/80 hover:text-white"
+                      ${isActive
+                        ? "bg-emerald-500/10 text-emerald-400"
+                        : "text-zinc-400 hover:bg-zinc-800/80 hover:text-white"
                       }
                     `}
                   >
