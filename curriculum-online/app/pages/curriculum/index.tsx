@@ -395,6 +395,7 @@ export default function Curriculum() {
     { name: "Git", category: "DevOps" },
     { name: "Docker", category: "DevOps" },
     { name: "CI/CD", category: "DevOps" },
+    { name: "Scrum & Kanban", category: "DevOps" },
 
     // Cloud & Deployment
     { name: "Vercel", category: "Cloud & Deployment" },
