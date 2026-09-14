@@ -668,7 +668,7 @@ export default function Curriculum() {
   return (
     <div className="text-end">
       <div className="relative space-y-12 text-left">
-        {/* <CurriculumNav /> */}
+        <CurriculumNav />
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-white sm:text-4xl">
