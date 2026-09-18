@@ -345,7 +345,6 @@ export default function Curriculum() {
     { name: "Node.js", category: "Backend" },
     { name: "Express.js", category: "Backend" },
     { name: "Flask", category: "Backend" },
-    { name: "Django", category: "Backend" },
     { name: "FastAPI", category: "Backend" },
 
     // APIs & Integrações
