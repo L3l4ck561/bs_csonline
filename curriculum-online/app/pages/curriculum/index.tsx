@@ -327,7 +327,6 @@ export default function Curriculum() {
     { name: "TypeScript", category: "Linguagens" },
 
     // Frontend
-    { name: "React", category: "Frontend" },
     { name: "Next.js", category: "Frontend" },
     { name: "React Router", category: "Frontend" },
     { name: "HTML", category: "Frontend" },
