@@ -1,8 +1,25 @@
-"use client";
+// ==================== TIPOS ====================
+export type Post = {
+  title: string;
+  excerpt: string;
+  date: string;
+  slug: string;
+};
 
-import { useState, useEffect } from "react";
+export type Tool = {
+  name: string;
+  domain: string;
+  url: string;
+  description: string;
+};
 
-const posts = [
+export type Section = {
+  title: string;
+  tools: Tool[];
+};
+
+// ==================== POSTS ====================
+export const posts: Post[] = [
   {
     title: "Ferramentas Webs que uso no dia a dia",
     excerpt:
@@ -12,19 +29,8 @@ const posts = [
   },
 ];
 
-type Tool = {
-  name: string;
-  domain: string;
-  url: string;
-  description: string;
-};
-
-type Section = {
-  title: string;
-  tools: Tool[];
-};
-
-const toolSections: Section[] = [
+// ==================== FERRAMENTAS ====================
+export const toolSections: Section[] = [
   {
     title: "UI / UX",
     tools: [
@@ -149,8 +155,7 @@ const toolSections: Section[] = [
         name: "Nominatim",
         domain: "nominatim.org",
         url: "https://nominatim.org",
-        description:
-          "Geocoding open-source baseado no OpenStreetMap.",
+        description: "Geocoding open-source baseado no OpenStreetMap.",
       },
       {
         name: "123Apps",
@@ -208,8 +213,7 @@ const toolSections: Section[] = [
         name: "DevMedia",
         domain: "devmedia.com.br",
         url: "https://www.devmedia.com.br",
-        description:
-          "Conteúdo e cursos de programação em português.",
+        description: "Conteúdo e cursos de programação em português.",
       },
       {
         name: "Drive de Pobre",
@@ -341,8 +345,7 @@ const toolSections: Section[] = [
         name: "Radio Garden",
         domain: "radio.garden",
         url: "https://radio.garden",
-        description:
-          "Rádios do mundo inteiro em um mapa interativo.",
+        description: "Rádios do mundo inteiro em um mapa interativo.",
       },
       {
         name: "InspiroBot",
@@ -354,148 +357,3 @@ const toolSections: Section[] = [
     ],
   },
 ];
-
-function ToolCard({ tool }: { tool: Tool }) {
-  return (
-    <a
-      href={tool.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 transition hover:border-emerald-500/40 hover:bg-zinc-900"
-    >
-      <img
-        src={`https://icon.horse/icon/${tool.domain}`}
-        alt=""
-        width={40}
-        height={40}
-        className="h-10 w-10 shrink-0 rounded-lg bg-zinc-800 object-contain"
-        loading="lazy"
-      />
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          <h3 className="truncate font-semibold text-white group-hover:text-emerald-400">
-            {tool.name}
-          </h3>
-          <span className="hidden text-xs text-zinc-500 sm:inline">
-            {tool.domain}
-          </span>
-        </div>
-        <p className="mt-1 text-sm leading-relaxed text-zinc-400">
-          {tool.description}
-        </p>
-      </div>
-      <span className="mt-1 shrink-0 text-emerald-400 opacity-0 transition group-hover:opacity-100">
-        →
-      </span>
-    </a>
-  );
-}
-
-function ToolsModal({ onClose }: { onClose: () => void }) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [onClose]);
-
-  return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-zinc-950">
-      {/* Header */}
-      <header className="sticky top-0 z-10 flex items-center justify-between border-b border-zinc-800 bg-zinc-950/90 px-4 py-4 backdrop-blur sm:px-6">
-        <div>
-          <h2 className="text-xl font-bold text-white sm:text-2xl">
-            Ferramentas Webs
-          </h2>
-          <p className="mt-0.5 text-sm text-zinc-400">
-            O que uso no dia a dia
-          </p>
-        </div>
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Fechar"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition hover:border-emerald-500/50 hover:bg-zinc-900 hover:text-white"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-5 w-5"
-          >
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg>
-        </button>
-      </header>
-
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-3xl space-y-10 px-4 py-8 sm:px-6">
-          {toolSections.map((section) => (
-            <section key={section.title}>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-emerald-400">
-                {section.title}
-              </h3>
-              <div className="space-y-3">
-                {section.tools.map((tool) => (
-                  <ToolCard key={tool.domain + tool.name} tool={tool} />
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function Paty() {
-  const [openSlug, setOpenSlug] = useState<string | null>(null);
-
-  return (
-    <div className="space-y-10">
-      <div>
-        <h1 className="text-3xl font-bold text-white sm:text-4xl">Paty</h1>
-        <p className="mt-2 text-zinc-400">Posts, ideias e reflexões.</p>
-      </div>
-
-      <div className="space-y-4">
-        {posts.map((post) => (
-          <article
-            key={post.slug}
-            className="group rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-emerald-500/30 hover:bg-zinc-900"
-          >
-            <time className="text-xs font-medium text-emerald-400">
-              {post.date}
-            </time>
-            <h2 className="mt-1 text-xl font-semibold text-white group-hover:text-emerald-400">
-              {post.title}
-            </h2>
-            <p className="mt-2 text-sm text-zinc-400">{post.excerpt}</p>
-            <button
-              type="button"
-              onClick={() => setOpenSlug(post.slug)}
-              className="mt-4 inline-block text-sm font-medium text-emerald-400 opacity-0 transition group-hover:opacity-100"
-            >
-              Ler mais →
-            </button>
-          </article>
-        ))}
-      </div>
-
-      {openSlug === "ferramentas-webs" && (
-        <ToolsModal onClose={() => setOpenSlug(null)} />
-      )}
-    </div>
-  );
-}

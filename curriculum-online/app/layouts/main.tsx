@@ -5,7 +5,7 @@ const navItems = [
   { to: "/", label: "Home" },
   { to: "/curriculum", label: "Curriculum" },
   { to: "/portfolio", label: "Portfolio" },
-  { to: "/paty", label: "Paty" },
+  { to: "/thoughts", label: "Thoughts" },
 ];
 
 export default function MainLayout() {

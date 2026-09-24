@@ -14,7 +14,7 @@ import {
   mural,
   type LinkItem,
   type Skill,
-} from "~/database/curriculum";
+} from "~/data/curriculum";
 
 // ==================== HELPER: filtra links válidos ====================
 function getValidLinks(links?: LinkItem[]) {

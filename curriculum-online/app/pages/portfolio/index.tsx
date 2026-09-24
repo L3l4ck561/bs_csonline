@@ -1,4 +1,4 @@
-import { projects } from "~/database/projects";
+import { projects } from "~/data/projects";
 
 function getGroupKey(tags) {
   return [...tags].sort().join(" | ");
