@@ -406,7 +406,7 @@ export const ic: Ic[] = [
   {
     title:
       "PIBIC Jr. (FMB) – Sistema de Gestão de Fármacos (Medicina Nuclear)",
-    period: "2025 — Presente",
+    period: "2025 — 2026",
     advisor: "Dr. Sonia",
     description:
       "Desenvolvimento de sistema web para controle de estoque de fármacos em ambiente hospitalar, com geração de alertas automáticos de validade, estoque mínimo e uso atípico.",
