@@ -2,72 +2,19 @@ import { useState, useEffect } from "react";
 import CurriculumNav from "~/components/CurriculumNav";
 import CurriculumPDF from "~/components/CurriculumPDF.client";
 
-// ==================== TIPOS ====================
-type LinkItem = { label: string; url: string };
-
-type Experience = {
-  role: string;
-  company: string;
-  period: string;
-  description: string;
-  link?: LinkItem[];
-};
-
-type Academic = {
-  title: string;
-  status: string;
-  institution: string;
-  period: string;
-  description?: string;
-  link?: LinkItem[];
-};
-
-type Course = {
-  title: string;
-  status: string;
-  institution: string;
-  period: string;
-  hours?: string;
-  link?: LinkItem[];
-};
-
-type Ead = {
-  title: string;
-  institution: string;
-  period: string;
-  description?: string;
-  link?: LinkItem[];
-};
-
-type Ic = {
-  title: string;
-  period: string;
-  advisor: string;
-  description: string;
-  link?: LinkItem[];
-};
-
-type Presentation = {
-  title: string;
-  event: string;
-  date: string;
-  type: string;
-  link?: LinkItem[];
-};
-
-type Skill = {
-  name: string;
-  category: string;
-};
-
-type Participation = {
-  img: string;
-  title: string;
-  event?: string;
-  period: string;
-  description?: string;
-  link?: LinkItem[];
-};
+import {
+  personalInfo,
+  experiences,
+  skills,
+  academic,
+  course,
+  ead,
+  ic,
+  presentations,
+  mural,
+  type LinkItem,
+  type Skill,
+} from "~/database/curriculum";
 
 // ==================== HELPER: filtra links válidos ====================
 function getValidLinks(links?: LinkItem[]) {
@@ -85,7 +32,6 @@ function LinksModal({
   title?: string;
   onClose: () => void;
 }) {
-  // Fecha com ESC
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -94,7 +40,6 @@ function LinksModal({
     return () => window.removeEventListener("keydown", handleKey);
   }, [onClose]);
 
-  // Impede scroll do body enquanto o modal está aberto
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -108,18 +53,14 @@ function LinksModal({
       role="dialog"
       aria-modal="true"
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      {/* Conteúdo */}
       <div className="relative z-10 w-full max-w-sm rounded-2xl border border-zinc-700 bg-zinc-900 shadow-2xl shadow-black/50">
         <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
-          <h3 className="font-semibold text-white">
-            {title || "Links"}
-          </h3>
+          <h3 className="font-semibold text-white">{title || "Links"}</h3>
           <button
             type="button"
             onClick={onClose}
@@ -168,7 +109,7 @@ function LinksTooltip({
       <button
         type="button"
         onClick={(e) => {
-          e.stopPropagation(); // não dispara o clique do card
+          e.stopPropagation();
           onOpenModal?.();
         }}
         className="flex h-5 w-5 items-center justify-center rounded-full border border-zinc-600 text-xs text-zinc-400 transition hover:border-emerald-500 hover:text-emerald-400"
@@ -177,7 +118,6 @@ function LinksTooltip({
         🔗
       </button>
 
-      {/* Tooltip (só desktop / hover) */}
       <div className="pointer-events-none absolute bottom-full left-1/2 z-50 w-max -translate-x-1/2 opacity-0 transition-all duration-200 group-hover/tooltip:pointer-events-auto group-hover/tooltip:opacity-100">
         <div className="rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 shadow-xl shadow-black/40">
           <div className="flex flex-col gap-1.5">
@@ -194,7 +134,6 @@ function LinksTooltip({
               </a>
             ))}
           </div>
-          {/* setinha */}
           <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-zinc-700" />
         </div>
       </div>
@@ -266,389 +205,6 @@ export default function Curriculum() {
     setModal({ links: valid, title });
   };
 
-  const experiences: Experience[] = [
-    {
-      role: "Freelancer",
-      company: "Packlor Services",
-      period: "2026 — Presente",
-      description:
-        "Desenvolvimento de aplicações web com React, Node.js e TypeScript.",
-      link: [
-        { label: "Acesse a Packlor", url: "https://services.packlor.com/" },
-      ],
-    },
-    {
-      role: "Desenvolvedor Full Stack",
-      company: "Grupo consciência - CNS",
-      period: "2026",
-      description:
-        "Atuação em projetos internos corporativos com Delphi Pascal",
-      link: [{ label: "Certificado", url: "./docs/CNS1.pdf" }],
-    },
-    {
-      role: "Desenvolvedor Full Stack",
-      company: "Saga SENAI de Inovação",
-      period: "2024 — 2025",
-      description:
-        "Atuação acadêmica no desenvolvimento de um projeto de inovação, aplicando conhecimentos teóricos e práticos",
-      link: [
-        {
-          label: "Projeto LostFound",
-          url: "https://github.com/L3l4ck561/LostFound",
-        },
-      ],
-    },
-    {
-      role: "Desenvolvedor e Autor",
-      company: "BirdGameJer",
-      period: "2025",
-      description:
-        "Desenvolvimento de jogo 2D para navegador utilizando Construct 2",
-      link: [
-        {
-          label: "Jogo BirdGame",
-          url: "https://birdgamejam.itch.io/a-toca-da-coruja",
-        },
-      ],
-    },
-    {
-      role: "Aprendiz",
-      company: "Tec Glass",
-      period: "2025",
-      description: "Participação em curso técnico ",
-      link: [{ label: "Certificado", url: "./docs/tec.png" }],
-    },
-  ];
-
-  const skills: Skill[] = [
-    // Linguagens
-    { name: "Python", category: "Linguagens" },
-    { name: "JavaScript", category: "Linguagens" },
-    { name: "TypeScript", category: "Linguagens" },
-
-    // Frontend
-    { name: "Next.js", category: "Frontend" },
-    { name: "React Router", category: "Frontend" },
-    { name: "HTML", category: "Frontend" },
-    { name: "CSS", category: "Frontend" },
-
-    // UI & Styling
-    { name: "Tailwind CSS", category: "UI & Styling" },
-    { name: "Bootstrap", category: "UI & Styling" },
-    { name: "Material UI", category: "UI & Styling" },
-
-    // Mobile
-    { name: "Expo", category: "Mobile" },
-
-    // Backend
-    { name: "Node.js", category: "Backend" },
-    { name: "Express.js", category: "Backend" },
-    { name: "Flask", category: "Backend" },
-    { name: "FastAPI", category: "Backend" },
-
-    // APIs & Integrações
-    { name: "REST APIs", category: "APIs & Integrações" },
-    { name: "Axios", category: "APIs & Integrações" },
-    { name: "WebSocket", category: "APIs & Integrações" },
-
-    // Engenharia de Software
-    { name: "Modular Architecture", category: "Engenharia de Software" },
-    { name: "Multi-tenant SaaS", category: "Engenharia de Software" },
-    {
-      name: "Authentication & Authorization",
-      category: "Engenharia de Software",
-    },
-    { name: "Business Rules", category: "Engenharia de Software" },
-
-    // Bancos Relacionais
-    { name: "PostgreSQL", category: "Bancos de Dados" },
-    { name: "MySQL", category: "Bancos de Dados" },
-    { name: "MariaDB", category: "Bancos de Dados" },
-    { name: "SQLite", category: "Bancos de Dados" },
-
-    // Banco NoSQL
-    { name: "MongoDB", category: "Bancos de Dados" },
-
-    // Data Science
-    { name: "NumPy", category: "Data Science & Visualization" },
-    { name: "Pandas", category: "Data Science & Visualization" },
-    { name: "Matplotlib", category: "Data Science & Visualization" },
-
-    // Machine Learning
-    { name: "Scikit-learn", category: "Machine Learning" },
-    { name: "Data Preprocessing", category: "Machine Learning" },
-    { name: "Feature Scaling", category: "Machine Learning" },
-
-    // Testes & QA
-    { name: "Jest", category: "Test Automation" },
-    { name: "Cypress", category: "Test Automation" },
-    { name: "Selenium", category: "Test Automation" },
-    { name: "API Testing", category: "QA & Quality" },
-    { name: "End-to-End Testing", category: "QA & Quality" },
-
-    // Automação
-    { name: "PyAutoGUI", category: "Automation" },
-
-    // DevOps
-    { name: "Git", category: "DevOps" },
-    { name: "Docker", category: "DevOps" },
-    { name: "CI/CD", category: "DevOps" },
-    { name: "Scrum & Kanban", category: "DevOps" },
-
-    // Cloud & Deployment
-    { name: "Vercel", category: "Cloud & Deployment" },
-    { name: "Render", category: "Cloud & Deployment" },
-    { name: "Cloudflare", category: "Cloud & Deployment" },
-
-    // Ferramentas
-    { name: "Postman", category: "Development Tools" },
-    { name: "Figma", category: "Development Tools" },
-    { name: "Trello", category: "Development Tools" },
-
-    // IoT & Embedded
-    { name: "Arduino / ESP32", category: "IoT & Embedded" },
-
-    // Desktop
-    { name: "Tkinter", category: "Desktop Development" },
-  ];
-
-  const academic: Academic[] = [
-    {
-      title: "Curso Tecnólogo - Análise e Desenvolvimento de Sistemas",
-      status: "Em andamento",
-      institution: "Uninter EAD",
-      period: "2026 — Presente",
-      description: "",
-      link: [{ label: "", url: "" }],
-    },
-    {
-      title: "Curso Técnico - Análise e Desenvolvimento de Sistemas",
-      status: "Concluído",
-      institution: "SENAI - Botucatu",
-      period: "2024 — 2025",
-      description: "",
-      link: [{ label: "Premiação", url: "./docs/premioSenai.pdf" }],
-    },
-    {
-      title: "Ensino Médio",
-      status: "Concluído",
-      institution: "SESI - Botucatu",
-      period: "2025",
-      description: "",
-      link: [{ label: "Certificado", url: "./docs/historicoescolar.pdf" }],
-    },
-  ];
-
-  const course: Course[] = [
-    {
-      title: "Machine Learning Aplicada à Indústria",
-      institution: "SENAI - Botucatu",
-      period: "2026",
-      hours: "60h",
-      status: "Em andamento",
-      link: [{ label: "", url: "" }],
-    },
-    {
-      title: "Jornada Python",
-      institution: "Hashtag",
-      period: "2026",
-      hours: "4h",
-      status: "Concluído",
-      link: [
-        {
-          label: "Certificado",
-          url: "./docs/Validação_Certificado_jornada_python.pdf",
-        },
-      ],
-    },
-    {
-      title: "Treinamento Inicial em Proteção Radiológica - Medicina Nuclear",
-      institution: "HCFMB",
-      period: "2026",
-      hours: "2h",
-      status: "Concluído",
-      link: [
-        {
-          label: "Certificado",
-          url: "./docs/TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf",
-        },
-      ],
-    },
-    {
-      title: "Startup Day",
-      institution: "SEBRAE-SP",
-      period: "2026",
-      hours: "4h",
-      status: "Concluído",
-      link: [
-        { label: "Participação", url: "./docs/startupday.pdf" },
-        { label: "Certificado", url: "./docs/startupdayC.pdf" },
-      ],
-    },
-    {
-      title: "Inteligência Artificial: conceitos e práticas",
-      institution: "SENAC - Botucatu",
-      period: "2026",
-      hours: "20h",
-      status: "Concluído",
-      link: [{ label: "Certificado", url: "./docs/iasenac.pdf" }],
-    },
-    {
-      title: "Excel Intermediário",
-      institution: "Fundação Bradesco - Escola Virtual",
-      period: "2021",
-      hours: "40h",
-      status: "Concluído",
-      link: [{ label: "Certificado", url: "./docs/excel.pdf" }],
-    },
-  ];
-
-  const ead: Ead[] = [
-    {
-      title: "ead.sp.senai.br",
-      institution: "Competência Transversal: Segurança no Trabalho",
-      period: "2024",
-      description: "",
-      link: [
-        {
-          label: "Certificado",
-          url: "./docs/certificado segurança no trabalho.pdf",
-        },
-      ],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "Economia Circular",
-      period: "2024",
-      description: "",
-      link: [{ label: "Certificado", url: "./docs/Economia_Circular.pdf" }],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "Desvendando o 5G",
-      period: "2024",
-      description: "",
-      link: [{ label: "Certificado", url: "./docs/Desvendando_o_5G.pdf" }],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "Privacidade e Proteção de Dados (LGPD)",
-      period: "2024",
-      description: "",
-      link: [
-        {
-          label: "Certificado",
-          url: "./docs/Privacidade_e_Proteção_de_Dados_(LGPD).pdf",
-        },
-      ],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "Desvendando a Indústria 4.0",
-      period: "2025",
-      description: "",
-      link: [
-        { label: "Certificado", url: "./docs/Desvendando_a_Indústria_4.0.pdf" },
-      ],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "Empreender SENAI",
-      period: "2025",
-      description: "",
-      link: [{ label: "Certificado", url: "./docs/Empreender_SENAI.pdf" }],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "WEB 3.0",
-      period: "2025",
-      description: "",
-      link: [{ label: "Certificado", url: "./docs/WEB_3.0.pdf" }],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "Desvendando o ESG",
-      period: "2025",
-      description: "",
-      link: [{ label: "Certificado", url: "./docs/Desvendando_o_ESG.pdf" }],
-    },
-    {
-      title: "ead.sp.senai.br",
-      institution: "Fluência: Fundamentos da Inteligência Artificial",
-      period: "2025",
-      description: "",
-      link: [
-        {
-          label: "Certificado",
-          url: "./docs/FLUÊNCIA___FUNDAMENTOS_DA_INTELIGÊNCIA_ARTIFICIAL.pdf",
-        },
-      ],
-    },
-  ];
-
-  const ic: Ic[] = [
-    {
-      title:
-        "PIBIC Jr. (FMB) – Sistema de Gestão de Fármacos (Medicina Nuclear)",
-      period: "2025 — Presente",
-      advisor: "Dr. Sonia",
-      description:
-        "Desenvolvimento de sistema web para controle de estoque de fármacos em ambiente hospitalar, com geração de alertas automáticos de validade, estoque mínimo e uso atípico.",
-      link: [{ label: "", url: "" }],
-    },
-  ];
-
-  const presentations: Presentation[] = [
-    {
-      title: "Congresso Científico UNESP",
-      event: "I Encontro de Metodologia e Raciocínio Científico da UNESP.",
-      date: "Outubro 2023",
-      type: "Sistema Web para Gerenciamento de Entrada e Saída de Alunos.",
-      link: [
-        { label: "Participação", url: "./docs/participouunesp.pdf" },
-        { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" },
-        { label: "Premiação", url: "./docs/premiounesp.pdf" },
-        { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" },
-      ],
-    },
-  ];
-
-  const mural: Participation[] = [
-    {
-      img: "./docs/cangu1.png",
-      title: "Participação no Concurso Canguru",
-      event: "Canguru de Matemática Brasil",
-      period: "2023",
-      description: "",
-      link: [
-        { label: "Certificado A.2023", url: "./docs/canguru.pdf" },
-        { label: "Certificado A.2022", url: "./docs/oliempiadacancuru.pdf" },
-      ],
-    },
-    {
-      img: "./docs/premioSenai.png",
-      title: "Prêmio Roberto Mange",
-      event: "",
-      period: "2025",
-      description: "Melhor aluno formado dos cursos técnicos",
-      link: [{ label: "Premiação", url: "./docs/premioSenai.pdf" }],
-    },
-    {
-      img: "./docs/premiounesp.png",
-      title: "1º Lugar – Congresso Científico",
-      event: "I Encontro de Metodologia e Raciocínio Científico da UNESP",
-      period: "2025",
-      description:
-        "Projeto SENAI+ apresentado e premiado com 1º lugar na categoria Ensino Médio",
-      link: [
-        { label: "Participação", url: "./docs/participouunesp.pdf" },
-        { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" },
-        { label: "Premiação", url: "./docs/premiounesp.pdf" },
-        { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" },
-      ],
-    },
-  ];
-
   // Agrupa skills por categoria
   const skillsByCategory = skills.reduce<Record<string, Skill[]>>(
     (acc, skill) => {
@@ -668,6 +224,7 @@ export default function Curriculum() {
     <div className="text-end">
       <div className="relative space-y-12 text-left">
         <CurriculumNav />
+
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-white sm:text-4xl">
@@ -686,12 +243,7 @@ export default function Curriculum() {
           <h2 className="mb-3 text-xl font-semibold text-emerald-400">
             Sobre mim
           </h2>
-          <p className="leading-relaxed text-zinc-300">
-            Desenvolvedor de Software com experiência em aplicações web, APIs,
-            automação e sistemas orientados a dados. Atualmente aprofundando
-            conhecimentos em Data Science e Machine Learning para transformar
-            dados em soluções inteligentes.
-          </p>
+          <p className="leading-relaxed text-zinc-300">{personalInfo.about}</p>
         </section>
 
         {/* Experiência */}
@@ -857,14 +409,13 @@ export default function Curriculum() {
               </div>
             </div>
 
-            {/* EAD - com Accordion quando título se repete */}
+            {/* EAD */}
             <div>
               <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
                 EAD
               </h3>
               <div className="space-y-4">
                 {eadGrouped.map(([title, items]) => {
-                  // Se só tem 1 item, mostra normal
                   if (items.length === 1) {
                     const item = items[0];
                     const hasLinks = getValidLinks(item.link).length > 0;
@@ -904,7 +455,6 @@ export default function Curriculum() {
                     );
                   }
 
-                  // Vários itens com mesmo título → Accordion
                   return (
                     <AccordionGroup
                       key={title}
@@ -963,7 +513,6 @@ export default function Curriculum() {
           </h2>
 
           <div className="space-y-6">
-            {/* IC */}
             <div>
               <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
                 Iniciação Científica (IC)
@@ -1006,7 +555,6 @@ export default function Curriculum() {
               </div>
             </div>
 
-            {/* Apresentações */}
             <div>
               <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
                 Apresentações
@@ -1068,7 +616,6 @@ export default function Curriculum() {
                     hasLinks && openLinksModal(item.link, item.title)
                   }
                 >
-                  {/* Imagem */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
                     <img
                       src={item.img}
@@ -1076,11 +623,9 @@ export default function Curriculum() {
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
-                    {/* overlay sutil */}
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60" />
                   </div>
 
-                  {/* Conteúdo */}
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="font-semibold text-white leading-snug">
@@ -1113,15 +658,16 @@ export default function Curriculum() {
           </div>
         </section>
       </div>
+
       <div className="mt-10" />
+
       <CurriculumPDF
         data={{
-          name: "Carlos Gabriel dos Santos Araujo",
-          email: "ti.carlos.dev@email.com",
-          phone: "(14) 998802-9965",
-          location: "Botucatu, SP",
-          about:
-            "Desenvolvedor de Software com experiência em aplicações web, APIs, automação e sistemas orientados a dados. Atualmente aprofundando conhecimentos em Data Science e Machine Learning para transformar dados em soluções inteligentes.",
+          name: personalInfo.name,
+          email: personalInfo.email,
+          phone: personalInfo.phone,
+          location: personalInfo.location,
+          about: personalInfo.about,
           experiences,
           skills,
           academic,
@@ -1134,7 +680,6 @@ export default function Curriculum() {
         fileName={`CarlosGabriel-Curriculum_${anoAtual}.pdf`}
       />
 
-      {/* Modal de links */}
       {modal && (
         <LinksModal
           links={modal.links}
