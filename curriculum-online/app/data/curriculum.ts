@@ -230,7 +230,7 @@ export const skills: Skill[] = [
 
 export const academic: Academic[] = [
   {
-    title: "Curso Tecnólogo - Análise e Desenvolvimento de Sistemas",
+    title: "Curso Tecnólogo(Graduação) - Análise e Desenvolvimento de Sistemas |Com aprofundamento em Desenvolvimento de IA",
     status: "Em andamento",
     institution: "Uninter EAD",
     period: "2026 — Presente",
