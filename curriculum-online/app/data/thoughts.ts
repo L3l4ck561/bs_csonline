@@ -318,7 +318,7 @@ export const toolSections: Section[] = [
     ],
   },
   {
-    title: "Outros links BRABOS (na minha opnião)",
+    title: "Outros links BRABOS",
     tools: [
       {
         name: "Flow de Dados",
