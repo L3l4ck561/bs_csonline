@@ -55,7 +55,7 @@ export default function Home() {
             title: "Thoughts",
             desc: "Posts e reflexões",
             to: "/thoughts",
-            icon: "✍️",
+            icon: "💭",
           },
         ].map((card) => (
           <Link
