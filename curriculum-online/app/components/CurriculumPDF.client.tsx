@@ -9,7 +9,7 @@ import {
 } from "@react-pdf/renderer";
 import { pdf } from "@react-pdf/renderer";
 
-// ==================== TIPOS (mesmos do curriculum) ====================
+// ==================== TIPOS ====================
 type LinkItem = { label: string; url: string };
 
 type Experience = {
@@ -92,98 +92,101 @@ export type CurriculumData = {
   mural?: Participation[];
 };
 
-// ==================== ESTILOS ====================
+// ==================== ESTILOS COMPACTOS ====================
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 36,
-    paddingBottom: 36,
-    paddingHorizontal: 40,
-    fontSize: 10,
+    paddingTop: 22,
+    paddingBottom: 28,
+    paddingHorizontal: 28,
+    fontSize: 9,
     fontFamily: "Helvetica",
     color: "#18181b",
-    lineHeight: 1.45,
+    lineHeight: 1.35,
   },
   header: {
-    marginBottom: 18,
-    borderBottomWidth: 2,
+    marginBottom: 10,
+    borderBottomWidth: 1.5,
     borderBottomColor: "#10b981",
-    paddingBottom: 12,
+    paddingBottom: 8,
   },
   name: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: "Helvetica-Bold",
     color: "#09090b",
-    marginBottom: 4,
+    marginBottom: 5,
   },
   contact: {
-    marginTop: 2,
-    fontSize: 9,
+    fontSize: 8,
     color: "#52525b",
   },
   section: {
-    marginBottom: 14,
-  },
-  sectionTitle: {
-    fontSize: 12,
-    fontFamily: "Helvetica-Bold",
-    color: "#059669",
-    marginBottom: 6,
-    textTransform: "uppercase",
-    letterSpacing: 0.6,
-  },
-  item: {
     marginBottom: 8,
   },
+  sectionTitle: {
+    fontSize: 10,
+    fontFamily: "Helvetica-Bold",
+    color: "#059669",
+    marginBottom: 4,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+  },
+  item: {
+    marginBottom: 5,
+  },
   itemTitle: {
-    fontSize: 10.5,
+    fontSize: 9.5,
     fontFamily: "Helvetica-Bold",
     color: "#18181b",
   },
   itemMeta: {
-    fontSize: 9,
+    fontSize: 8,
     color: "#059669",
     marginTop: 1,
   },
   itemDesc: {
-    fontSize: 9,
-    color: "#3f3f46",
-    marginTop: 2,
-  },
-  badge: {
     fontSize: 8,
-    color: "#71717a",
-    marginLeft: 4,
+    color: "#3f3f46",
+    marginTop: 1,
   },
   skillCategory: {
-    marginBottom: 6,
+    marginBottom: 3,
   },
   skillCategoryTitle: {
-    fontSize: 9,
+    fontSize: 8,
     fontFamily: "Helvetica-Bold",
     color: "#3f3f46",
-    marginBottom: 2,
+    marginBottom: 1,
   },
   skillRow: {
-    fontSize: 9,
+    fontSize: 8,
     color: "#52525b",
   },
   link: {
-    fontSize: 8,
+    fontSize: 7.5,
     color: "#059669",
     textDecoration: "none",
-    marginRight: 6,
+    marginRight: 5,
   },
   linksRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    marginTop: 2,
+    marginTop: 1,
+  },
+  // Layout de colunas
+  twoCol: {
+    flexDirection: "row",
+    gap: 14,
+    marginBottom: 6,
+  },
+  col: {
+    flex: 1,
   },
   footer: {
     position: "absolute",
-    bottom: 20,
-    left: 40,
-    right: 40,
-    fontSize: 8,
+    bottom: 12,
+    left: 28,
+    right: 28,
+    fontSize: 7,
     color: "#a1a1aa",
     textAlign: "center",
   },
@@ -215,18 +218,107 @@ function groupByTitle<T extends { title: string }>(items: T[]) {
   return Array.from(map.entries());
 }
 
+// ==================== SEÇÕES REUTILIZÁVEIS ====================
+function AcademicSection({ items }: { items: Academic[] }) {
+  if (items.length === 0) return null;
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Formação Acadêmica</Text>
+      {items.map((item, i) => (
+        <View key={i} style={styles.item}>
+          <Text style={styles.itemTitle}>
+            {item.title}
+            {item.status ? `  (${item.status})` : ""}
+          </Text>
+          <Text style={styles.itemMeta}>
+            {item.institution} · {item.period}
+          </Text>
+          {item.description && (
+            <Text style={styles.itemDesc}>{item.description}</Text>
+          )}
+          {/* <LinksRow links={item.link} /> */}
+        </View>
+      ))}
+    </View>
+  );
+}
+
+function CoursesSection({ items }: { items: Course[] }) {
+  if (items.length === 0) return null;
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Cursos Complementares</Text>
+      {items.map((item, i) => (
+        <View key={i} style={styles.item}>
+          <Text style={styles.itemTitle}>
+            {item.title}
+            {item.status ? `  (${item.status})` : ""}
+          </Text>
+          <Text style={styles.itemMeta}>
+            {item.institution} · {item.period}
+            {item.hours ? ` · ${item.hours}` : ""}
+          </Text>
+          {/* <LinksRow links={item.link} /> */}
+        </View>
+      ))}
+    </View>
+  );
+}
+
+function SkillsSection({ skills }: { skills: Skill[] }) {
+  if (skills.length === 0) return null;
+
+  const byCategory = skills.reduce<Record<string, Skill[]>>((acc, skill) => {
+    if (!acc[skill.category]) acc[skill.category] = [];
+    acc[skill.category].push(skill);
+    return acc;
+  }, {});
+
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Skills</Text>
+      {Object.entries(byCategory).map(([category, items]) => (
+        <View key={category} style={styles.skillCategory}>
+          <Text style={styles.skillCategoryTitle}>{category}</Text>
+          <Text style={styles.skillRow}>
+            {items.map((s) => s.name).join("  ·  ")}
+          </Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
+function ExperiencesSection({ items }: { items: Experience[] }) {
+  if (items.length === 0) return null;
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>Experiência</Text>
+      {items.map((exp, i) => (
+        <View key={i} style={styles.item}>
+          <Text style={styles.itemTitle}>
+            {exp.role} — {exp.company}
+          </Text>
+          <Text style={styles.itemMeta}>{exp.period}</Text>
+          {exp.description && (
+            <Text style={styles.itemDesc}>{exp.description}</Text>
+          )}
+          {/* <LinksRow links={exp.link} /> */}
+        </View>
+      ))}
+    </View>
+  );
+}
+
 // ==================== DOCUMENTO PDF ====================
 function CurriculumDocument({ data }: { data: CurriculumData }) {
-  const skillsByCategory = data.skills.reduce<Record<string, Skill[]>>(
-    (acc, skill) => {
-      if (!acc[skill.category]) acc[skill.category] = [];
-      acc[skill.category].push(skill);
-      return acc;
-    },
-    {}
-  );
+  const hasSkills = data.skills.length > 0;
+  const hasAcademicOrCourses =
+    data.academic.length > 0 || data.course.length > 0;
 
-  const eadGrouped = groupByTitle(data.ead);
+  // Heurística: usa 2 colunas só quando há conteúdo de ambos os lados
+  // (evita criar coluna vazia / espaço em branco)
+  const useTwoColumns = hasSkills && hasAcademicOrCourses;
 
   return (
     <Document
@@ -238,7 +330,9 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
         <View style={styles.header}>
           <Text style={styles.name}>{data.name || "Carlos Gabriel"}</Text>
           <Text style={styles.contact}>
-            {[data.email, data.phone, data.location].filter(Boolean).join("  ·  ")}
+            {[data.email, data.phone, data.location]
+              .filter(Boolean)
+              .join("  ·  ")}
           </Text>
         </View>
 
@@ -250,99 +344,47 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
           </View>
         )}
 
-        {/* Skills */}
-        {data.skills.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Skills</Text>
-            {Object.entries(skillsByCategory).map(([category, items]) => (
-              <View key={category} style={styles.skillCategory}>
-                <Text style={styles.skillCategoryTitle}>{category}</Text>
-                <Text style={styles.skillRow}>
-                  {items.map((s) => s.name).join("  ·  ")}
-                </Text>
-              </View>
-            ))}
+        {/* ========== LAYOUT DINÂMICO ========== */}
+        {useTwoColumns ? (
+          // Duas colunas parciais: Formação/Cursos | Skills
+          <View style={styles.twoCol}>
+            <View style={styles.col}>
+              <AcademicSection items={data.academic} />
+              <CoursesSection items={data.course} />
+            </View>
+            <View style={styles.col}>
+              <ExperiencesSection items={data.experiences} />
+              {/* <SkillsSection skills={data.skills} /> */}
+            </View>
           </View>
+        ) : (
+          // Coluna única (quando não tem conteúdo suficiente dos dois lados)
+          <>
+            <ExperiencesSection items={data.experiences} />
+            <AcademicSection items={data.academic} />
+            <CoursesSection items={data.course} />
+          </>
         )}
 
-        {/* Experiência */}
-        {data.experiences.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Experiência</Text>
-            {data.experiences.map((exp, i) => (
-              <View key={i} style={styles.item}>
-                <Text style={styles.itemTitle}>
-                  {exp.role} — {exp.company}
-                </Text>
-                <Text style={styles.itemMeta}>{exp.period}</Text>
-                {exp.description && (
-                  <Text style={styles.itemDesc}>{exp.description}</Text>
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Formação - Acadêmico */}
-        {data.academic.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Formação Acadêmica</Text>
-            {data.academic.map((item, i) => (
-              <View key={i} style={styles.item}>
-                <Text style={styles.itemTitle}>
-                  {item.title}
-                  {item.status ? `  (${item.status})` : ""}
-                </Text>
-                <Text style={styles.itemMeta}>
-                  {item.institution} · {item.period}
-                </Text>
-                {item.description && (
-                  <Text style={styles.itemDesc}>{item.description}</Text>
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Cursos Complementares */}
-        {data.course.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Cursos Complementares</Text>
-            {data.course.map((item, i) => (
-              <View key={i} style={styles.item}>
-                <Text style={styles.itemTitle}>
-                  {item.title}
-                  {item.status ? `  (${item.status})` : ""}
-                </Text>
-                <Text style={styles.itemMeta}>
-                  {item.institution} · {item.period}
-                  {item.hours ? ` · ${item.hours}` : ""}
-                </Text>
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* EAD */}
+        {/* sempre em largura total */}
+        
         {data.ead.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>EAD</Text>
-            {eadGrouped.map(([title, items]) => (
+            {groupByTitle(data.ead).map(([title, items]) => (
               <View key={title} style={styles.item}>
                 <Text style={styles.itemTitle}>{title}</Text>
                 {items.map((item, i) => (
-                  <View key={i} style={{ marginTop: 3, marginLeft: 6 }}>
-                    <Text style={styles.itemDesc}>
-                      • {item.institution} — {item.period}
-                    </Text>
-                  </View>
+                  <Text key={i} style={styles.itemDesc}>
+                    • {item.institution} — {item.period}
+                  </Text>
                 ))}
               </View>
             ))}
           </View>
         )}
 
-        {/* IC */}
+        {/*
         {data.ic.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Iniciação Científica</Text>
@@ -360,7 +402,6 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
           </View>
         )}
 
-        {/* Apresentações */}
         {data.presentations.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Apresentações</Text>
@@ -377,32 +418,19 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
             ))}
           </View>
         )}
+        */}
 
-        {/* Mural (só texto no PDF — imagens ficam pesadas) */}
-        {data.mural && data.mural.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Mural / Participações</Text>
-            {data.mural.map((item, i) => (
-              <View key={i} style={styles.item}>
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text style={styles.itemMeta}>
-                  {[item.event, item.period].filter(Boolean).join(" · ")}
-                </Text>
-                {item.description && (
-                  <Text style={styles.itemDesc}>{item.description}</Text>
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-
-        <Text
+        {/* Footer único */}
+        {/* <Text
           style={styles.footer}
           render={({ pageNumber, totalPages }) =>
-            `Página ${pageNumber} de ${totalPages}`
+            `Página ${pageNumber} de ${totalPages}  ·  Gerado em ${new Date().toLocaleDateString(
+              "pt-BR",
+              { year: "numeric", month: "long", day: "numeric" }
+            )}  ·  https://carlosgabriel.packlor.com`
           }
           fixed
-        />
+        /> */}
         <Text style={styles.footer}>
           Gerado em: {new Date().toLocaleDateString("pt-BR", { year: "numeric", month: "long", day: "numeric" })}. Para mais informações, acesse: https://carlosgabriel.packlor.com
         </Text>
@@ -411,7 +439,7 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
   );
 }
 
-// ==================== BOTÃO / AÇÃO DE DOWNLOAD ====================
+// ==================== BOTÃO DE DOWNLOAD ====================
 type Props = {
   data: CurriculumData;
   fileName?: string;
