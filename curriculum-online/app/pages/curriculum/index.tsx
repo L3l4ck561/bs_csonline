@@ -162,9 +162,8 @@ function AccordionGroup({
       >
         <h4 className="font-semibold text-white">{title}</h4>
         <span
-          className={`text-emerald-400 transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`text-emerald-400 transition-transform duration-200 ${open ? "rotate-180" : ""
+            }`}
         >
           ▼
         </span>
@@ -255,11 +254,10 @@ export default function Curriculum() {
               return (
                 <div
                   key={i}
-                  className={`relative border-l-2 border-emerald-500/40 pl-6 ${
-                    hasLinks
+                  className={`relative border-l-2 border-emerald-500/40 pl-6 ${hasLinks
                       ? "cursor-pointer rounded-r-xl transition hover:bg-zinc-900/50"
                       : ""
-                  }`}
+                    }`}
                   onClick={() =>
                     hasLinks && openLinksModal(exp.link, exp.role)
                   }
@@ -287,14 +285,16 @@ export default function Curriculum() {
         {/* Skills por categoria */}
         <section id="skills">
           <h2 className="mb-6 text-xl font-semibold text-white">Skills</h2>
-          <div className="space-y-6">
-            {Object.entries(skillsByCategory).map(([category, items]) => (
-              <div key={category}>
+
+          <div className="space-y-8">
+            {/* 1. Linguagens — sempre ocupa a linha inteira */}
+            {skillsByCategory["Linguagens"] && (
+              <div>
                 <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
-                  {category}
+                  Linguagens
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {items.map((skill) => (
+                  {skillsByCategory["Linguagens"].map((skill) => (
                     <span
                       key={skill.name}
                       className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
@@ -304,7 +304,40 @@ export default function Curriculum() {
                   ))}
                 </div>
               </div>
-            ))}
+            )}
+
+            {/* 2. Restante das categorias em grid responsivo */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lx:grid-cols-3 gap-x-6 gap-y-8">
+              {Object.entries(skillsByCategory)
+                .filter(([category]) => category !== "Linguagens")
+                .map(([category, items]) => {
+                  // Regra simples e dinâmica:
+                  // - poucas skills → 1 coluna
+                  // - muitas skills → 2 colunas
+                  const isLarge = items.length >= 4;
+
+                  return (
+                    <div
+                      key={category}
+                      className={`min-w-0 ${isLarge ? "sm:col-span-2" : ""}`}
+                    >
+                      <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                        {category}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {items.map((skill) => (
+                          <span
+                            key={skill.name}
+                            className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
+                          >
+                            {skill.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </section>
 
@@ -324,11 +357,10 @@ export default function Curriculum() {
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
-                        hasLinks
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
                           ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
                           : ""
-                      }`}
+                        }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
@@ -374,11 +406,10 @@ export default function Curriculum() {
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
-                        hasLinks
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
                           ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
                           : ""
-                      }`}
+                        }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
@@ -422,11 +453,10 @@ export default function Curriculum() {
                     return (
                       <div
                         key={title}
-                        className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
-                          hasLinks
+                        className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
                             ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
                             : ""
-                        }`}
+                          }`}
                         onClick={() =>
                           hasLinks &&
                           openLinksModal(item.link, item.institution)
@@ -466,11 +496,10 @@ export default function Curriculum() {
                         return (
                           <div
                             key={i}
-                            className={`flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3 ${
-                              hasLinks
+                            className={`flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3 ${hasLinks
                                 ? "cursor-pointer transition hover:bg-zinc-900"
                                 : ""
-                            }`}
+                              }`}
                             onClick={() =>
                               hasLinks &&
                               openLinksModal(item.link, item.institution)
@@ -523,11 +552,10 @@ export default function Curriculum() {
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
-                        hasLinks
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
                           ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
                           : ""
-                      }`}
+                        }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
@@ -565,11 +593,10 @@ export default function Curriculum() {
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${
-                        hasLinks
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
                           ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
                           : ""
-                      }`}
+                        }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
@@ -607,11 +634,10 @@ export default function Curriculum() {
               return (
                 <article
                   key={i}
-                  className={`group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition ${
-                    hasLinks
+                  className={`group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition ${hasLinks
                       ? "cursor-pointer hover:border-emerald-500/30 hover:bg-zinc-900"
                       : "hover:border-emerald-500/30 hover:bg-zinc-900"
-                  }`}
+                    }`}
                   onClick={() =>
                     hasLinks && openLinksModal(item.link, item.title)
                   }

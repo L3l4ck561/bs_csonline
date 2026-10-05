@@ -147,14 +147,12 @@ export const skills: Skill[] = [
   { name: "React Router", category: "Frontend" },
   { name: "HTML", category: "Frontend" },
   { name: "CSS", category: "Frontend" },
+  { name: "Expo (React native - Mobile)", category: "Frontend" },
 
   // UI & Styling
   { name: "Tailwind CSS", category: "UI & Styling" },
   { name: "Bootstrap", category: "UI & Styling" },
   { name: "Material UI", category: "UI & Styling" },
-
-  // Mobile
-  { name: "Expo", category: "Mobile" },
 
   // Backend
   { name: "Node.js", category: "Backend" },
@@ -278,19 +276,6 @@ export const course: Course[] = [
     ],
   },
   {
-    title: "Treinamento Inicial em Proteção Radiológica - Medicina Nuclear",
-    institution: "HCFMB",
-    period: "2026",
-    hours: "2h",
-    status: "Concluído",
-    link: [
-      {
-        label: "Certificado",
-        url: "./docs/TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf",
-      },
-    ],
-  },
-  {
     title: "Startup Day",
     institution: "SEBRAE-SP",
     period: "2026",
@@ -309,17 +294,26 @@ export const course: Course[] = [
     status: "Concluído",
     link: [{ label: "Certificado", url: "./docs/iasenac.pdf" }],
   },
+];
+
+export const ead: Ead[] = [
+  {
+    title: "Treinamento Inicial em Proteção Radiológica - Medicina Nuclear",
+    institution: "HCFMB",
+    period: "2026",
+    link: [
+      {
+        label: "Certificado",
+        url: "./docs/TREINAMENTO_INICIAL_EM_PROTECAO_RADIOLOGICA-MEDICINA_NUCLEAR-EAD-2026.pdf",
+      },
+    ],
+  },
   {
     title: "Excel Intermediário",
     institution: "Fundação Bradesco - Escola Virtual",
     period: "2021",
-    hours: "40h",
-    status: "Concluído",
     link: [{ label: "Certificado", url: "./docs/excel.pdf" }],
   },
-];
-
-export const ead: Ead[] = [
   {
     title: "ead.sp.senai.br",
     institution: "Competência Transversal: Segurança no Trabalho",
