@@ -76,7 +76,7 @@ export type PersonalInfo = {
 // ==================== DADOS ====================
 export const personalInfo: PersonalInfo = {
   name: "Carlos Gabriel dos Santos Araujo",
-  email: "ti.carlos.dev@email.com",
+  email: "ti.carlos.dev@gmail.com",
   phone: "(14) 98802-9965",
   location: "Botucatu, SP",
   about:
