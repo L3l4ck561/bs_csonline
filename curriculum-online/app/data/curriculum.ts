@@ -77,7 +77,7 @@ export type PersonalInfo = {
 export const personalInfo: PersonalInfo = {
   name: "Carlos Gabriel dos Santos Araujo",
   email: "ti.carlos.dev@email.com",
-  phone: "(14) 998802-9965",
+  phone: "(14) 98802-9965",
   location: "Botucatu, SP",
   about:
     "Desenvolvedor de Software com experiência em aplicações web, APIs, automação e sistemas orientados a dados. Atualmente aprofundando conhecimentos em Data Science e Machine Learning para transformar dados em soluções inteligentes.",
