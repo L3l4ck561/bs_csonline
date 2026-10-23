@@ -52,9 +52,9 @@ export default function Home() {
             icon: "💼",
           },
           {
-            title: "Thoughts",
+            title: "Blog",
             desc: "Posts e reflexões",
-            to: "/thoughts",
+            to: "/Blog",
             icon: "💭",
           },
         ].map((card) => (

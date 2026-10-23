@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { posts, toolSections, type Tool } from "~/data/thoughts";
+import { posts, toolSections, type Tool } from "~/data/blog";
 
 function ToolCard({ tool }: { tool: Tool }) {
   return (
@@ -148,7 +148,7 @@ export default function Thoughts() {
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-white sm:text-4xl">Thoughts</h1>
+        <h1 className="text-3xl font-bold text-white sm:text-4xl">Blog</h1>
         <p className="mt-2 text-zinc-400">Posts, ideias e reflexões.</p>
       </div>
 

@@ -3,9 +3,9 @@ import { useState } from "react";
 
 const navItems = [
   { to: "/", label: "Home" },
-  { to: "/curriculum", label: "Curriculum" },
   { to: "/portfolio", label: "Portfolio" },
-  { to: "/thoughts", label: "Thoughts" },
+  { to: "/blog", label: "Blog" },
+  { to: "/curriculum", label: "Curriculum" },
 ];
 
 export default function MainLayout() {
@@ -17,7 +17,7 @@ export default function MainLayout() {
       <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
           <NavLink to="/" className="text-xl font-bold tracking-tight text-white">
-            Carlos Gabriel dos Santos Araújo
+            Carlos Gabriel
           </NavLink>
 
           {/* Desktop */}
