@@ -419,7 +419,7 @@ export const ic: Ic[] = [
     description:
       "",
     link: [
-      { label: "Certificado de Participação", url: "./docs/participouunesp.pdf" },
+      { label: "Certificado de Participação", url: "./docs/Certificado-participacao-cic-2026.pdf" },
       { label: "Projeto (github)", url: "https://github.com/SergioPelais/SENAI-" },
       { label: "Certificado de apresentação de trabalho", url: "./docs/Certificado-trabalho-cic-2026.pdf" }
     ],
