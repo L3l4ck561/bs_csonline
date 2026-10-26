@@ -143,7 +143,6 @@ export const skills: Skill[] = [
   { name: "TypeScript", category: "Linguagens" },
 
   // Frontend
-  { name: "Next.js", category: "Frontend" },
   { name: "React Router", category: "Frontend" },
   { name: "HTML", category: "Frontend" },
   { name: "CSS", category: "Frontend" },
@@ -404,7 +403,26 @@ export const ic: Ic[] = [
     advisor: "Dr. Sonia",
     description:
       "Desenvolvimento de sistema web para controle de estoque de fármacos em ambiente hospitalar, com geração de alertas automáticos de validade, estoque mínimo e uso atípico.",
-    link: [{ label: "", url: "" }],
+    link: [
+      { label: "Certificado de apresentação do trabalho", url: "./docs/Certificado-trabalho2-cic-2026.pdf" },
+      { label: "Certificado de Apresentado", url: "./docs/Certificado-apresentacao-cic-2026.pdf" },
+      { label: "Certificado de Participação", url: "./docs/Certificado-participacao-cic-2026.pdf" },
+      { label: "Projeto (Poster)", url: "./docs/trabalhos/Araujo-C-poster-xxxviii-cic-unesp.pptx.pdf"},
+      { label: "Resumo", url: "./docs/trabalhos/Araujo-C-resumo-xxxviii-cic-unesp.docx.pdf"}
+    ],
+  },
+  {
+    title:
+      "1ª Fase do XXXVIIICongresso de Iniciação Científica da UNESP – GERENCIAMENTO DE ESTOQUE DE RADIOFÁRMACOS DE UMA INSTALAÇÃO DE MEDICINA NUCLEAR",
+    period: "2025 — 2026",
+    advisor: "Dr. Sonia",
+    description:
+      "",
+    link: [
+      { label: "Certificado de Participação", url: "./docs/participouunesp.pdf" },
+      { label: "Projeto (github)", url: "https://github.com/SergioPelais/SENAI-" },
+      { label: "Certificado de apresentação de trabalho", url: "./docs/Certificado-trabalho-cic-2026.pdf" }
+    ],
   },
 ];
 
@@ -415,8 +433,8 @@ export const presentations: Presentation[] = [
     date: "Outubro 2023",
     type: "Sistema Web para Gerenciamento de Entrada e Saída de Alunos.",
     link: [
-      { label: "Participação", url: "./docs/participouunesp.pdf" },
-      { label: "Apresentação", url: "./docs/trabalhoapresentadounesp.pdf" },
+      { label: "Certificado de Participação", url: "./docs/participouunesp.pdf" },
+      { label: "Certificado de Apresentado", url: "./docs/trabalhoapresentadounesp.pdf" },
       { label: "Premiação", url: "./docs/premiounesp.pdf" },
       { label: "Projeto", url: "https://github.com/SergioPelais/SENAI-" },
     ],
