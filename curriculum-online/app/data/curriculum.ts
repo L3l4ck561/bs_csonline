@@ -240,7 +240,11 @@ export const academic: Academic[] = [
     institution: "SENAI - Botucatu",
     period: "2024 — 2025",
     description: "",
-    link: [{ label: "Premiação", url: "./docs/premioSenai.pdf" }],
+    link: [
+      { label: "Premiação", url: "./docs/premioSenai.pdf" },
+      { label: "Diploma", url: "./docs/Diploma_TecSenai2025.pdf" },
+      { label: "Histórico Escolar", url: "./docs/Histórico_escolar_TecSenai2025.pdf" }
+    ],
   },
   {
     title: "Ensino Médio",
@@ -248,7 +252,7 @@ export const academic: Academic[] = [
     institution: "SESI - Botucatu",
     period: "2025",
     description: "",
-    link: [{ label: "Certificado", url: "./docs/historicoescolar.pdf" }],
+    link: [{ label: "Histórico Escolar", url: "./docs/historicoescolar.pdf" }],
   },
 ];
 
