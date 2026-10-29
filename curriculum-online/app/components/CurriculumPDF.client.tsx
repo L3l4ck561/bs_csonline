@@ -96,7 +96,7 @@ export type CurriculumData = {
 const styles = StyleSheet.create({
   page: {
     paddingTop: 22,
-    paddingBottom: 28,
+    paddingBottom: 22,
     paddingHorizontal: 28,
     fontSize: 9,
     fontFamily: "Helvetica",
@@ -351,10 +351,41 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
             <View style={styles.col}>
               <AcademicSection items={data.academic} />
               <CoursesSection items={data.course} />
+              {data.ead.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>EAD</Text>
+                  {groupByTitle(data.ead).map(([title, items]) => (
+                    <View key={title} style={styles.item}>
+                      <Text style={styles.itemTitle}>{title}</Text>
+                      {items.map((item, i) => (
+                        <Text key={i} style={styles.itemDesc}>
+                          • {item.institution} — {item.period}
+                        </Text>
+                      ))}
+                    </View>
+                  ))}
+                </View>
+              )}
             </View>
             <View style={styles.col}>
               <ExperiencesSection items={data.experiences} />
               {/* <SkillsSection skills={data.skills} /> */}
+              {data.presentations.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>Apresentações</Text>
+                  {data.presentations.map((item, i) => (
+                    <View key={i} style={styles.item}>
+                      <Text style={styles.itemTitle}>{item.title}</Text>
+                      <Text style={styles.itemMeta}>
+                        {item.event} · {item.date}
+                      </Text>
+                      {item.type && (
+                        <Text style={styles.itemDesc}>{item.type}</Text>
+                      )}
+                    </View>
+                  ))}
+                </View>
+              )}
             </View>
           </View>
         ) : (
@@ -365,26 +396,6 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
             <CoursesSection items={data.course} />
           </>
         )}
-
-        {/* sempre em largura total */}
-        
-        {data.ead.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>EAD</Text>
-            {groupByTitle(data.ead).map(([title, items]) => (
-              <View key={title} style={styles.item}>
-                <Text style={styles.itemTitle}>{title}</Text>
-                {items.map((item, i) => (
-                  <Text key={i} style={styles.itemDesc}>
-                    • {item.institution} — {item.period}
-                  </Text>
-                ))}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/*
         {data.ic.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Iniciação Científica</Text>
@@ -401,24 +412,6 @@ function CurriculumDocument({ data }: { data: CurriculumData }) {
             ))}
           </View>
         )}
-
-        {data.presentations.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Apresentações</Text>
-            {data.presentations.map((item, i) => (
-              <View key={i} style={styles.item}>
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text style={styles.itemMeta}>
-                  {item.event} · {item.date}
-                </Text>
-                {item.type && (
-                  <Text style={styles.itemDesc}>{item.type}</Text>
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-        */}
 
         {/* Footer único */}
         {/* <Text

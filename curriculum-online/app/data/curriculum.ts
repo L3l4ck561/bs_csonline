@@ -411,21 +411,22 @@ export const ic: Ic[] = [
       { label: "Certificado de apresentação do trabalho", url: "./docs/Certificado-trabalho2-cic-2026.pdf" },
       { label: "Certificado de Apresentado", url: "./docs/Certificado-apresentacao-cic-2026.pdf" },
       { label: "Certificado de Participação", url: "./docs/Certificado-participacao-cic-2026.pdf" },
+      { label: "Certificado de desenvolvimento", url: "./docs/Certificado_Projeto_24085.pdf"},
       { label: "Projeto (Poster)", url: "./docs/trabalhos/Araujo-C-poster-xxxviii-cic-unesp.pptx.pdf"},
       { label: "Resumo", url: "./docs/trabalhos/Araujo-C-resumo-xxxviii-cic-unesp.docx.pdf"}
     ],
   },
   {
     title:
-      "1ª Fase do XXXVIIICongresso de Iniciação Científica da UNESP – GERENCIAMENTO DE ESTOQUE DE RADIOFÁRMACOS DE UMA INSTALAÇÃO DE MEDICINA NUCLEAR",
+      "1ª Fase do XXXVIIICongresso de Iniciação Científica da UNESP – SENAI+: PLATAFORMA DIGITAL PARA O GERENCIAMENTO DE ENTRADAS E SAÍDAS DE ALUNOS",
     period: "2025 — 2026",
     advisor: "Dr. Sonia",
     description:
-      "",
+      "Atuando como co autor do projeto SENAI+, desenvolvendo uma plataforma digital para o gerenciamento de entradas e saídas de alunos, com foco em automação e eficiência.",
     link: [
       { label: "Certificado de Participação", url: "./docs/Certificado-participacao-cic-2026.pdf" },
       { label: "Projeto (github)", url: "https://github.com/SergioPelais/SENAI-" },
-      { label: "Certificado de apresentação de trabalho", url: "./docs/Certificado-trabalho-cic-2026.pdf" }
+      { label: "Certificado de apresentação de trabalho", url: "./docs/Certificado-trabalho2-cic-2026.pdf" }
     ],
   },
 ];

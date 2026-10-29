@@ -146,12 +146,59 @@ function AccordionGroup({
   title,
   children,
   defaultOpen = false,
+  expandLabel = "ver tudo",
 }: {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
+  expandLabel?: string;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-zinc-800/50"
+      >
+        <div className="flex items-center gap-2">
+          <h4 className="font-semibold text-white">{title}</h4>
+          {!open && (
+            <span className="text-xs font-normal text-emerald-400/80 hover:text-emerald-400">
+              {expandLabel}
+            </span>
+          )}
+        </div>
+
+        <span
+          className={`text-emerald-400 transition-transform duration-200 ${open ? "rotate-180" : ""
+            }`}
+        >
+          ▼
+        </span>
+      </button>
+      {open && (
+        <div className="border-t border-zinc-800 px-5 pb-4 pt-3 space-y-3">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ==================== SKILLS ACCORDION (específico) ====================
+function SkillsAccordion({
+  skillsByCategory,
+}: {
+  skillsByCategory: Record<string, Skill[]>;
+}) {
+  const [open, setOpen] = useState(false);
+
+  const otherCategories = Object.entries(skillsByCategory).filter(
+    ([category]) => category !== "Linguagens",
+  );
+
+  if (otherCategories.length === 0) return null;
 
   return (
     <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
@@ -160,18 +207,52 @@ function AccordionGroup({
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-zinc-800/50"
       >
-        <h4 className="font-semibold text-white">{title}</h4>
+        <div className="flex items-center gap-2">
+          <h4 className="font-semibold text-white">
+            Outras skills
+          </h4>
+          {!open && (
+            <span className="text-xs font-normal text-emerald-400/80">
+              ver todas as skills
+            </span>
+          )}
+        </div>
         <span
-          className={`text-emerald-400 transition-transform duration-200 ${open ? "rotate-180" : ""
-            }`}
+          className={`text-emerald-400 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
         >
           ▼
         </span>
       </button>
 
       {open && (
-        <div className="border-t border-zinc-800 px-5 pb-4 pt-3 space-y-3">
-          {children}
+        <div className="border-t border-zinc-800 px-5 pb-5 pt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+            {otherCategories.map(([category, items]) => {
+              const isLarge = items.length >= 4;
+              return (
+                <div
+                  key={category}
+                  className={`min-w-0 ${isLarge ? "sm:col-span-2" : ""}`}
+                >
+                  <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                    {category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill) => (
+                      <span
+                        key={skill.name}
+                        className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
@@ -255,8 +336,8 @@ export default function Curriculum() {
                 <div
                   key={i}
                   className={`relative border-l-2 border-emerald-500/40 pl-6 ${hasLinks
-                      ? "cursor-pointer rounded-r-xl transition hover:bg-zinc-900/50"
-                      : ""
+                    ? "cursor-pointer rounded-r-xl transition hover:bg-zinc-900/50"
+                    : ""
                     }`}
                   onClick={() =>
                     hasLinks && openLinksModal(exp.link, exp.role)
@@ -285,9 +366,8 @@ export default function Curriculum() {
         {/* Skills por categoria */}
         <section id="skills">
           <h2 className="mb-6 text-xl font-semibold text-white">Skills</h2>
-
           <div className="space-y-8">
-            {/* 1. Linguagens — sempre ocupa a linha inteira */}
+            {/* 1. Linguagens — sempre visível */}
             {skillsByCategory["Linguagens"] && (
               <div>
                 <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
@@ -306,38 +386,8 @@ export default function Curriculum() {
               </div>
             )}
 
-            {/* 2. Restante das categorias em grid responsivo */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lx:grid-cols-3 gap-x-6 gap-y-8">
-              {Object.entries(skillsByCategory)
-                .filter(([category]) => category !== "Linguagens")
-                .map(([category, items]) => {
-                  // Regra simples e dinâmica:
-                  // - poucas skills → 1 coluna
-                  // - muitas skills → 2 colunas
-                  const isLarge = items.length >= 4;
-
-                  return (
-                    <div
-                      key={category}
-                      className={`min-w-0 ${isLarge ? "sm:col-span-2" : ""}`}
-                    >
-                      <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
-                        {category}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {items.map((skill) => (
-                          <span
-                            key={skill.name}
-                            className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
-                          >
-                            {skill.name}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
+            {/* 2. Restante das categorias — dentro de um accordion específico */}
+            <SkillsAccordion skillsByCategory={skillsByCategory} />
           </div>
         </section>
 
@@ -358,8 +408,8 @@ export default function Curriculum() {
                     <div
                       key={i}
                       className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
-                          : ""
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                        : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
@@ -407,8 +457,8 @@ export default function Curriculum() {
                     <div
                       key={i}
                       className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
-                          : ""
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                        : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
@@ -454,8 +504,8 @@ export default function Curriculum() {
                       <div
                         key={title}
                         className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                            ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
-                            : ""
+                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                          : ""
                           }`}
                         onClick={() =>
                           hasLinks &&
@@ -497,8 +547,8 @@ export default function Curriculum() {
                           <div
                             key={i}
                             className={`flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3 ${hasLinks
-                                ? "cursor-pointer transition hover:bg-zinc-900"
-                                : ""
+                              ? "cursor-pointer transition hover:bg-zinc-900"
+                              : ""
                               }`}
                             onClick={() =>
                               hasLinks &&
@@ -553,8 +603,8 @@ export default function Curriculum() {
                     <div
                       key={i}
                       className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
-                          : ""
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                        : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
@@ -594,8 +644,8 @@ export default function Curriculum() {
                     <div
                       key={i}
                       className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
-                          : ""
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                        : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
@@ -635,8 +685,8 @@ export default function Curriculum() {
                 <article
                   key={i}
                   className={`group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition ${hasLinks
-                      ? "cursor-pointer hover:border-emerald-500/30 hover:bg-zinc-900"
-                      : "hover:border-emerald-500/30 hover:bg-zinc-900"
+                    ? "cursor-pointer hover:border-emerald-500/30 hover:bg-zinc-900"
+                    : "hover:border-emerald-500/30 hover:bg-zinc-900"
                     }`}
                   onClick={() =>
                     hasLinks && openLinksModal(item.link, item.title)
