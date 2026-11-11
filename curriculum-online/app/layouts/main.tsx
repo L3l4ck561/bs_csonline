@@ -191,7 +191,7 @@ export default function MainLayout() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-zinc-800 py-8 text-center text-sm text-zinc-500 flex items-center justify-center gap-5">
+      <footer className="border-t border-zinc-800 py-7 text-center text-sm text-zinc-500 flex items-center justify-center gap-5">
         <a href="https://github.com/L3l4ck561" className="hover:text-cyan-400">
           <div className="w-8 h-8 inline-block">
             <svg
