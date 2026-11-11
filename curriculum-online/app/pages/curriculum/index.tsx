@@ -195,7 +195,7 @@ function SkillsAccordion({
   const [open, setOpen] = useState(false);
 
   const otherCategories = Object.entries(skillsByCategory).filter(
-    ([category]) => category !== "Linguagens",
+    ([category]) => category !== "Tech",
   );
 
   if (otherCategories.length === 0) return null;
@@ -368,13 +368,13 @@ export default function Curriculum() {
           <h2 className="mb-6 text-xl font-semibold text-white">Skills</h2>
           <div className="space-y-8">
             {/* 1. Linguagens — sempre visível */}
-            {skillsByCategory["Linguagens"] && (
+            {skillsByCategory["Tech"] && (
               <div>
                 <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
-                  Linguagens
+                  Tech
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {skillsByCategory["Linguagens"].map((skill) => (
+                  {skillsByCategory["Tech"].map((skill) => (
                     <span
                       key={skill.name}
                       className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"

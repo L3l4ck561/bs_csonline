@@ -130,7 +130,7 @@ function GuiaDevCard() {
           </div>
 
           <p className="mt-1 text-sm leading-relaxed text-zinc-400">
-            Um centro de anotações gerais para fullstack 
+            Um centro de anotações gerais para fullstack
           </p>
 
           <span className="mt-3 inline-block text-sm font-medium text-emerald-400 transition">
@@ -159,6 +159,7 @@ export default function Thoughts() {
           <article
             key={post.slug}
             className="group rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-emerald-500/30 hover:bg-zinc-900"
+            onClick={() => setOpenSlug(post.slug)}
           >
             <time className="text-xs font-medium text-emerald-400">
               {post.date}
@@ -168,9 +169,9 @@ export default function Thoughts() {
             </h2>
             <p className="mt-2 text-sm text-zinc-400">{post.excerpt}</p>
             <button
-              type="button"
-              onClick={() => setOpenSlug(post.slug)}
               className="mt-4 inline-block text-sm font-medium text-emerald-400 opacity-0 transition group-hover:opacity-100"
+              onClick={() => setOpenSlug(post.slug)}
+              type="button"
             >
               Ler mais →
             </button>

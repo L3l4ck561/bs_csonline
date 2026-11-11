@@ -138,9 +138,9 @@ export const experiences: Experience[] = [
 
 export const skills: Skill[] = [
   // Linguagens
-  { name: "Python", category: "Linguagens" },
-  { name: "JavaScript", category: "Linguagens" },
-  { name: "TypeScript", category: "Linguagens" },
+  { name: "Python", category: "Tech" },
+  { name: "JavaScript", category: "Tech" },
+  { name: "TypeScript", category: "Tech" },
 
   // Frontend
   { name: "React Router", category: "Frontend" },

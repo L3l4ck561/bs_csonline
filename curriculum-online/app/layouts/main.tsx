@@ -8,29 +8,44 @@ const navItems = [
   { to: "/curriculum", label: "Curriculum" },
 ];
 
+const apps = [
+  {
+    name: "Agenda",
+    icon: "📅",
+    url: "https://agenda.packlor.com",
+  },
+  {
+    name: "Cálculadora",
+    icon: "🖩",
+    url: "https://l3l4ck561.github.io/Projeto-2Calculadora/",
+  },
+];
+
 export default function MainLayout() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAppsOpen, setIsAppsOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       {/* Navbar */}
       <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-          <NavLink to="/" className="text-xl font-bold tracking-tight text-white">
+          <NavLink to="/" className="text-xl font-bold tracking-tight text-white flex-1">
             Carlos Gabriel
           </NavLink>
-
+          
           {/* Desktop */}
-          <nav className="hidden gap-8 md:flex">
+          <nav className="hidden gap-8 md:flex mr-5">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 end={item.to === "/"}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors ${isActive
-                    ? "text-emerald-400"
-                    : "text-zinc-400 hover:text-white"
+                  `text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-emerald-400"
+                      : "text-zinc-400 hover:text-white"
                   }`
                 }
               >
@@ -39,20 +54,111 @@ export default function MainLayout() {
             ))}
           </nav>
 
-          {/* Mobile button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden rounded-lg p-2 text-zinc-400 hover:bg-zinc-800 hover:text-white"
-            aria-label="Menu"
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          {/* Right side: Apps + Mobile menu */}
+          <div className="flex items-center gap-1">
+            {/* Apps launcher */}
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setIsAppsOpen(!isAppsOpen);
+                  setIsOpen(false);
+                }}
+                className="rounded-lg p-2 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors"
+                aria-label="Apps"
+              >
+                {/* 3x3 grid icon */}
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <circle cx="5" cy="5" r="1.8" />
+                  <circle cx="12" cy="5" r="1.8" />
+                  <circle cx="19" cy="5" r="1.8" />
+                  <circle cx="5" cy="12" r="1.8" />
+                  <circle cx="12" cy="12" r="1.8" />
+                  <circle cx="19" cy="12" r="1.8" />
+                  <circle cx="5" cy="19" r="1.8" />
+                  <circle cx="12" cy="19" r="1.8" />
+                  <circle cx="19" cy="19" r="1.8" />
+                </svg>
+              </button>
+
+              {/* Apps dropdown */}
+              {isAppsOpen && (
+                <>
+                  {/* Backdrop to close on click outside */}
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setIsAppsOpen(false)}
+                  />
+
+                  <div className="absolute right-0 top-full z-50 mt-2 w-42 origin-top-right rounded-2xl rounded-tr-none border border-zinc-700/80 bg-zinc-900/95 p-1 shadow-2xl shadow-black/50 backdrop-blur-xl">
+                    <div className="grid grid-cols-2 gap-1">
+                      {apps.map((app) => (
+                        <a
+                          key={app.name}
+                          href={app.url}
+                          target={
+                            app.url.startsWith("http") || app.url.startsWith("mailto")
+                              ? "_blank"
+                              : undefined
+                          }
+                          rel={
+                            app.url.startsWith("http")
+                              ? "noopener noreferrer"
+                              : undefined
+                          }
+                          onClick={() => setIsAppsOpen(false)}
+                          className="group flex flex-col items-center gap-1.5 rounded-xl p-3 text-center transition-all hover:bg-zinc-800/80"
+                        >
+                          <span className="text-2xl transition-transform group-hover:scale-110">
+                            {app.icon}
+                          </span>
+                          <span className="text-[11px] font-medium leading-tight text-zinc-300 group-hover:text-white">
+                            {app.name}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
-            </svg>
-          </button>
+            </div>
+
+            {/* Mobile button */}
+            <button
+              onClick={() => {
+                setIsOpen(!isOpen);
+                setIsAppsOpen(false);
+              }}
+              className="md:hidden rounded-lg p-2 text-zinc-400 hover:bg-zinc-800 hover:text-white"
+              aria-label="Menu"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -66,9 +172,10 @@ export default function MainLayout() {
                   end={item.to === "/"}
                   onClick={() => setIsOpen(false)}
                   className={({ isActive }) =>
-                    `rounded-lg px-3 py-2 text-sm font-medium ${isActive
-                      ? "bg-emerald-500/10 text-emerald-400"
-                      : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                    `rounded-lg px-3 py-2 text-sm font-medium ${
+                      isActive
+                        ? "bg-emerald-500/10 text-emerald-400"
+                        : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
                     }`
                   }
                 >
@@ -87,18 +194,128 @@ export default function MainLayout() {
       <footer className="border-t border-zinc-800 py-8 text-center text-sm text-zinc-500 flex items-center justify-center gap-5">
         <a href="https://github.com/L3l4ck561" className="hover:text-cyan-400">
           <div className="w-8 h-8 inline-block">
-            <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>github [#142]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#ffffff"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#142]"> </path> </g> </g> </g> </g></svg>
+            <svg
+              viewBox="0 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              fill="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <title>github [#142]</title>
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g
+                  id="Page-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    id="Dribbble-Light-Preview"
+                    transform="translate(-140.000000, -7559.000000)"
+                    fill="#ffffff"
+                  >
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                      <path
+                        d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399"
+                        id="github-[#142]"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
           </div>
         </a>
-        <a href="mailto:carlos.ti.carlos.dev@gmail.com"
-          className="hover:text-cyan-400">
-            <div className="w-8 h-8 inline-block">
-              <svg viewBox="0 -31.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M58.1818182,192.049515 L58.1818182,93.1404244 L27.5066233,65.0770089 L0,49.5040608 L0,174.59497 C0,184.253152 7.82545455,192.049515 17.4545455,192.049515 L58.1818182,192.049515 Z" fill="#4285F4"> </path> <path d="M197.818182,192.049515 L238.545455,192.049515 C248.203636,192.049515 256,184.224061 256,174.59497 L256,49.5040608 L224.844415,67.3422767 L197.818182,93.1404244 L197.818182,192.049515 Z" fill="#34A853"> </path> <polygon fill="#EA4335" points="58.1818182 93.1404244 54.0077618 54.4932827 58.1818182 17.5040608 128 69.8676972 197.818182 17.5040608 202.487488 52.4960089 197.818182 93.1404244 128 145.504061"> </polygon> <path d="M197.818182,17.5040608 L197.818182,93.1404244 L256,49.5040608 L256,26.2313335 C256,4.64587897 231.36,-7.65957557 214.109091,5.28587897 L197.818182,17.5040608 Z" fill="#FBBC04"> </path> <path d="M0,49.5040608 L26.7588051,69.5731646 L58.1818182,93.1404244 L58.1818182,17.5040608 L41.8909091,5.28587897 C24.6109091,-7.65957557 0,4.64587897 0,26.2313335 L0,49.5040608 Z" fill="#C5221F"> </path> </g> </g></svg>
-            </div>
-        </a>
-        <a href="https://www.instagram.com/l3l4ck5/" className="hover:text-cyan-400">
+        <a
+          href="mailto:carlos.ti.carlos.dev@gmail.com"
+          className="hover:text-cyan-400"
+        >
           <div className="w-8 h-8 inline-block">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="#ffffff"></path> <path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z" fill="#ffffff"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z" fill="#ffffff"></path> </g></svg>
+            <svg
+              viewBox="0 -31.5 256 256"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              preserveAspectRatio="xMidYMid"
+              fill="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path
+                    d="M58.1818182,192.049515 L58.1818182,93.1404244 L27.5066233,65.0770089 L0,49.5040608 L0,174.59497 C0,184.253152 7.82545455,192.049515 17.4545455,192.049515 L58.1818182,192.049515 Z"
+                    fill="#4285F4"
+                  ></path>
+                  <path
+                    d="M197.818182,192.049515 L238.545455,192.049515 C248.203636,192.049515 256,184.224061 256,174.59497 L256,49.5040608 L224.844415,67.3422767 L197.818182,93.1404244 L197.818182,192.049515 Z"
+                    fill="#34A853"
+                  ></path>
+                  <polygon
+                    fill="#EA4335"
+                    points="58.1818182 93.1404244 54.0077618 54.4932827 58.1818182 17.5040608 128 69.8676972 197.818182 17.5040608 202.487488 52.4960089 197.818182 93.1404244 128 145.504061"
+                  ></polygon>
+                  <path
+                    d="M197.818182,17.5040608 L197.818182,93.1404244 L256,49.5040608 L256,26.2313335 C256,4.64587897 231.36,-7.65957557 214.109091,5.28587897 L197.818182,17.5040608 Z"
+                    fill="#FBBC04"
+                  ></path>
+                  <path
+                    d="M0,49.5040608 L26.7588051,69.5731646 L58.1818182,93.1404244 L58.1818182,17.5040608 L41.8909091,5.28587897 C24.6109091,-7.65957557 0,4.64587897 0,26.2313335 L0,49.5040608 Z"
+                    fill="#C5221F"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </a>
+        <a
+          href="https://www.instagram.com/l3l4ck5/"
+          className="hover:text-cyan-400"
+        >
+          <div className="w-8 h-8 inline-block">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                  fill="#ffffff"
+                ></path>
+                <path
+                  d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                  fill="#ffffff"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z"
+                  fill="#ffffff"
+                ></path>
+              </g>
+            </svg>
           </div>
         </a>
       </footer>
