@@ -59,31 +59,35 @@ function LinksModal({
       />
 
       <div className="relative z-10 w-full max-w-sm rounded-2xl border border-zinc-700 bg-zinc-900 shadow-2xl shadow-black/50">
-        <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
-          <h3 className="font-semibold text-white">{title || "Links"}</h3>
+        <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3.5 sm:px-5 sm:py-4">
+          <h3 className="font-semibold text-white text-base sm:text-lg">
+            {title || "Links"}
+          </h3>
           <button
             type="button"
             onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-full text-zinc-400 transition hover:bg-zinc-800 hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-zinc-400 transition hover:bg-zinc-800 hover:text-white"
             aria-label="Fechar"
           >
             ✕
           </button>
         </div>
 
-        <div className="flex flex-col gap-1 p-3">
+        <div className="flex flex-col gap-1 p-2.5 sm:p-3">
           {links.map((link, i) => (
             <a
               key={i}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm text-zinc-300 transition hover:bg-emerald-500/10 hover:text-emerald-400"
+              className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm text-zinc-300 transition hover:bg-emerald-500/10 hover:text-emerald-400 active:bg-emerald-500/15"
               onClick={onClose}
             >
-              <span className="text-base">🔗</span>
-              <span className="flex-1">{link.label || "Abrir link"}</span>
-              <span className="text-xs text-zinc-500">↗</span>
+              <span className="text-base shrink-0">🔗</span>
+              <span className="flex-1 min-w-0 break-words">
+                {link.label || "Abrir link"}
+              </span>
+              <span className="text-xs text-zinc-500 shrink-0">↗</span>
             </a>
           ))}
         </div>
@@ -92,7 +96,7 @@ function LinksModal({
   );
 }
 
-// ==================== COMPONENTE DE TOOLTIP DE LINKS ====================
+// ==================== COMPONENTE DE TOOLTIP / BOTÃO DE LINKS ====================
 function LinksTooltip({
   links,
   onOpenModal,
@@ -105,20 +109,22 @@ function LinksTooltip({
   if (validLinks.length === 0) return null;
 
   return (
-    <div className="group/tooltip relative ml-2 inline-flex">
+    <div className="relative ml-1.5 sm:ml-2 inline-flex shrink-0">
+      {/* Botão sempre visível e fácil de tocar no mobile */}
       <button
         type="button"
         onClick={(e) => {
           e.stopPropagation();
           onOpenModal?.();
         }}
-        className="flex h-5 w-5 items-center justify-center rounded-full border border-zinc-600 text-xs text-zinc-400 transition hover:border-emerald-500 hover:text-emerald-400"
+        className="flex h-7 w-7 sm:h-5 sm:w-5 items-center justify-center rounded-full border border-zinc-600 text-xs text-zinc-400 transition hover:border-emerald-500 hover:text-emerald-400 active:scale-95"
         aria-label="Ver links"
       >
         🔗
       </button>
 
-      <div className="pointer-events-none absolute bottom-full left-1/2 z-50 w-max -translate-x-1/2 opacity-0 transition-all duration-200 group-hover/tooltip:pointer-events-auto group-hover/tooltip:opacity-100">
+      {/* Tooltip só em desktop (hover). Em mobile usamos o modal */}
+      <div className="pointer-events-none absolute bottom-full left-1/2 z-50 w-max -translate-x-1/2 opacity-0 transition-all duration-200 group-hover/tooltip:pointer-events-auto group-hover/tooltip:opacity-100 hidden sm:block">
         <div className="rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 shadow-xl shadow-black/40">
           <div className="flex flex-col gap-1.5">
             {validLinks.map((link, i) => (
@@ -154,31 +160,35 @@ function AccordionGroup({
   expandLabel?: string;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+
   return (
     <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-zinc-800/50"
+        className="flex w-full items-center justify-between gap-3 px-4 py-3.5 sm:px-5 sm:py-4 text-left transition hover:bg-zinc-800/50 active:bg-zinc-800/70"
       >
-        <div className="flex items-center gap-2">
-          <h4 className="font-semibold text-white">{title}</h4>
+        <div className="flex items-center gap-2 min-w-0">
+          <h4 className="font-semibold text-white text-sm sm:text-base truncate">
+            {title}
+          </h4>
           {!open && (
-            <span className="text-xs font-normal text-emerald-400/80 hover:text-emerald-400">
+            <span className="text-xs font-normal text-emerald-400/80 whitespace-nowrap">
               {expandLabel}
             </span>
           )}
         </div>
 
         <span
-          className={`text-emerald-400 transition-transform duration-200 ${open ? "rotate-180" : ""
+          className={`text-emerald-400 transition-transform duration-200 shrink-0 ${open ? "rotate-180" : ""
             }`}
         >
           ▼
         </span>
       </button>
+
       {open && (
-        <div className="border-t border-zinc-800 px-5 pb-4 pt-3 space-y-3">
+        <div className="border-t border-zinc-800 px-4 pb-4 pt-3 sm:px-5 space-y-3">
           {children}
         </div>
       )}
@@ -186,7 +196,7 @@ function AccordionGroup({
   );
 }
 
-// ==================== SKILLS ACCORDION (específico) ====================
+// ==================== SKILLS ACCORDION ====================
 function SkillsAccordion({
   skillsByCategory,
 }: {
@@ -205,30 +215,29 @@ function SkillsAccordion({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-zinc-800/50"
+        className="flex w-full items-center justify-between gap-3 px-4 py-3.5 sm:px-5 sm:py-4 text-left transition hover:bg-zinc-800/50 active:bg-zinc-800/70"
       >
-        <div className="flex items-center gap-2">
-          <h4 className="font-semibold text-white">
+        <div className="flex items-center gap-2 min-w-0">
+          <h4 className="font-semibold text-white text-sm sm:text-base">
             Outras skills
           </h4>
           {!open && (
-            <span className="text-xs font-normal text-emerald-400/80">
-              ver todas as skills
+            <span className="text-xs font-normal text-emerald-400/80 whitespace-nowrap">
+              ver todas
             </span>
           )}
         </div>
         <span
-          className={`text-emerald-400 transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`text-emerald-400 transition-transform duration-200 shrink-0 ${open ? "rotate-180" : ""
+            }`}
         >
           ▼
         </span>
       </button>
 
       {open && (
-        <div className="border-t border-zinc-800 px-5 pb-5 pt-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+        <div className="border-t border-zinc-800 px-4 pb-5 pt-4 sm:px-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7 sm:gap-x-6 sm:gap-y-8">
             {otherCategories.map(([category, items]) => {
               const isLarge = items.length >= 4;
               return (
@@ -236,14 +245,14 @@ function SkillsAccordion({
                   key={category}
                   className={`min-w-0 ${isLarge ? "sm:col-span-2" : ""}`}
                 >
-                  <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                  <h3 className="mb-2.5 sm:mb-3 text-xs sm:text-sm font-medium uppercase tracking-wider text-emerald-400">
                     {category}
                   </h3>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {items.map((skill) => (
                       <span
                         key={skill.name}
-                        className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
+                        className="rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm text-zinc-300"
                       >
                         {skill.name}
                       </span>
@@ -301,16 +310,16 @@ export default function Curriculum() {
   const anoAtual = new Date().getFullYear();
 
   return (
-    <div className="text-end">
-      <div className="relative space-y-12 text-left">
+    <div>
+      <div className="relative space-y-8 sm:space-y-12 text-left">
         <CurriculumNav />
 
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-white sm:text-4xl">
+          <h1 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             Curriculum
           </h1>
-          <p className="mt-2 text-zinc-400">
+          <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-zinc-400">
             Minha trajetória profissional e habilidades.
           </p>
         </div>
@@ -318,43 +327,49 @@ export default function Curriculum() {
         {/* Sobre */}
         <section
           id="sobre"
-          className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6"
+          className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4 sm:p-6"
         >
-          <h2 className="mb-3 text-xl font-semibold text-emerald-400">
+          <h2 className="mb-2.5 sm:mb-3 text-lg sm:text-xl font-semibold text-emerald-400">
             Sobre mim
           </h2>
-          <p className="leading-relaxed text-zinc-300">{personalInfo.about}</p>
+          <p className="leading-relaxed text-sm sm:text-base text-zinc-300">
+            {personalInfo.about}
+          </p>
         </section>
 
         {/* Experiência */}
         <section id="experiencia">
-          <h2 className="mb-6 text-xl font-semibold text-white">Experiência</h2>
-          <div className="space-y-6">
+          <h2 className="mb-4 sm:mb-6 text-lg sm:text-xl font-semibold text-white">
+            Experiência
+          </h2>
+          <div className="space-y-5 sm:space-y-6">
             {experiences.map((exp, i) => {
               const hasLinks = getValidLinks(exp.link).length > 0;
               return (
                 <div
                   key={i}
-                  className={`relative border-l-2 border-emerald-500/40 pl-6 ${hasLinks
-                    ? "cursor-pointer rounded-r-xl transition hover:bg-zinc-900/50"
+                  className={`relative border-l-2 border-emerald-500/40 pl-5 sm:pl-6 ${hasLinks
+                    ? "cursor-pointer rounded-r-xl transition hover:bg-zinc-900/50 active:bg-zinc-900/70"
                     : ""
                     }`}
-                  onClick={() =>
-                    hasLinks && openLinksModal(exp.link, exp.role)
-                  }
+                  onClick={() => hasLinks && openLinksModal(exp.link, exp.role)}
                 >
-                  <div className="absolute -left-[9px] top-1 h-4 w-4 rounded-full border-2 border-emerald-500 bg-zinc-950" />
-                  <div className="flex items-center gap-1">
-                    <h3 className="font-semibold text-white">{exp.role}</h3>
+                  <div className="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-emerald-500 bg-zinc-950" />
+
+                  <div className="flex items-start gap-1.5 min-w-0">
+                    <h3 className="font-semibold text-white text-sm sm:text-base break-words">
+                      {exp.role}
+                    </h3>
                     <LinksTooltip
                       links={exp.link}
                       onOpenModal={() => openLinksModal(exp.link, exp.role)}
                     />
                   </div>
-                  <p className="text-sm text-emerald-400">
+
+                  <p className="mt-0.5 text-xs sm:text-sm text-emerald-400">
                     {exp.company} · {exp.period}
                   </p>
-                  <p className="mt-2 text-sm text-zinc-400">
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed">
                     {exp.description}
                   </p>
                 </div>
@@ -363,21 +378,23 @@ export default function Curriculum() {
           </div>
         </section>
 
-        {/* Skills por categoria */}
+        {/* Skills */}
         <section id="skills">
-          <h2 className="mb-6 text-xl font-semibold text-white">Skills</h2>
-          <div className="space-y-8">
-            {/* 1. Linguagens — sempre visível */}
+          <h2 className="mb-4 sm:mb-6 text-lg sm:text-xl font-semibold text-white">
+            Skills
+          </h2>
+          <div className="space-y-6 sm:space-y-8">
+            {/* Tech — sempre visível */}
             {skillsByCategory["Tech"] && (
               <div>
-                <h3 className="mb-3 text-sm font-medium uppercase tracking-wider text-emerald-400">
+                <h3 className="mb-2.5 sm:mb-3 text-xs sm:text-sm font-medium uppercase tracking-wider text-emerald-400">
                   Tech
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {skillsByCategory["Tech"].map((skill) => (
                     <span
                       key={skill.name}
-                      className="rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-zinc-300"
+                      className="rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm text-zinc-300"
                     >
                       {skill.name}
                     </span>
@@ -386,37 +403,38 @@ export default function Curriculum() {
               </div>
             )}
 
-            {/* 2. Restante das categorias — dentro de um accordion específico */}
             <SkillsAccordion skillsByCategory={skillsByCategory} />
           </div>
         </section>
 
         {/* Formação */}
         <section id="formacao">
-          <h2 className="mb-6 text-xl font-semibold text-white">Formação</h2>
+          <h2 className="mb-4 sm:mb-6 text-lg sm:text-xl font-semibold text-white">
+            Formação
+          </h2>
 
-          <div className="space-y-8">
+          <div className="space-y-7 sm:space-y-8">
             {/* Acadêmico */}
             <div>
-              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+              <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-wider text-emerald-400">
                 Acadêmico
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {academic.map((item, i) => {
                   const hasLinks = getValidLinks(item.link).length > 0;
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 sm:p-5 ${hasLinks
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900 active:bg-zinc-900/80"
                         : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
                     >
-                      <div className="flex items-center gap-1">
-                        <h4 className="font-semibold text-white">
+                      <div className="flex items-start gap-1.5 min-w-0">
+                        <h4 className="font-semibold text-white text-sm sm:text-base break-words">
                           {item.title}
                         </h4>
                         <LinksTooltip
@@ -426,16 +444,16 @@ export default function Curriculum() {
                           }
                         />
                       </div>
-                      <p className="mt-1 text-sm text-emerald-400">
+                      <p className="mt-1 text-xs sm:text-sm text-emerald-400">
                         {item.institution} · {item.period}
                         {item.status && (
-                          <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                          <span className="ml-1.5 sm:ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-[10px] sm:text-xs text-zinc-400">
                             {item.status}
                           </span>
                         )}
                       </p>
                       {item.description && (
-                        <p className="mt-2 text-sm text-zinc-400">
+                        <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed">
                           {item.description}
                         </p>
                       )}
@@ -447,25 +465,25 @@ export default function Curriculum() {
 
             {/* Cursos Complementares */}
             <div>
-              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+              <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-wider text-emerald-400">
                 Cursos Complementares
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {course.map((item, i) => {
                   const hasLinks = getValidLinks(item.link).length > 0;
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 sm:p-5 ${hasLinks
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900 active:bg-zinc-900/80"
                         : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
                     >
-                      <div className="flex items-center gap-1">
-                        <h4 className="font-semibold text-white">
+                      <div className="flex items-start gap-1.5 min-w-0">
+                        <h4 className="font-semibold text-white text-sm sm:text-base break-words">
                           {item.title}
                         </h4>
                         <LinksTooltip
@@ -475,11 +493,11 @@ export default function Curriculum() {
                           }
                         />
                       </div>
-                      <p className="mt-1 text-sm text-emerald-400">
+                      <p className="mt-1 text-xs sm:text-sm text-emerald-400">
                         {item.institution} · {item.period}
                         {item.hours && ` · ${item.hours}`}
                         {item.status && (
-                          <span className="ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+                          <span className="ml-1.5 sm:ml-2 rounded-full bg-zinc-800 px-2 py-0.5 text-[10px] sm:text-xs text-zinc-400">
                             {item.status}
                           </span>
                         )}
@@ -492,10 +510,10 @@ export default function Curriculum() {
 
             {/* EAD */}
             <div>
-              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+              <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-wider text-emerald-400">
                 EAD
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {eadGrouped.map(([title, items]) => {
                   if (items.length === 1) {
                     const item = items[0];
@@ -503,8 +521,8 @@ export default function Curriculum() {
                     return (
                       <div
                         key={title}
-                        className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                        className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 sm:p-5 ${hasLinks
+                          ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900 active:bg-zinc-900/80"
                           : ""
                           }`}
                         onClick={() =>
@@ -512,8 +530,8 @@ export default function Curriculum() {
                           openLinksModal(item.link, item.institution)
                         }
                       >
-                        <div className="flex items-center gap-1">
-                          <h4 className="font-semibold text-white">
+                        <div className="flex items-start gap-1.5 min-w-0">
+                          <h4 className="font-semibold text-white text-sm sm:text-base break-words">
                             {item.title}
                           </h4>
                           <LinksTooltip
@@ -523,11 +541,11 @@ export default function Curriculum() {
                             }
                           />
                         </div>
-                        <p className="mt-1 text-sm text-emerald-400">
+                        <p className="mt-1 text-xs sm:text-sm text-emerald-400">
                           {item.institution} · {item.period}
                         </p>
                         {item.description && (
-                          <p className="mt-2 text-sm text-zinc-400">
+                          <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed">
                             {item.description}
                           </p>
                         )}
@@ -536,18 +554,14 @@ export default function Curriculum() {
                   }
 
                   return (
-                    <AccordionGroup
-                      key={title}
-                      title={title}
-                      defaultOpen={false}
-                    >
+                    <AccordionGroup key={title} title={title} defaultOpen={false}>
                       {items.map((item, i) => {
                         const hasLinks = getValidLinks(item.link).length > 0;
                         return (
                           <div
                             key={i}
-                            className={`flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-4 py-3 ${hasLinks
-                              ? "cursor-pointer transition hover:bg-zinc-900"
+                            className={`flex items-start justify-between gap-3 rounded-lg bg-zinc-950/50 px-3.5 py-3 sm:px-4 ${hasLinks
+                              ? "cursor-pointer transition hover:bg-zinc-900 active:bg-zinc-800"
                               : ""
                               }`}
                             onClick={() =>
@@ -555,15 +569,15 @@ export default function Curriculum() {
                               openLinksModal(item.link, item.institution)
                             }
                           >
-                            <div>
-                              <p className="font-medium text-zinc-200">
+                            <div className="min-w-0">
+                              <p className="font-medium text-zinc-200 text-sm">
                                 {item.institution}
                               </p>
-                              <p className="mt-0.5 text-sm text-emerald-400">
+                              <p className="mt-0.5 text-xs sm:text-sm text-emerald-400">
                                 {item.period}
                               </p>
                               {item.description && (
-                                <p className="mt-1 text-sm text-zinc-400">
+                                <p className="mt-1 text-xs sm:text-sm text-zinc-400">
                                   {item.description}
                                 </p>
                               )}
@@ -587,31 +601,32 @@ export default function Curriculum() {
 
         {/* Iniciações Científicas e Apresentações */}
         <section id="ic-apresentacoes">
-          <h2 className="mb-6 text-xl font-semibold text-white">
+          <h2 className="mb-4 sm:mb-6 text-lg sm:text-xl font-semibold text-white">
             Iniciações Científicas e Apresentações
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-6 sm:space-y-7">
+            {/* IC */}
             <div>
-              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+              <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-wider text-emerald-400">
                 Iniciação Científica (IC)
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {ic.map((item, i) => {
                   const hasLinks = getValidLinks(item.link).length > 0;
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 sm:p-5 ${hasLinks
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900 active:bg-zinc-900/80"
                         : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
                     >
-                      <div className="flex items-center gap-1">
-                        <h4 className="font-semibold text-white">
+                      <div className="flex items-start gap-1.5 min-w-0">
+                        <h4 className="font-semibold text-white text-sm sm:text-base break-words">
                           {item.title}
                         </h4>
                         <LinksTooltip
@@ -621,10 +636,10 @@ export default function Curriculum() {
                           }
                         />
                       </div>
-                      <p className="mt-1 text-sm text-emerald-400">
+                      <p className="mt-1 text-xs sm:text-sm text-emerald-400">
                         {item.period} · Orientador: {item.advisor}
                       </p>
-                      <p className="mt-2 text-sm text-zinc-400">
+                      <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -633,26 +648,27 @@ export default function Curriculum() {
               </div>
             </div>
 
+            {/* Apresentações */}
             <div>
-              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-emerald-400">
+              <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-wider text-emerald-400">
                 Apresentações
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {presentations.map((item, i) => {
                   const hasLinks = getValidLinks(item.link).length > 0;
                   return (
                     <div
                       key={i}
-                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 ${hasLinks
-                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900"
+                      className={`rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 sm:p-5 ${hasLinks
+                        ? "cursor-pointer transition hover:border-emerald-500/40 hover:bg-zinc-900 active:bg-zinc-900/80"
                         : ""
                         }`}
                       onClick={() =>
                         hasLinks && openLinksModal(item.link, item.title)
                       }
                     >
-                      <div className="flex items-center gap-1">
-                        <h4 className="font-semibold text-white">
+                      <div className="flex items-start gap-1.5 min-w-0">
+                        <h4 className="font-semibold text-white text-sm sm:text-base break-words">
                           {item.title}
                         </h4>
                         <LinksTooltip
@@ -662,10 +678,12 @@ export default function Curriculum() {
                           }
                         />
                       </div>
-                      <p className="mt-1 text-sm text-emerald-400">
+                      <p className="mt-1 text-xs sm:text-sm text-emerald-400">
                         {item.event} · {item.date}
                       </p>
-                      <p className="mt-1 text-xs text-zinc-500">{item.type}</p>
+                      <p className="mt-0.5 text-[11px] sm:text-xs text-zinc-500">
+                        {item.type}
+                      </p>
                     </div>
                   );
                 })}
@@ -676,16 +694,18 @@ export default function Curriculum() {
 
         {/* Mural */}
         <section id="mural" className="scroll-mt-24">
-          <h2 className="mb-6 text-xl font-semibold text-white">Mural</h2>
+          <h2 className="mb-4 sm:mb-6 text-lg sm:text-xl font-semibold text-white">
+            Mural
+          </h2>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {mural.map((item, i) => {
               const hasLinks = getValidLinks(item.link).length > 0;
               return (
                 <article
                   key={i}
                   className={`group overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition ${hasLinks
-                    ? "cursor-pointer hover:border-emerald-500/30 hover:bg-zinc-900"
+                    ? "cursor-pointer hover:border-emerald-500/30 hover:bg-zinc-900 active:bg-zinc-900/80"
                     : "hover:border-emerald-500/30 hover:bg-zinc-900"
                     }`}
                   onClick={() =>
@@ -702,9 +722,9 @@ export default function Curriculum() {
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-60" />
                   </div>
 
-                  <div className="p-5">
+                  <div className="p-4 sm:p-5">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-semibold text-white leading-snug">
+                      <h3 className="font-semibold text-white leading-snug text-sm sm:text-base break-words min-w-0">
                         {item.title}
                       </h3>
                       <LinksTooltip
@@ -716,14 +736,14 @@ export default function Curriculum() {
                     </div>
 
                     {(item.event || item.period) && (
-                      <p className="mt-1.5 text-sm text-emerald-400">
+                      <p className="mt-1.5 text-xs sm:text-sm text-emerald-400">
                         {item.event && <>{item.event} · </>}
                         {item.period}
                       </p>
                     )}
 
                     {item.description && (
-                      <p className="mt-2 text-sm text-zinc-400 line-clamp-3">
+                      <p className="mt-2 text-xs sm:text-sm text-zinc-400 line-clamp-3 leading-relaxed">
                         {item.description}
                       </p>
                     )}
@@ -735,26 +755,25 @@ export default function Curriculum() {
         </section>
       </div>
 
-      <div className="mt-10" />
-
-      <CurriculumPDF
-        data={{
-          name: personalInfo.name,
-          email: personalInfo.email,
-          phone: personalInfo.phone,
-          location: personalInfo.location,
-          about: personalInfo.about,
-          experiences,
-          skills,
-          academic,
-          course,
-          ead,
-          ic,
-          presentations,
-          mural,
-        }}
-        fileName={`CarlosGabriel-Curriculum_${anoAtual}.pdf`}
-      />
+      <div className="mt-8 sm:mt-10" />
+        <CurriculumPDF
+          data={{
+            name: personalInfo.name,
+            email: personalInfo.email,
+            phone: personalInfo.phone,
+            location: personalInfo.location,
+            about: personalInfo.about,
+            experiences,
+            skills,
+            academic,
+            course,
+            ead,
+            ic,
+            presentations,
+            mural,
+          }}
+          fileName={`CarlosGabriel-Curriculum_${anoAtual}.pdf`}
+        />
 
       {modal && (
         <LinksModal
