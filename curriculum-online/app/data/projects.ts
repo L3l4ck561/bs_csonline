@@ -18,7 +18,7 @@ export const projects = [
     title: "Calculadora",
     description: "Feito com troca de tema (DarkMode) e tratamento de erro.",
     tags: ["HTML", "CSS", "JS"],
-    link: "https://l3l4ck561.github.io/Projeto-2Calculadora/",
+    link: "https://github.com/L3l4ck561/Projeto-2Calculadora",
   },
   {
     icon: "📅",

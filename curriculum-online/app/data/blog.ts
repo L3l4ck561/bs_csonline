@@ -388,12 +388,6 @@ export const toolSections: Section[] = [
         description: "Explore canais de TV ao vivo, rádios e webcams de diferentes países pelo navegador.",
       },
       {
-        name: "Flow de Dados",
-        domain: "flowdedados.com",
-        url: "https://flowdedados.com",
-        description: "Conteúdo e materiais sobre tecnologia, programação e ciência de dados.",
-      },
-      {
         name: "Click the Red Button",
         domain: "clicktheredbutton.com",
         url: "https://clicktheredbutton.com",
@@ -410,6 +404,12 @@ export const toolSections: Section[] = [
         domain: "inspirobot.me",
         url: "https://inspirobot.me",
         description: "Gerador de frases motivacionais aleatórias, muitas vezes absurdas e engraçadas.",
+      },
+      {
+        name: "Putt Day",
+        domain: "putt.day",
+        url: "https://putt.day/",
+        description: "Jogo de golfe online com desafios diários e ranking global.",
       },
     ],
   },
