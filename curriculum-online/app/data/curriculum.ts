@@ -460,9 +460,9 @@ export const mural: Participation[] = [
   },
   {
     img: "./docs/premioSenai.png",
-    title: "Prêmio Roberto Mange",
+    title: "Prêmio Roberto Mange - 2025",
     event: "",
-    period: "2025",
+    period: "",
     description: "Melhor aluno formado dos cursos técnicos",
     link: [{ label: "Premiação", url: "./docs/premioSenai.pdf" }],
   },

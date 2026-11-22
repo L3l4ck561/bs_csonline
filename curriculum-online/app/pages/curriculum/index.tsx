@@ -310,7 +310,7 @@ export default function Curriculum() {
   const anoAtual = new Date().getFullYear();
 
   return (
-    <div>
+    <div className="">
       <div className="relative space-y-8 sm:space-y-12 text-left">
         <CurriculumNav />
 

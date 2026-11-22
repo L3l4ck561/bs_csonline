@@ -467,25 +467,29 @@ export default function CurriculumPDF({
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleDownload}
-      disabled={loading}
+    <div
       className={
         className ||
-        "sticky bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-emerald-500/50 hover:bg-zinc-800 hover:text-emerald-400 disabled:opacity-60"
+        "sticky right-6 z-40 inline-flex bottom-6 w-full max-w-[75vw] flex justify-end"
       }
     >
-      {loading ? (
-        "Gerando PDF..."
-      ) : (
-        children || (
-          <>
-            <span>📄</span>
-            Baixar Curriculum (PDF)
-          </>
-        )
-      )}
-    </button>
+      <button
+        type="button"
+        onClick={handleDownload}
+        disabled={loading}
+        className="items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-emerald-500/50 hover:bg-zinc-800 hover:text-emerald-400 disabled:opacity-60"
+      >
+        {loading ? (
+          "Gerando PDF..."
+        ) : (
+          children || (
+            <>
+              <span>📄</span>
+              Baixar Curriculum (PDF)
+            </>
+          )
+        )}
+      </button>
+    </div>
   );
 }
